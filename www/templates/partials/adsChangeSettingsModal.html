@@ -1,0 +1,83 @@
+<ion-modal-view>
+  <ion-nav-bar class="bar-assertive bar bar-header">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="cancelModal()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="okClicked()">
+        <i translate>GLOBAL.SAVE</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-header padding">
+
+    <div class="list">
+      <details open style="margin: auto auto 18px 10px">
+        <summary style="color: #0c60ee">
+          {{'UPLOAD.HEADER_OPTIONS_TAG'|translate}}
+        </summary>
+
+        <div style="color: gray;">
+          {{'UPLOAD.HEADER_BG_COLOR'|translate}}
+          <ngjs-color-picker selected-color="sequence.advertisement.header.bgColor" custom-colors="customColors"
+                             class="colorPicker"></ngjs-color-picker>
+          {{'UPLOAD.HEADER_FONT_COLOR'|translate}} {{sequence.advertisement.header.color}}
+          <ngjs-color-picker selected-color="sequence.advertisement.header.color" custom-colors="customColors"
+                             class="colorPicker"></ngjs-color-picker>
+        </div>
+      </details>
+
+      <div
+        class="list card cards-round"
+        style="padding-top: 0; margin: 10px 0 15px 0">
+        <div style="margin-left:0; margin-right:0; min-height: 85px">
+          <!-- cqnz header (avatar, 3-dot-menu, username, date) -->
+          <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+
+          <!--**** Show sequence Content ****-->
+          <ng-include
+            src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+          <div style="height: 8px"></div>
+        </div>
+      </div>
+
+      <details open style="margin: auto auto 18px 10px">
+        <summary style="color: #0c60ee">
+          {{'UPLOAD.DATETIME_PICKER_TAG'|translate}} {{sequence.metadata.finalDate | date: "MMM d, y"}}
+        </summary>
+        <div class="list">
+          <a class="item item-icon-left"
+             style="color: #0c60ee; padding:8px 0 2px 34px;"
+             title="dateTimePickerTitle"
+             ion-datetime-picker date monday-first
+             only-valid="{'after': 'today', 'inclusive': true}"
+             ng-model="sequence.metadata.finalDate" ng-click="hideStatementFormAndBackdrop()">
+            <i class="icon ion-ios-calendar-outline" style="left: 0; padding-bottom: 4px"></i>
+            {{'UPLOAD.DATETIME_PICKER.TITLE'|translate}}
+          </a>
+        </div>
+      </details>
+
+      <div class="item item-divider" style="font-size: 13px">{{'UPLOAD.OTHER_OPTIONS_TAG'|translate}}</div>
+      <div class="row">
+        <md-switch
+          md-invert
+          ng-model="sequence.comments.enabled"
+          class="md-primary"
+          style="margin: 0 0 0 auto;"
+          aria-label="enable comments">
+          {{'UPLOAD.ENABLE_COMMENTS'|translate}}
+        </md-switch>
+      </div>
+      <div class="text-right">
+        <button class="button button-assertive" ng-click="okClicked()" translate>GLOBAL.SAVE</button>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-modal-view>

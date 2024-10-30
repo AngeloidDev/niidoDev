@@ -1,0 +1,204 @@
+<ion-modal-view>
+  <ion-nav-bar class="bar-assertive">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="modalSearch.hide()">
+        <i class="ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-title translate>DISCOVER.SEARCH</ion-nav-title>
+  </ion-nav-bar>
+
+  <!--<div class="bar bar-header bar-assertive">
+    <button class="button button-icon icon ion-chevron-left button-clear button-primary"
+            ng-click="modalSearch.hide()"></button>
+    <h1 class="title" translate>DISCOVER.SEARCH</h1>
+  </div>-->
+
+  <ion-content class="has-header" scroll="false">
+    <!-- SEARCH INPUT -->
+    <form name="searchForm" ng-submit="initSearch()">
+      <div class="row">
+        <div class="col col-80">
+          <label class="item item-input" style="border: solid 1px #CCCCCC;">
+            <input type="text" translate-attr="{ 'placeholder' : 'DISCOVER.SEARCH' }" ng-minlength="3"
+                   ng-model="data.userName" name="userName" ng-change="limitSearch()" required>
+          </label>
+        </div>
+        <div class="col text-right">
+          <button class="button botonSearchOn" ng-disabled="searchForm.userName.$invalid || searching"></button>
+          <ion-spinner icon="spiral" class="loadingAction" ng-if="searching"></ion-spinner>
+        </div>
+
+      </div>
+      <div class="row" ng-show="searchForm.userName.$invalid">
+        <div class="col">
+          <label class="assertive" translate>
+            DISCOVER.AT_LEAST
+          </label>
+        </div>
+      </div>
+      <div class="row" ng-if="false">
+        <table border="0" cellspacing="0" cellpadding="0"
+               style="width:100%; background-color: white; margin-bottom: 10px;">
+          <tr>
+            <td width="15%" align="left" valign="middle">
+              <div ng-click="getTrending()"
+                   style="color: #1A1A1A!important; font-weight: 800!important; word-spacing: -4px!important; margin-top: 4px; padding-left: 7px; padding-right: 10px;">
+                Trending
+              </div>
+            </td>
+            <td width="85%" align="left" valign="middle">
+              <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+                <tr ng-show="data.trendingList.length > 1">
+                  <td width="5%">
+                    <div class="ion-arrow-left-b"
+                         style="color: red;  position: absolute; z-index: 999; width: 15px;"></div>
+                  </td>
+                  <td width="90%">
+                    <ion-scroll direction="x" scrollbar-x="true" scrollbar-y="true" has-bouncing="true" zooming="false"
+                                delegate-handle="horizontal"
+                                style="width: 200%; overflow: scroll !important; height:25px; position: inherit !important;">
+                      <ul style="width: 200%;">
+                        <li ng-repeat="hashtag in data.trendingList" ng-click="sendHashtagTimeline(hashtag.name)"
+                            style="width:70px; height:20px; display: inline; color: #1A1A1A!important; font-weight: 800!important; margin-left: 10px;">
+                          #{{hashtag.name}}
+                        </li>
+                      </ul>
+                    </ion-scroll>
+                    <div ng-show="data.noTrending == 1"
+                         style="width: 100%; overflow: scroll !important; height:18px !important;"
+                         ng-click="getTrending()">
+                      <p translate style="height:19px !important">DISCOVER.NO_TRENDING</p></br>
+                    </div>
+                  </td>
+                  <td width="5%">
+                    <div class="ion-arrow-right-b"
+                         style="color: red; position: absolute;  z-index: 999; right: 0px; background-color: white; padding-right: 5px; padding-left: 5px;"></div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="row">
+        <div style="width:100%; padding: 4px; background: white !important; position: relative; z-index: 2"
+             ng-if="data.searchActiveTab !== 'none'">
+          <div class="button-bar">
+            <button
+              class="button icon-left ion-ios-people"
+              ng-class="data.searchActiveTab == 'users' ? 'button-assertive' : 'button-light'"
+              ng-click="activateSearchTab('users')" ng-if="usersResults" translate>
+              DISCOVER.USERS_TAB_TITLE
+            </button>
+            <button
+              class="button icon-left ion-android-star"
+              ng-class="data.searchActiveTab == 'content' ? 'button-assertive' : 'button-light'"
+              ng-click="activateSearchTab('content')"
+              ng-if="_sequenceList" translate>
+              DISCOVER.CONTENT_TAB_TITLE
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+    <!-- USERS RESULTS LIST-->
+    <ion-content style="margin-top: 118px;" ng-show="data.searchActiveTab == 'users'">
+      <ion-scroll direction="y">
+        <div class="comments-in" style="padding-top: 8px"
+             ng-repeat="user in usersResults">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="40" align="left" valign="top" style="width:35px; vertical-align:top;">
+                <img class="comments-avatar avatar-image"
+                     ng-src="{{::user.photo}}"
+                     ng-click="sendUserProfile(user)" style="min-height: 35px;"/>
+              </td>
+              <td align="left" valign="top" style="vertical-align:top; padding-top:7px; ">
+                <div
+                  style="vertical-align:top; padding-top:7px; margin-left:2px; height:16px !important; width:18px !important; background-image:url(img/verifedSearch.svg) !important; background-repeat:no-repeat; background-position: left; position:absolute;"
+                  ng-if="user.verifyUser">
+                </div>
+                <div
+                  style="vertical-align: middle; margin-left:23px; color:rgba(51,51,51,1); overflow: hidden; font-weight: bold; white-space: nowrap; width: 12em !important; position:absolute; text-overflow:ellipsis;"
+                  ng-click="sendUserProfile(user)">
+                  {{ ::user.name }}
+                </div>
+              </td>
+              <td width="130" align="left" valign="top"
+                  style="width:130px; margin-right:7px; vertical-align:top; padding-top:5px; ">
+                <div ng-init="user.followingIsActive = getFollowingIsActive(user.userSubscription.href.split('/')[6])"
+                     style="">
+                  <button class="button button-small"
+                          ng-class="user.followingIsActive.result.value ? 'unfollow' : 'follow'"
+                          ng-click="addFriendsSearch(user);" ng-disabled="user.togglingFollow">
+                    {{user.followingIsActive.result.value ? data.unfollowText : data.followText}}
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div style="clear:both;"></div>
+        </div>
+      </ion-scroll>
+    </ion-content>
+
+    <!-- CONTENT RESULTS LIST-->
+    <ion-content style="margin-top: 118px;" ng-controller="GalleryCtrl" ng-show="data.searchActiveTab == 'content'">
+      <div ng-controller="SequenceCtrl">
+        <ion-scroll style="height: calc(100% - 80px); padding-top: 4px" direction="y">
+          <div class="list card cards-round"
+               style="padding-top: 0; min-height: 85px"
+               ng-repeat="sequence in _sequenceList track by $id(sequence)"
+               id="timeline_{{_controllerName}}_seq_{{$index}}">
+            <div style="margin-left:0; margin-right:0; min-height: 85px">
+              <div ng-if="!sequence.metadata.isAdvertisement">
+                <!-- cqnz header (avatar, 3-dot-menu, username, date) -->
+                <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+
+                <!--**** Show sequence Content ****-->
+                <ng-include
+                  src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+                <div style="height: 16px"></div>
+              </div>
+
+              <div ng-if="sequence.metadata.isAdvertisement" id="timeline_Ad_{{_controllerName}}_seq_{{$index}}"
+                   ng-click="increaseAdClicks(sequence, $index)">
+                <!-- cqnz header (avatar, 3-dot-menu, username, date) -->
+                <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+
+                <!--**** Show sequence Content ****-->
+                <ng-include
+                  src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+                <div style="height: 16px"></div>
+              </div>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+    </ion-content>
+
+    <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="retry()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+
+    <!--<ion-infinite-scroll
+      ng-if="!data.noMoreItemsAvailable"
+      on-infinite="search()"
+      immediate-check="false"
+      distance="18%"></ion-infinite-scroll>-->
+  </ion-content>
+</ion-modal-view>

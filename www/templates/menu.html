@@ -1,0 +1,153 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content
+    edge-drag-threshold="true"
+    drag-content="true">
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle=""></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="side-menu21"></ion-nav-view>
+
+    <!--<ng-include src="'templates/partials/upload-buttons-area.html'"></ng-include>-->
+
+  </ion-side-menu-content>
+  <ion-side-menu side="left" id="sideMenuCqnz"
+                 style=" background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(244,244,244,1) 100%) !important;">
+    <ion-content padding="false" class="side-menu-left ">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" menu-close>
+        <tr>
+          <td>
+            <ion-item ui-sref="menu.myProfile">
+              <img style=" background:url({{ menuUserPhoto }}) center no-repeat; background-size:cover;"
+                   ng-src="{{ menuUserPhoto }}" id="userPic" class="profile-avatar-menu"/>
+              <div style="margin-top: -35px; margin-left: 45px;"> {{ menuUsername }}</div>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td height="3" style="background-color:rgba(0,0,0,.3)"></td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item ui-sref="menu.sets">{{"MENU.SETTINGS.TITLE" | translate }}
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td height="3" style="background-color:rgba(0,0,0,.3)"></td>
+        </tr>
+        <tr ng-if="canShowGroupsItem">
+          <td>
+            <ion-item ui-sref="menu.groups">
+              {{"MENU.GROUPS.TITLE" | translate }}
+            </ion-item>
+          </td>
+        </tr>
+        <tr ng-if="canShowGroupsItem">
+          <td height="3" style="background-color:rgba(0,0,0,.3)"></td>
+        </tr>
+
+        <tr ng-if="isSuperAdmin">
+          <td>
+            <ion-item ui-sref="menu.adminTools">
+              {{"MENU.ADMIN_TOOLS.TITLE" | translate }}
+            </ion-item>
+          </td>
+        </tr>
+        <tr ng-if="isSuperAdmin">
+          <td height="3" style="background-color:rgba(0,0,0,.3)"></td>
+        </tr>
+
+        <tr>
+          <td>
+            <ion-item class="item item-complex" ng-click="facebookFriends()">
+              <a class="item-content">
+                <div>
+                  {{"MENU.FIND_FACEBOOK_FRIENDS.TITLE" | translate }}
+                </div>
+              </a>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item class="item item-complex" ng-click="Appmessage()">
+              <a class="item-content">
+                <div>
+                  {{"MENU.SHARE" | translate }}
+                </div>
+              </a>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td height="3" style="background-color:rgba(0,0,0,.3)"></td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item ui-sref="menu.msgSupport">
+              <div>
+                {{"MENU.SUPPORT.TITLE" | translate }}
+              </div>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item ui-sref="menu.policy">
+              <div>
+                {{"GLOBAL.PRIVACY_POLICY" | translate }}
+              </div>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item ui-sref="menu.terms">
+              <div>
+                {{"GLOBAL.TERMS_USE" | translate }}
+              </div>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item ui-sref="menu.about">
+              <div>
+                {{"MENU.ABOUT" | translate }}
+              </div>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td height="3" style="background-color:rgba(0,0,0,.3)"></td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item class="item item-complex" ng-click="logOut()">
+              <a class="item-content">
+                <div>
+                  {{"MENU.LOG_OUT" | translate }}
+                </div>
+              </a>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td height="3" style="background-color:rgba(0,0,0,.2)"></td>
+        </tr>
+      </table>
+      <div class="spacer" style=" height: 20px;"></div>
+      <div style="text-align:center;">
+        <img src="img/LogoHeader.png" width="60%" height="auto" style="margin-left:-10px; opacity: 0.5;">
+      </div>
+      <div style="text-align: center;width: 100%;">
+        <a style="color:rgba(0,0,0,.5); font-size: 13px;">
+          {{"MENU.VERSION" | translate }} {{appVersion}}
+        </a>
+      </div>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

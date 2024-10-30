@@ -1,0 +1,161 @@
+<ion-view title='{{HEADER_LOGO}}' id="regularNotif-view">
+  <ion-content class="has-footer">
+    <ion-refresher
+      refreshing-icon="none"
+      pulling-text="{{refreshText}}"
+      on-refresh="refreshItems()">
+    </ion-refresher>
+
+    <div ng-repeat="notification in notifications | orderBy : 'creationTime' : true">
+      <div class="row notification"
+           ng-class="notification.notificationStatusInt == 3 ? 'seen' : (notification.notificationType == 4? 'react':'unseen')"
+           ng-click="checkBeforeSend(notification,$index)">
+        <div class="col col-20" style="max-width: 13%; margin-top: -3px;">
+          <a class="item item-avatar" style="min-height: 42px; background-color: transparent;">
+            <!--ng-click="sendUserProfile(notification.userSubscriptionSent)"-->
+            <img class="avatar-image" style="max-width: 35px; max-height: 35px;"
+                 ng-src="data:image/jpeg;base64,{{ ::notification.userSend.members.profilePicture.value.split(':')[2] }}"
+                 ng-if="notification.userSend.members.profilePicture.value != null"/>
+            <img class="avatar-image" style="max-width: 35px; max-height: 35px;"
+                 ng-src="{{ ::notification.userSend.members.profilePictureUrl.value}}"
+                 ng-if="notification.userSend.members.profilePictureUrl.value != null"/>
+            <img class="avatar-image" style="max-width: 35px; max-height: 35px;" ng-src="img/ProfilePhoto.svg"
+                 ng-if="!notification.userSend.members.profilePictureUrl.value && !notification.userSend.members.profilePicture.value"/>
+          </a>
+        </div>
+        <div class="col" style="width:60%;"><!--margin-left:-8px;-->
+          <label class="userNameBold" style="color:rgba(51,51,51,1);  background-color: transparent; font-size:15px; "><!--ng-click="sendUserProfile(notification.userSubscriptionSent)"-->
+            {{ ::notification.userSend.members.name.value }}</label>
+          <!--React photo-->
+          <label ng-if="notification.notificationType == 4 && notification.sequencePicture != null"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;">
+            Sent a reaction {{ notification.description == " " ? (notification.notificationStatusInt == 1 ? "See it!"
+            : notification.description) : (notification.notificationStatusInt == 1 ? ("To " +
+            notification.description) : "" )}}
+          </label>
+          <label ng-if="notification.notificationType == 4 && notification.sequencePictureUrl != null"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;">
+            Sent a reaction {{ notification.description == " " ? (notification.notificationStatusInt == 1 ? "See it!"
+            : notification.description) : (notification.notificationStatusInt == 1 ? ("To " +
+            notification.description) : "" )}}
+          </label>
+          <!--React photo-->
+          <label ng-if="notification.notificationType == 5"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;">
+                 <!--ng-click="sendSequenceSelected(notification.sequenceId,notification.sequenceInstanceId,notification.ownerSequence)"-->
+							<span ng-if="notification.itemId == 0" translate>
+								ALERTS.LIKE_SEQUENCE
+							</span>
+              <span ng-if="notification.itemId > 0" translate>
+								ALERTS.LIKE_PHOTO
+							</span>
+          </label>
+          <label ng-if="notification.notificationType == 6"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;">
+                 <!--ng-click="sendSequenceSelected(notification.sequenceId,notification.sequenceInstanceId,notification.ownerSequence)"-->
+							<span ng-if="notification.itemId == 0" translate>
+								ALERTS.COMMENT_SEQUENCE
+							</span>
+              <span ng-if="notification.itemId > 0" translate>
+								ALERTS.COMMENT_PHOTO
+							</span>
+          </label>
+          <label ng-if="notification.notificationType == 7"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;" translate>
+            ALERTS.TAG_SEQUENCE
+          </label>
+          <label ng-if="notification.notificationType == 8"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;" translate>
+            ALERTS.TAG_COMMENT
+          </label>
+          <label ng-if="notification.notificationType == 9"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;" translate>
+            ALERTS.LIKE_COMMENT
+          </label>
+          <label ng-if="notification.notificationType == 10"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;" translate>
+            ALERTS.GROUP_DELETE
+          </label>
+          <label ng-if="notification.notificationType == 11"
+                 style="color:rgba(51,51,51,.6); background-color: transparent; font-size:13px;" translate>
+            ALERTS.USER_WANTS_JOIN_GROUP
+          </label>
+
+          <!--<div class="item" style="color:rgba(51,51,51,.5); font-size:13px;background-color: transparent; padding: 0px;">
+            {{::notification.notificationType}}
+          </div>-->
+          <div class="item" style="color:rgba(51,51,51,.5); font-size:13px;background-color: transparent; padding: 0px;">
+            {{::notification.creationTime | date:'MMM d, y h:mm a'}}
+          </div>
+        </div>
+
+        <!--<div class="col col-20" style="max-width: 12%; margin-top: -10px;">
+						<span ng-if="notification.notificationType == 4 && notification.sequencePicture != null" class="thumbReact"
+                  style="background-image: url(data:image/png;base64,{{ ::notification.sequencePicture.split(':')[2] }})"
+                  ng-click="showReactPicture('data:image/png;base64,' + notification.sequencePicture.split(':')[2], 'data:image/png;base64,' + notification.notificationPicture.split(':')[2], $index, notification.description,notification.userNotification.href.split('/')[6],notification.notificationStatusInt,notification.userNotification,notification.description)">
+						</span>
+          <span ng-if="notification.notificationType >= 5 && notification.sequencePicture != null" class="thumbReact"
+                style=" background-image: url(data:image/png;base64,{{::notification.sequencePicture.split(':')[2] }})"
+                ng-click="sendSequenceSelected(notification.sequenceId,notification.sequenceInstanceId,notification.ownerSequence)">
+						</span>
+          <span ng-if="notification.notificationType == 4 && notification.sequencePictureUrl != null"
+                class="thumbReact" style="background-image: url({{ ::notification.sequencePictureUrl}})"
+                ng-click="showReactPicture(notification.sequencePictureUrl, notification.reactUrl, $index, notification.description,notification.userNotification.href.split('/')[6],notification.notificationStatusInt,notification.userNotification,notification.description)">
+						</span>
+          <span ng-if="notification.notificationType >= 5 && notification.sequencePictureUrl != null"
+                class="thumbReact" style=" background-image: url({{::notification.sequencePictureUrl}})"
+                ng-click="sendSequenceSelected(notification.sequenceId,notification.sequenceInstanceId,notification.ownerSequence)">
+						</span>
+          <span
+            ng-if="notification.notificationType >= 4 && (notification.sequencePicture == null && notification.sequencePictureUrl == null)"
+            class="thumbReact" style=" background-image: url(img/ProfilePhoto.svg)"
+            ng-click="sendSequenceSelected(notification.sequenceId,notification.sequenceInstanceId,notification.ownerSequence)">
+						</span>
+        </div>-->
+      </div>
+    </div>
+
+    <div class="text-center" ng-if="isLoadingContent">
+      <ion-spinner icon="lines"></ion-spinner>
+    </div>
+
+    <ion-infinite-scroll
+      style="visibility: hidden"
+      ng-if="canGetMoreItems && !isFirstTime"
+      immediate-check="false"
+      on-infinite="getMoreItems()"
+      distance="18%"></ion-infinite-scroll>
+
+    <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="refreshItems()"></a>
+    </div>
+    <div class="row" ng-if="!network.status || network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+
+  </ion-content>
+
+  <style>
+    #regularNotif-view .scroll-refresher {
+      top: -60px;
+    }
+  </style>
+
+<style>
+
+
+.popup-container .popup {
+    width: unset;
+    min-width: 90%;
+    height: 900px !important;
+}
+</style>
+</ion-view>
+
+
+</ion-view>

@@ -1,0 +1,331 @@
+<ion-view title='{{HEADER_LOGO}}'>
+  <ion-nav-buttons side="right">
+    <md-button
+      class="md-fab md-mini md-accent md-fab-top-right"
+      aria-label="Create group"
+      ui-sref="groupsCreateStep1"
+      ng-if="activeTab == 'myGroups' && totalMyGroups>0 && $_canCreateGroup()"
+      style="background-color: rgb(10, 163, 157); ">
+      <md-icon
+        md-svg-src="img/icons/add_circle_outline_24px.svg" style=" margin-top: -6px; color: white;"></md-icon>
+    </md-button>
+  </ion-nav-buttons>
+
+  <div class="bar bar-subheader" style="height: 36px; padding: 4px;" ng-if="$_canSearchGroup()">
+    <div class="bar bar-header item-input" style="position:absolute; top:-8px; padding: initial; height: 40px">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-funnel placeholder-icon"></i>
+        <input type="search" translate-attr="{'placeholder':'GROUPS.MAIN_PAGE.SEARCH_GROUP'}" ng-model="searchTerm">
+      </label>
+    </div>
+  </div>
+
+  <div class="fixed-div-notifications"
+       style="padding: 4px; background: white !important;"
+       ng-style="{'top': (PLATFORM_NAME=='ios'?100:80)+'px'}">
+    <div class="button-bar">
+      <button
+        class="button icon-left ion-android-star"
+        ng-class="activeTab == 'myGroups' ? 'button-assertive' : 'button-light'"
+        ng-click="activateTab('myGroups')" ng-if="$_canReadOwnGroups()">
+        <span translate>GROUPS.MAIN_PAGE.MY_GROUPS</span> ({{totalMyGroups}})
+      </button>
+      <button
+        class="button icon-left ion-ios-people"
+        ng-class="activeTab == 'otherGroups' ? 'button-assertive' : 'button-light'"
+        ng-click="activateTab('otherGroups')"
+        ng-if="$_canReadOthersGroups()" translate>GROUPS.MAIN_PAGE.OTHER_GROUPS
+      </button>
+    </div>
+  </div>
+
+  <ion-content
+    style="padding-top: 70px;" class="background-line">
+
+    <!-- MY GROUPS -->
+    <div ng-show="activeTab == 'myGroups'" style="margin-top: 28px">
+      <div ng-if="!totalMyGroups">
+        <md-card layout-padding
+                 style="background-color: rgba(255,255,255,.6); padding: 10px 0px 30px 0px; border-radius: 15px; ">
+          <md-content class="text-center" style="font-size: small;margin-top: auto;margin-bottom: auto;">
+            <h3>{{'GROUPS.MAIN_PAGE.POPUP_MENU.CREATE_GROUP'|translate}}</h3>
+
+            <div translate>GROUPS.MAIN_PAGE.NEW_GROUP_MSG</div>
+          </md-content>
+        </md-card>
+
+        <!--<img src="img/groups-main-banner.jpg" style="width: 100%; margin-bottom: -76px">-->
+      </div>
+
+
+      <!-- CENTRAL BUTTON -->
+      <div ng-hide="isLoadingGroups || totalMyGroups>0 || !$_canCreateGroup()" class="text-center" style="margin-top: -34px">
+        <md-button
+          aria-label="go step 1"
+          class="md-raised md-primary"
+          style="
+        border-radius: 50%;
+        width: 130px;
+        height: 130px;
+        font-size: larger;
+        margin: 5px auto;
+        padding-top: 20px;
+        margin-top: 46px;"
+          ui-sref="groupsCreateStep1">
+          <md-icon
+            md-svg-src="img/icons/add_circle_outline_24px.svg"
+            style="height: 90px; width: 90px; color:white;"></md-icon>
+        </md-button>
+
+      </div>
+
+      <div class="text-center">
+        <md-card style="border-radius: 20px; "
+                 ng-repeat="myGroup in myGroupList | filter:searchTerm"
+                 ng-if="!myGroup.imBanned">
+          <md-card-title>
+            <md-card-title-media>
+              <div
+                class="md-media-sm card-media"
+                style="background: url({{::myGroup.image || 'img/photoFrame.svg'}}) center; background-size: cover; border-radius: 50px;">
+                <!--<img
+                  ng-src="{{myGroup.image || 'img/photoFrame.svg'}}"
+                  style="max-width: 120px;margin: auto;"
+                  class="md-card-image" alt="{{myGroup.name}}">-->
+              </div>
+            </md-card-title-media>
+            <md-card-title-text
+              style="margin-left: 30px;">
+              <span
+                class="md-headline assertive"
+                ui-sref="menu.timeline({prepareStatement:0, groupIndex:$index+1})"
+                ng-if="!myGroup.imBanned">{{::myGroup.name}}</span>
+              <span
+                class="md-headline assertive"
+                ng-if="myGroup.imBanned">{{::myGroup.name}}</span>
+
+              <span class="md-subhead">{{::myGroup.description|limitTo:35}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center" style="margin-top: -15px">
+            <div class="privacy-tag tag-{{::myGroup.privacy}}" style="border-radius: 5px;">
+              {{::myGroup.privacyTranslated}}
+            </div>
+            <md-card-icon-actions
+              style="-webkit-box-pack: end;-webkit-justify-content:flex-end;justify-content: flex-end;">
+
+              <!-- Only not banned groups are allowed to appear on this list !--**
+              <p
+                class="banned-locked-label"
+                ng-if="myGroup.imBanned"
+                md-colors="{'color':'warn'}"
+                translate>GROUPS.MAIN_PAGE.BANNED</p>-->
+
+              <md-button class="md-button md-warn" aria-label="join requests"
+                         ui-sref="groupReceivedRequests"
+                         ng-if="myGroup.imAdministrator && myGroup.pendingJoinReqs.result.value && $_canReadReceivedJoinRequests()">
+                <span class="group-request-badge">
+                  {{myGroup.pendingJoinReqs.result.value > 99 ? '+99':myGroup.pendingJoinReqs.result.value}}
+                </span>
+                <span>
+                  {{'GROUPS.MAIN_PAGE.POPUP_MENU.REQUEST'+(myGroup.pendingJoinReqs.result.value > 1 ? 'S':'')|translate}}
+                </span>
+              </md-button>
+
+              <p
+                class="banned-locked-label"
+                ng-if="myGroup.imLocked"
+                md-colors="{'color':'accent'}"
+                translate>GROUPS.MAIN_PAGE.LOCKED</p>
+
+              <md-button class="md-icon-button md-primary" aria-label="Members"
+                         ui-sref="groupMembersManagement({group:myGroup, origin:'groups-mainpage'})"
+                         ng-if="!myGroup.imBanned && $_canManageGroupMembers()">
+                <md-icon md-svg-icon="img/icons/members_24px.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-icon-button md-primary" aria-label="Settings"
+                         ui-sref="groupSettings({group:myGroup, origin:'groups-mainpage'})"
+                         ng-if="$_canUpdateGroup()">
+                <md-icon
+                  md-svg-icon="img/icons/{{myGroup.imAdministrator?'settings':'info_outline'}}_24px.svg"></md-icon>
+              </md-button>
+            </md-card-icon-actions>
+          </md-card-actions>
+        </md-card>
+
+        <!-- PENDING TO JOIN GOUPS -->
+        <md-subheader class="md-no-sticky" ng-if="myPendingGroupList.length && $_canReadSentJoinRequests()">
+          <span>{{'GROUPS.MAIN_PAGE.POPUP_MENU.SENT_REQS'|translate}} ({{myPendingGroupList.length}})</span>
+        </md-subheader>
+        <md-card
+          ng-repeat="myPendingGroup in myPendingGroupList | filter:searchTerm"
+          style="background: rgba(0, 0, 0, .6); border-radius: 15px;">
+          <md-card-title>
+            <md-card-title-media>
+              <div
+                class="md-media-sm card-media"
+                style="background: url({{::myPendingGroup.image || 'img/photoFrame.svg'}}) center; background-size: cover; border-radius: 50px;">
+              </div>
+            </md-card-title-media>
+            <md-card-title-text style="margin-left: 30px;">
+              <span
+                class="md-headline pending-group">{{::myPendingGroup.name}}</span>
+
+              <span class="md-subhead pending-group">{{::myPendingGroup.description|limitTo:35}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center" style="margin-top: -15px">
+            <div class="privacy-tag tag-{{::myPendingGroup.privacy}}" style="border-radius: 5px;">
+              {{::myPendingGroup.privacyTranslated}}
+            </div>
+            <md-card-icon-actions
+              style="-webkit-box-pack: end;-webkit-justify-content:flex-end;justify-content: flex-end;">
+
+              <md-button class="md-button md-raised md-primary" aria-label="Members"
+                         ng-click="confirmRejectRequest($index)"
+                         ng-if="$_canCancelSentJoinRequest()"
+                         style="border-radius: 10px; background-color: rgb(34, 135, 132)">
+                {{'GROUPS.SENT_REQS.CANCEL_REQUEST'|translate}}
+              </md-button>
+
+            </md-card-icon-actions>
+          </md-card-actions>
+        </md-card>
+
+        <div ng-hide="!isLoadingGroups">
+          <ion-spinner></ion-spinner>
+        </div>
+      </div>
+      <div class="bottom-spacer" ng-if="PLATFORM_NAME != 'ios'"></div>
+    </div>
+
+
+    <!-- OTHER GROUPS -->
+    <div ng-show="activeTab == 'otherGroups'" style="margin-top: 28px">
+      <div class="text-center">
+        <md-card ng-repeat="otherGroup in otherGroupsList | filter:searchTerm"
+                 ng-if="!otherGroup.requestSent" style="border-radius: 15px; ">
+          <md-card-title>
+            <md-card-title-media>
+              <div class="md-media-sm card-media"
+                   style="background: url({{otherGroup.image || 'img/photoFrame.svg'}}) center; background-size: cover; border-radius: 50px;">
+                <!-- <img
+                  ng-src="{{otherGroup.image || 'img/photoFrame.svg'}}"
+                  style="max-width: 120px;margin: auto;"
+                  class="md-card-image" alt="{{otherGroup.name}}"> -->
+              </div>
+            </md-card-title-media>
+            <md-card-title-text
+              style="margin-left: 30px;"
+              ng-click="showPublicTimelinePreview(otherGroup)">
+              <span class="md-headline assertive">{{otherGroup.name}}</span>
+              <span class="md-subhead">{{otherGroup.description|limitTo:35}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center" style="margin-top: -15px">
+            <div class="privacy-tag tag-{{otherGroup.privacy}}" style="border-radius: 5px;">{{otherGroup.privacy}}</div>
+            <md-card-icon-actions
+              style="-webkit-box-pack: end;-webkit-justify-content:flex-end;justify-content: flex-end;">
+              <md-button
+                class="md-primary" aria-label="join"
+                ng-click="joinToPublicGroup(otherGroup)"
+                ng-if="otherGroup.privacy=='Public' && $_canJoinToPublicGroup()" translate>
+                {{"GROUPS.MAIN_PAGE.JOIN"|translate}}
+              </md-button>
+              <md-button
+                class="md-accent" aria-label="request"
+                ng-click="requestJoinToPrivateGroup($index)"
+                ng-if="otherGroup.privacy!='Public' && !otherGroup.requestSent && $_canSendJoinRequest()" translate>
+                {{"GROUPS.MAIN_PAGE.SEND_JOIN_REQ"|translate}}
+              </md-button>
+
+              <p ng-if="otherGroup.requestSent" translate>GROUPS.MAIN_PAGE.WAITING_4_APPROVAL</p>
+
+              <md-button class="md-icon-button md-primary" aria-label="Members"
+                         ui-sref="groupMembersManagement({group:otherGroup})"
+                         ng-if="$_canSeeGroupInfo()">
+                <md-icon md-svg-icon="img/icons/members_24px.svg"></md-icon>
+              </md-button>
+
+              <md-button class="md-icon-button md-accent" aria-label="Settings"
+                         ui-sref="groupSettings({group:otherGroup})"
+                         ng-if="$_canSeeGroupInfo()">
+                <md-icon md-svg-icon="img/icons/info_outline_24px.svg"></md-icon>
+              </md-button>
+            </md-card-icon-actions>
+          </md-card-actions>
+        </md-card>
+
+        <div ng-hide="!isLoadingGroups">
+          <ion-spinner></ion-spinner>
+        </div>
+      </div>
+      <div class="bottom-spacer" ng-if="PLATFORM_NAME != 'ios'"></div>
+    </div>
+
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+
+  <script type="text/ng-template" id="groups-mainpage-popover.tpl.html">
+    <ion-popover-view>
+      <ion-header-bar>
+        <h1 class="title" md-colors="{color:'primary'}" translate>
+          GROUPS.MAIN_PAGE.POPUP_MENU.TITLE
+        </h1>
+      </ion-header-bar>
+
+      <ion-content>
+        <md-list>
+          <md-list-item
+            class="secondary-button-padding"
+            ng-click="gotoSentRequests()">
+            <p translate>GROUPS.MAIN_PAGE.POPUP_MENU.SENT_REQS</p>
+            <md-icon class="md-primary" md-svg-src="img/icons/chevron_right_24px.svg"></md-icon>
+          </md-list-item>
+          <md-divider></md-divider>
+
+          <md-list-item
+            class="secondary-button-padding"
+            ng-click="gotoReceivedRequests()">
+            <p translate>GROUPS.MAIN_PAGE.POPUP_MENU.RECEIVED_REQS</p>
+            <md-icon class="md-primary" md-svg-src="img/icons/chevron_right_24px.svg"></md-icon>
+          </md-list-item>
+        </md-list>
+        <md-divider></md-divider>
+
+        <md-list-item
+          md-colors="{color:'primary'}"
+          class="secondary-button-padding"
+          ng-click="gotoCreateGroup()"
+          ng-if="activeTab=='myGroups'">
+          <p translate>GROUPS.MAIN_PAGE.POPUP_MENU.CREATE_GROUP</p>
+          <md-icon class="md-primary" md-svg-src="img/icons/chevron_right_24px.svg"></md-icon>
+        </md-list-item>
+        <md-divider ng-show="activeTab=='myGroups'"></md-divider>
+      </ion-content>
+    </ion-popover-view>
+  </script>
+
+  <style>
+    .group-request-badge {
+      border-radius: 10px;
+      color: #fff;
+      font-weight: bold;
+      background: red;
+      min-width: 18px;
+      font-size: 12px;
+      padding: 0 5px;
+      margin-right: 2px;
+    }
+
+    .pending-group {
+      color: #c0c0c0 !important;
+    }
+  </style>
+
+</ion-view>
+

@@ -1,0 +1,46 @@
+<ion-view>
+
+  <ion-tabs class="tabs-assertive tabs-top tabs-striped tabs-icon-top">
+
+    <ion-tab
+      title="{{'ALERTS.NOTIFICATIONS'|translate}}"
+      icon="ion-android-star"
+      ui-sref="menu.notificationTabs.regular"
+      badge="(badges.unreadRegularNotifications<99?badges.unreadRegularNotifications:'+99')"
+      badge-style="badge-assertive">
+      <ion-nav-view name="regular-tab"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab
+      title="{{'ALERTS.FOLLOWERS'|translate}}"
+      icon="ion-ios-people"
+      ui-sref="menu.notificationTabs.follwers"
+      badge="(badges.unreadFollowersNotifications<99?badges.unreadFollowersNotifications:'+99')"
+      badge-style="badge-assertive">
+      <ion-nav-view name="followers-tab"></ion-nav-view>
+    </ion-tab>
+
+  </ion-tabs>
+
+  <style>
+    .tabs-striped.tabs-assertive .tab-item.tab-item-active,
+    .tabs-striped.tabs-assertive .tab-item.active,
+    .tabs-striped.tabs-assertive .tab-item.activated{
+      border-color: rgb(255,171,64);
+    }
+
+    .tabs .tab-item .badge.badge-assertive,
+    .badge.badge-assertive{
+      background-color: #ff0000;
+    }
+    .tabs-striped .tab-item.tab-item-active .badge,
+    .tabs-striped .tab-item.active .badge,
+    .tabs-striped .tab-item.activated .badge{
+      opacity: 1;
+    }
+  </style>
+
+  <div ng-include="'templates/partials/footer.html'" onload="botonNotificationOn=true"></div>
+
+</ion-view>
+

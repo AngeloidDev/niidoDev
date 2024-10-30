@@ -1,0 +1,235 @@
+<ion-view title="{{group.name}}">
+
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="padding">
+    <div class="text-center" ng-if="isLoadingMembers">
+      <ion-spinner icon="lines"></ion-spinner>
+    </div>
+
+    <md-content
+      layout="column"
+      ng-if="!group.isPreview && !isLoadingMembers && $_canAddGroupMember()">
+      <!--<label md-colors="{color: 'primary'}" translate>GROUPS.MEMBERS_MGMT.ADD_MORE_LABEL</label>-->
+      <div class="item" ng-click="openSearchModal()">
+        <md-button class="md-fab md-mini md-accent"
+          style="background-color: rgb(10, 163, 157); color:white; margin: 0 10px 0 0 !important; box-shadow: none !important;">
+            {{(asyncContacts.length > 0 && asyncContacts.length < 100)? asyncContacts.length:(asyncContacts.length == 0? '+': '+99') }}
+        </md-button>
+        <i translate ng-if="asyncContacts.length == 0" style="color: #787878 !important;">GROUPS.MEMBERS_MGMT.ADD_MORE_LABEL</i>
+        <i translate ng-if="asyncContacts.length >= 1" style="color: #787878 !important;">GROUPS.CREATE_S1.G_EDIT_MEMBS_LABEL</i>
+      </div>
+
+      <md-button
+        class="md-primary md-raised"
+        ng-show="asyncContacts.length"
+        ng-click="addMoreMembers()">
+        {{'GROUPS.MEMBERS_MGMT.ADD_USER'|translate}}{{asyncContacts.length>1?'s':''}}
+      </md-button>
+    </md-content>
+
+
+    <md-subheader class="md-no-sticky" ng-if="membersList.length">
+      {{membersList.length}} <span translate>GROUPS.MEMBERS_MGMT.MEMBER</span>{{membersList.length>1?'s':''}}
+    </md-subheader>
+
+    <!-- ONLY ADMIN MEMBERS SECTION -->
+    <md-list-item class="md-2-line" ng-repeat="member in membersList" ng-if="member.isAdmin">
+      <img ng-src="{{::member.avatar}}" class="md-avatar" alt="{{::member.name}}"/>
+      <div class="md-list-item-text">
+        <h3 md-colors="{color:'primary'}"> {{ ::member.name }} </h3>
+        <p> {{ ::member.bio }} </p>
+        <p md-colors="{color: 'accent'}">
+          <md-icon class="green-state" md-svg-icon="img/icons/assignment_ind_24px.svg"></md-icon>
+          <i translate>GROUPS.MEMBERS_MGMT.ADMINISTRATOR</i>
+          <i ng-if="member.userSubscriptionHref == mySubscriptionHref">
+            ({{'GROUPS.MEMBERS_MGMT.YOU'|translate}})
+          </i>
+        </p>
+
+        <p ng-if="member.isModerator" md-colors="{color: 'accent'}">
+          <md-icon class="green-state" md-svg-icon="img/icons/gavel_24px.svg"></md-icon>
+          <i translate>GROUPS.MEMBERS_MGMT.MODERATOR</i>
+          <i ng-if="member.userSubscriptionHref == mySubscriptionHref">
+            ({{'GROUPS.MEMBERS_MGMT.YOU'|translate}})
+          </i>
+        </p>
+      </div>
+
+      <!-- ONLY THE ROLE OF OTHERS ADMINS CAN BE CHANGED OR BE REMOVED -->
+      <!-- todo: validate that only the group's OWNER be able to make changes here (instead of imTheAdmin it'd be sth like imTheOwner)-->
+      <div layout="row" layout-align="center center"
+           ng-if="$_canManageGroupAdminMemberStatus(member)">
+        <md-menu>
+          <md-button aria-label="member options" class="md-icon-button" ng-click="openMemberPopup($mdMenu, $event)">
+            <md-icon md-menu-origin md-svg-icon="img/icons/more_vert_24px.svg"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item ng-if="[1,2].indexOf(member.roleFlag)==-1 && $_canUpdateGroupMemberAsAdmin()">
+              <md-button ng-click="confirmToggleAdmin($index)">
+                <md-icon class="orange-state" md-svg-icon="img/icons/assignment_ind_24px.svg"
+                         md-menu-align-target></md-icon>
+                {{'GROUPS.MEMBERS_MGMT.REMOVE_AS'|translate}}
+                {{'GROUPS.MEMBERS_MGMT.ADMINISTRATOR'|translate}}
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-if="[1,2].indexOf(member.roleFlag)==-1"></md-menu-divider>
+
+            <md-menu-item ng-if="$_canDeleteGroupMember()">
+              <md-button ng-click="confirmRemoveMember($index)">
+                <md-icon class="red-state" md-svg-icon="img/icons/backspace_24px.svg"></md-icon>
+                {{'GROUPS.MEMBERS_MGMT.DELETE_FROM_GROUP'|translate}}
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+          </md-menu-content>
+        </md-menu>
+      </div>
+      <md-divider></md-divider>
+    </md-list-item>
+    <!-- END OF ONLY ADMIN MEMBERS SECTION -->
+
+    <!-- NO ADMIN MEMBERS -->
+    <md-list-item class="md-2-line" ng-repeat="member in membersList" ng-if="!member.isAdmin">
+      <img ng-src="{{::member.avatar}}" class="md-avatar" alt="{{::member.name}}"/>
+      <div class="md-list-item-text">
+        <h3 md-colors="{color:'primary'}"> {{ ::member.name }} </h3>
+        <p> {{ ::member.bio }} </p>
+
+        <p ng-if="member.isModerator && !member.isAdmin" md-colors="{color: 'accent'}">
+          <md-icon class="green-state" md-svg-icon="img/icons/gavel_24px.svg"></md-icon>
+          {{'GROUPS.MEMBERS_MGMT.MODERATOR'|translate}}
+        </p>
+        <p ng-if="member.isLocked" md-colors="{color: 'warn-600'}">
+          <md-icon class="orange-state" md-svg-icon="img/icons/lock_outline_24px.svg"></md-icon>
+          {{'GROUPS.MEMBERS_MGMT.LOCKED'|translate}}
+          <i ng-if="member.userSubscriptionHref == mySubscriptionHref">
+            ({{'GROUPS.MEMBERS_MGMT.YOU'|translate}})
+          </i>
+        </p>
+        <p ng-if="member.isBanned" md-colors="{color: 'warn-600'}" translate>
+          GROUPS.MEMBERS_MGMT.BANNED
+        </p>
+      </div>
+
+      <!-- FOR NOW ONLY A GROUP's ADMIN CAN CHANGE THE ROLE/STATE OF THE MEMBERS -->
+      <div layout="row" layout-align="center center"
+           ng-if="$_canManageGroupRegularMemberStatus(member)">
+        <md-menu>
+          <md-button aria-label="member options" class="md-icon-button" ng-click="openMemberPopup($mdMenu, $event)">
+            <md-icon md-menu-origin md-svg-icon="img/icons/more_vert_24px.svg"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <!-- todo: only the group's owner should be able to promote sb as an admin -->
+            <md-menu-item ng-if="[0,8].indexOf(member.roleFlag)!=-1 && $_canUpdateGroupMemberAsAdmin()">
+              <md-button ng-click="confirmToggleAdmin($index)">
+                <md-icon class="{{member.isAdmin?'orange':'green'}}-state"
+                         md-svg-icon="img/icons/assignment_ind_24px.svg" md-menu-align-target></md-icon>
+                {{'GROUPS.MEMBERS_MGMT.PROMOTE_AS'|translate}}
+                {{'GROUPS.MEMBERS_MGMT.ADMINISTRATOR'|translate}}
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-if="[0,8].indexOf(member.roleFlag)!=-1"></md-menu-divider>
+
+            <md-menu-item ng-if="[0,4].indexOf(member.roleFlag)!=-1 && $_canUpdateGroupMemberAsModerator()">
+              <md-button ng-click="confirmToggleModerator($index)">
+                <md-icon class="{{member.isModerator?'orange':'green'}}-state"
+                         md-svg-icon="img/icons/gavel_24px.svg"></md-icon>
+                {{(member.isModerator?'GROUPS.MEMBERS_MGMT.REMOVE_AS':'GROUPS.MEMBERS_MGMT.PROMOTE_AS')|translate}}
+                {{'GROUPS.MEMBERS_MGMT.MODERATOR'|translate}}
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-if="[0,4].indexOf(member.roleFlag)!=-1"></md-menu-divider>
+
+            <md-menu-item ng-if="[0,2].indexOf(member.roleFlag)!=-1 && $_canUpdateGroupMemberLockedStatus()">
+              <md-button ng-click="confirmToggleLockUser($index)">
+                <md-icon class="{{member.isLocked?'green':'orange'}}-state"
+                         md-svg-icon="img/icons/lock_{{member.isLocked?'open':'outline'}}_24px.svg"></md-icon>
+                {{(member.isLocked?'GROUPS.MEMBERS_MGMT.UNLOCK_FROM_GROUP':'GROUPS.MEMBERS_MGMT.LOCK_FROM_GROUP')|translate}}
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-if="[0,2].indexOf(member.roleFlag)!=-1"></md-menu-divider>
+
+            <!-- In theory a banned user should never appear here -->
+            <md-menu-item ng-if="[0,1].indexOf(member.roleFlag)!=-1 && $_canUpdateGroupMemberBannedStatus()">
+              <md-button ng-click="confirmBanUser($index, group.href)">
+                <md-icon class="{{member.isBanned?'green':'orangered'}}-state"
+                         md-svg-icon="img/icons/not_interested_24px.svg"></md-icon>
+                {{(member.isBanned?'GROUPS.MEMBERS_MGMT.ALLOW_TO_GROUP':'GROUPS.MEMBERS_MGMT.BANN_FROM_GROUP')|translate}}
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-if="[0,1].indexOf(member.roleFlag)!=-1"></md-menu-divider>
+
+            <md-menu-item ng-if="$_canDeleteGroupMember()">
+              <md-button ng-click="confirmRemoveMember($index)">
+                <md-icon class="red-state" md-svg-icon="img/icons/backspace_24px.svg"></md-icon>
+                {{'GROUPS.MEMBERS_MGMT.DELETE_FROM_GROUP'|translate}}
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
+
+      <md-divider></md-divider>
+    </md-list-item>
+
+    <div class="bottom-spacer"></div>
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+
+  <script type="text/ng-template" id="memberOptions.html">
+    <md-dialog aria-label="dialog">
+      <md-dialog-content class="md-dialog-content" layout="column">
+        <h5 md-auto-focus>{{locals.name}}</h5>
+        <md-checkbox
+          ng-disabled="[0,4,12].indexOf(locals.state)==-1 || locals.delete"
+          ng-model="locals.isAdmin"
+          ng-change="stateChange()" aria-label="admin">
+          {{'GROUPS.MEMBERS_MGMT.ADMINISTRATOR'|translate}}
+        </md-checkbox>
+        <md-checkbox
+          ng-disabled="[0,4].indexOf(locals.state)==-1 || locals.delete"
+          ng-model="locals.isModerator"
+          ng-change="stateChange()" aria-label="moderator">
+          GROUPS.MEMBERS_MGMT.MODERATOR
+        </md-checkbox>
+        <md-checkbox
+          ng-disabled="[1,5,13].indexOf(locals.state)!=-1 || locals.delete"
+          ng-model="locals.isBanned"
+          ng-change="stateChange()" aria-label="banned">
+          GROUPS.MEMBERS_MGMT.BANNED
+        </md-checkbox>
+        <md-checkbox
+          ng-disabled="[2,6,14].indexOf(locals.state)!=-1 || locals.delete"
+          ng-model="locals.isLocked"
+          ng-change="stateChange()" aria-label="locked">
+          GROUPS.MEMBERS_MGMT.LOCKED
+        </md-checkbox>
+        <md-checkbox
+          ng-model="locals.delete" aria-label="delete">
+          GROUPS.MEMBERS_MGMT.DELETE_FROM_GROUP
+        </md-checkbox>
+        <!--<div>{{locals.state}}</div>-->
+      </md-dialog-content>
+      <md-dialog-actions>
+        <md-button class="md-primary" ng-click="cancel()">
+          {{'GROUPS.CANCEL_TXT'|translate}}
+        </md-button>
+        <md-button class="md-accent" ng-click="ok()">
+          {{'GROUPS.OK_TXT'|translate}}
+        </md-button>
+      </md-dialog-actions>
+    </md-dialog>
+  </script>
+</ion-view>
+
+

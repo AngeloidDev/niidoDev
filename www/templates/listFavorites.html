@@ -1,0 +1,67 @@
+<ion-view title='{{HEADER_LOGO}}' class="base-bg" cache-view="false" can-swipe-back="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <!--<ion-nav-back-button
+      class="button icon-left ion-chevron-left button-clear button-dark close-comments"
+      style="color:rgba(204,204,204,1); height:22px; padding-bottom:5px; visibility:visible !important; display:block !important;">
+    </ion-nav-back-button>-->
+  </ion-nav-bar>
+
+    <ion-content class="comments-box" style="margin-top:-10px;">
+      <div class="col col-100 text-center titleFavorites" translate>
+        FAVORITES.TITLE
+      </div>
+      <div class="cardsFavorites" ng-repeat="userFavorite in userFavoritesList">
+        <div class="divForAvatar">
+          <a class="item item-avatar" style="background-color: transparent !important;">
+            <img
+              class="avatar-image"
+              ng-src="{{ userFavorite.profilePicture != null ? 'data:image/jpeg;base64,'+userFavorite.profilePicture.split(':')[2] : null }}"
+              class="comments-avatar"
+              ng-click="sendFriendProfile(userFavorite.userSubscription)"/>
+          </a>
+        </div>
+        <div class="userNameText" ng-click="sendFriendProfile(userFavorite.userSubscription)">
+          {{ ::userFavorite.name }}
+        </div>
+        <spam class="spamIcon" ng-init="userFavorite.favorite = 5" ng-click="addFavorite(userFavorite)">
+          <i
+            class="ion-android-bookmark"
+            ng-class="userFavorite.favorite > 0 ? 'favBookmarkListColor':'nonFavBookmarkListColor' "></i>
+          <i class="ion-star favStarListColor"></i>
+          </span>
+      </div>
+      <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+        <a class="button button-icon icon ion-refresh" ng-click="retry()"></a>
+      </div>
+      <div class="row" ng-if="network.status == 'none'">
+        <div class="col col-20">
+          <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+        </div>
+        <div class="col" translate>
+          ERROR.NO_INTERNET2
+        </div>
+      </div>
+      <div class="zeroFavorites" ng-if="userFavoritesList.length == 0 && noMoreItemsAvailable">
+        <div>
+          <spam class="bigIconSpam">
+            <i class="ion-android-bookmark bigBookMarkClean"></i>
+            <i class="ion-star bigStarListColor"></i>
+            </span>
+        </div>
+        <div class="col col-100 text-center nonFavorites" translate>
+          FAVORITES.NO_FAVORITES
+        </div>
+      </div>
+
+      <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="getListOfFavorites()"
+                           distance="18%"></ion-infinite-scroll>
+    </ion-content>
+
+    <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

@@ -1,0 +1,94 @@
+<ion-view title='{{HEADER_LOGO}}'>
+  <ion-nav-buttons side="right"></ion-nav-buttons>
+
+
+  <ion-content class="has-footer" id="admin-tools-landpage">
+    <div
+      style="font-size:24px; padding-left:15px; padding-top:15px; padding-bottom:15px; color: #0AA39D; background-color:rgba(204,204,204,.5);"
+      translate>
+      MENU.ADMIN_TOOLS.TITLE
+    </div>
+    <div style="width: 100%">
+      <div class="card " ui-sref="adminMembers"
+           ng-if="canManageAppMembers()"
+           style=" width:60%; border-radius: 7px; text-shadow: 01px 1px 2px rgba(102,102,102,.5); color: rgba(51,51,51,.8); background: rgba(247,207,126,.18); background-image:url(img/miembros.svg); background-repeat:no-repeat; background-position:left center; background-position: -25px; border: transparent;  font-size: 14px; padding: 0px 0px 0px 62px; text-decoration: none; margin: 19px auto;  background-size: 50% 50% !important;">
+        <a class="item clear-bg">
+          <p translate>ADMIN_TOOLS.MAIN_PAGE.MANAGEMENT</p>
+          <h2 translate>ADMIN_TOOLS.ADMIN_MEMBERS.MEMBERS</h2>
+        </a>
+      </div>
+
+      <div class="card  " ui-sref="adminRoles"
+           ng-if="canManageAppRoles()"
+           style=" width:60%; border-radius: 7px; text-shadow: 01px 1px 2px rgba(102,102,102,.5); color: rgba(51,51,51,.8); background: rgba(247,207,126,.18); background-image:url(img/roles.svg); background-repeat:no-repeat; background-position:left center; background-position: -25px; border: transparent;  font-size: 14px; padding: 0px 0px 0px 62px; text-decoration: none; margin: 19px auto; background-size: 50% 50% !important;">
+        <a class="item clear-bg  ">
+          <p translate>ADMIN_TOOLS.MAIN_PAGE.MANAGEMENT</p>
+          <h2 translate>ADMIN_TOOLS.ADMIN_ROLES.ROLES</h2>
+        </a>
+      </div>
+
+      <div class="card  " ui-sref="adminPermissions"
+           ng-if="canManageAppPermissions()"
+           style=" width:60%; border-radius: 7px; text-shadow: 01px 1px 2px rgba(102,102,102,.5); color: rgba(51,51,51,.8); background: rgba(247,207,126,.18); background-image:url(img/permisios.svg); background-repeat:no-repeat; background-position:left center; background-position: -25px; border: transparent;  font-size: 14px; padding: 0px 0px 0px 62px; text-decoration: none; margin: 19px auto;  background-size: 50% 50% !important;">
+        <a class="item clear-bg  ">
+          <p translate>ADMIN_TOOLS.MAIN_PAGE.MANAGEMENT</p>
+          <h2 translate>ADMIN_TOOLS.ADMIN_PERMISSIONS.PERMISSIONS</h2>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+  <style>
+    #admin-tools-landpage .dark-bg {
+      background: linear-gradient(#000, #fff);
+    }
+
+    #admin-tools-landpage .item.item-bg-image {
+      max-height: 150px;
+    }
+
+    #admin-tools-landpage .item.item-bg-image {
+      min-height: 150px;
+    }
+
+    #admin-tools-landpage .item.item-bg-image h2 {
+      color: #fff;
+      font-weight: bold;
+      position: relative;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.95);
+      z-index: 1;
+    }
+
+    #admin-tools-landpage .item.item-bg-image > img {
+      height: 100%;
+      left: 0;
+      max-width: initial;
+      opacity: 0.65;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 0;
+    }
+
+    #admin-tools-landpage .item.item-bg-image p {
+      color: rgba(255, 255, 255, 1);
+      font-size: 17px;
+      position: relative;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.95);
+      z-index: 1;
+    }
+
+    #admin-tools-landpage .item.clear-bg {
+      background: none;
+    }
+
+    #admin-tools-landpage .card img {
+      box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+      display: block;
+      max-width: 180px;
+    }
+  </style>
+</ion-view>
+

@@ -1,0 +1,196 @@
+<ion-modal-view cache-view="false">
+  <ion-nav-bar class="bar-assertive bar bar-header item-input-inset">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="cancelClicked()">
+        <!--<i class="icon ion-ios-close-empty"></i>-->
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="okClicked()">
+        <i translate>GLOBAL.DONE</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-header" scroll="false">
+    <form name="searchForm">
+      <!--AREA FOR EDIT TITLE-->
+      <div class="item-divider text-left" translate style="margin-left: 11px !important; margin-top: 4px !important; background-color: white !important; margin-bottom: -11px !important" md-colors="{color:'default-primary'}">
+        PRIVATEMESSAGE.TITLE_CHATROOM
+      </div>
+      <label id="text-area-container" class="item item-input-inset">
+        <textarea
+          id="main-textarea"
+          class="main-textarea"
+          ng-class="{'closed':areaIsExpanded,'open':!areaIsExpanded}"
+          ng-model="form.title"
+          translate-attr="{placeholder:'COMMENT.WRITE'}"></textarea>
+      </label>
+      <!--AREA FOR SEARCH MEMBERS-->
+        <div class="item-divider text-left" translate ng-show='form.imOwner === "true"' style="margin-left: 11px !important; background-color: white !important;" md-colors="{color:'default-primary'}">
+          PRIVATEMESSAGE.SEARCH_ADD_NEW_USERS
+        </div>
+        <div class="row no-padding" ng-show='form.imOwner === "true"' style="margin-top: -13px;">
+          <div class="col col-80">
+            <label class="item item-input" style="border: solid 1px #CCCCCC; margin-top: 8px">
+              <input type="text" translate-attr="{ 'placeholder' : 'DISCOVER.SEARCH_FOR' }"
+                      ng-minlength="3" ng-model="data.textSearch"
+                      id="search-input"
+                      name="textSearch" ng-change="searchUsers()">
+            </label>
+          </div>
+          <div class="col text-right no-padding">
+            <md-button class="md-fab md-primary" ng-click="triggerViewList()">
+              {{data.showAdded.length | briefCounter}}
+              <ion-spinner icon="spiral" class="loadingAction over-button" ng-show="isSearching"></ion-spinner>
+            </md-button>
+          </div>
+        </div>
+    </form>
+    
+    <!-- ACTUAL USERS USERS-->
+      <div ng-show="form.showActuals">
+        <ion-content class="padding selected-users-list" style="margin-top: 169px;">
+          <ion-list>
+            <div class="item-divider text-left" md-colors="{color:'default-primary'}">
+              <span translate>PRIVATEMESSAGE.LIST_USERS_INSIDE</span> ({{data.showAdded.length}})
+            </div>
+            <ion-item class="item-avatar with-border-bottom"
+                      ng-repeat="user in data.showAdded"
+                      ng-class="{'selected-item':user.isSelected}"
+                      ng-click="triggerSelect(user, $index, true)">
+              <img ng-src="{{user.photo || user.avatar}}">
+              <h2>{{user.name}}</h2>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </div>
+
+    <!-- USERS FIND SEARCH-->
+      <div ng-show="!form.showActuals">
+        <ion-content class="padding selected-users-list" style="margin-top: 169px;">
+            <ion-scroll direction="y" style="padding-top: 4px">
+              <ion-list>
+                <div class="item-divider text-left" md-colors="{color:'default-primary'}" translate>
+                  PRIVATEMESSAGE.USERS_FOUND_TO_ADD
+                </div>
+                <ion-item class="item-avatar"
+                          ng-repeat="user in usersFound"
+                          ng-class="{'selected-item':user.isSelected}"
+                          ng-click="triggerSelect(user, $index, false)">
+                  <img ng-src="{{user.avatar}}">
+                  <h2>{{user.name}}</h2>
+                </ion-item>
+              </ion-list>
+            </ion-scroll>
+          </ion-content>
+      </div>
+  </ion-content>
+</ion-modal-view>
+
+<style>
+
+  .platform-ios.platform-cordova:not(.fullscreen) #tasg-modal .bar-header:not(.bar-subheader) > *{
+    margin-top: 0 !important;
+  }
+
+  #search-wrapper{
+    margin: 48px auto auto auto;
+    padding-left: 65px;
+    padding-right: 50px;
+  }
+
+  .platform-android #tasg-modal .bar .title{
+    margin-left: 0;
+  }
+
+  #search-wrapper.open{
+    margin-top: 8px;
+    transition-property: all;
+    transition-duration: 1.4s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  #search-wrapper.closed{
+    transition-property: all;
+    transition-duration: 1.9s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  .search-label{
+    background: linen;
+    margin-top: 0!important;
+  }
+
+  #search-input{
+    z-index: 10;
+    padding-left: 0;
+  }
+
+  /*#search-wrapper.open,
+  #search-wrapper.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper.search-wrapper-open{
+    margin-top: 8px !important;
+    transition-property: all;
+    transition-duration: 1.4s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }*/
+  .platform-ios.platform-cordova:not(.fullscreen) #tasg-modal .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper{
+    margin-top: 0 !important;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      margin-top: 55px;
+    }
+    100% {
+      margin-top: 0;
+    }
+  }
+
+  /*#search-wrapper.closed,
+  .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper.search-wrapper-closed{
+    transition-property: all;
+    transition-duration: 1.9s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }*/
+
+  @keyframes fadeOutOpacity {
+    0% {
+      margin-top: 0;
+    }
+    100% {
+      margin-top: 65px!important;
+    }
+  }
+
+  .main-textarea{
+    width: 100%;
+    background-color: linen;
+    border-radius: 5px;
+    padding: 5px 5px 5px 8px;
+  }
+
+  .main-textarea.open{
+    transition-property: all;
+    transition-duration: 1.5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  .main-textarea.closed{
+    margin-top: -130px;
+    width: 94%;
+    transition-property: all;
+    transition-duration: 1.5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+
+
+  #results-area .item{
+    border-bottom-width: 1px;
+    margin-top: 1px;
+  }
+
+</style>

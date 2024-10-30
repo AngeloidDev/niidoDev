@@ -1,0 +1,103 @@
+<ion-view title=' <div align="center">{{::titlePage}}</div>' cache-view="false" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <div ng-controller="GalleryCtrl">
+
+    <!--<div ng-init="loadingInit = 0" ng-hide="showImagesFromService.$resolved || loadingInit == 0"
+         style="background:#000; width: 100%; height:100%; z-index: 999; color: #fff; position: absolute; opacity: 0.6;text-align:center; top: 0">
+      <ion-spinner style="position: absolute; top: calc( 50% - 30px );"></ion-spinner>
+    </div>-->
+    <div ng-if="isRefreshing"
+         style="width: 100%; height:100%; z-index: 999; color: #fff; position: absolute; text-align:center; top: 0">
+      <div style="height:25%; width: 100%; position: relative"></div>
+      <div
+        style="width:95%; margin:auto; height:200px; background:url(img/photoFrame.svg) no-repeat center; background-size: 60% ; padding:20px; font-size:9px; opacity: .4;"></div>
+    </div>
+
+    <ion-content
+      class="has-footer scroll-content-shrinking"
+      header-shrink
+      scroll-event-interval="5"
+      scroll="true">
+
+      <ion-refresher
+        pulling-text="{{refreshText}}"
+        spinner="lines"
+        on-refresh="refreshHashtagTimeline()">
+      </ion-refresher>
+
+      <div class="separateHeader"></div>
+
+      <div style="text-align: center;"
+           ng-if="_sequenceList.length == 0 && !isRefreshing && !isLoadingContent && !canGetMoreItems">
+        <p translate>HASHTIMELINE.LOADING</p><br/>
+      </div>
+
+      <ion-list ng-controller="SequenceCtrl">
+        <div ng-controller="CommentsCtrl">
+          <div class="list card cards-round"
+               style="min-height: 85px"
+               ng-repeat="sequence in _sequenceList track by $id(sequence)">
+            <div ng-if="sequence.metadata.isAdvertisement" id="hashTimeline_Ad_{{$index}}"
+                 ng-click="increaseAdClicks(sequence, $index)">
+              <!-- cqnz header (avatar, menu, username, date) -->
+              <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+            </div>
+
+            <div ng-if="!sequence.metadata.isAdvertisement">
+              <!-- cqnz header (avatar, menu, username, date) -->
+              <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+            </div>
+
+            <!--**** Show sequence Content ****-->
+            <ng-include
+              src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+            <!--**** Show bottom strip buttons ****-->
+            <ng-include src="'templates/SequenceTemplates/sequenceStripButtonsTpl.html'"></ng-include>
+
+            <!--**** Show Comments ****-->
+            <ng-include src="'templates/SequenceTemplates/sequenceCommentsListTpl.html'"></ng-include>
+
+          </div><!-- end of card -->
+        </div><!-- CommentsCtrl -->
+
+        <div class="text-center" ng-if="isLoadingContent && !isRefreshing">
+          <ion-spinner icon="lines"></ion-spinner>
+        </div>
+
+        <ion-infinite-scroll
+          style="visibility: hidden"
+          ng-if="canGetMoreItems"
+          on-infinite="getMoreHashtagsSequences()"
+          distance="18%">
+        </ion-infinite-scroll>
+
+        <div class="bottom-spacer"></div>
+
+      </ion-list>
+
+      <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+        <a class="button button-icon icon ion-refresh" ng-click="refreshHashtagTimeline()"></a>
+      </div>
+      <div class="row" ng-if="network.status == 'none'">
+        <div class="col col-20">
+          <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+        </div>
+        <div class="col" translate>
+          ERROR.NO_INTERNET2
+        </div>
+      </div>
+
+    </ion-content>
+  </div>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

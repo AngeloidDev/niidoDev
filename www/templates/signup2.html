@@ -1,0 +1,55 @@
+<ion-view cache-view="false">
+  <ion-nav-bar class="bar-assertive">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-title translate>SIGNUP.TITLE</ion-nav-title>
+  </ion-nav-bar>
+  <ion-content class="has-header">
+    <div class="base-bg">
+      <div class="row">
+        <div class="col col-100">
+          <div class="add-photo-profile text-center" style="background-image:url({{ data.pictures[0] }});"
+               ng-click="methods.addPhoto()">
+            {{data.pictures.length === 0 ? data.addPhoto : ''}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-100">
+          <label class="item item-input">
+	                    <textarea type="text" autosize ng-model="data.newUser.bio" name="descriptionSequence"
+                                translate-attr="{ 'placeholder': 'SIGNUP.BIO' }">
+	                    </textarea>
+            <div align="center" ng-show="data.newUser.bio.length >= 1">
+              <label
+                ng-style="{ color : data.newUser.bio.length>=105 && data.newUser.bio.length<=130 ? 'brown' : (data.newUser.bio.length>130 ? 'red': 'initial')}">
+                {{data.newUser.bio.length}}/130
+              </label>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-100 text-center small-print" translate>
+          SIGNUP.WARNING
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-100 text-center">
+          <button class="button button-block button-assertive" ng-click="methods.createAccount()"
+                  ng-disabled="data.creating || data.newUser.bio.length>130" translate>SIGNUP.CREATE_ACCOUNT
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-100 text-center small-print">
+        <i translate>SIGNUP.ACK</i> <a ui-sref="signUpPolicy" translate> GLOBAL.PRIVACY_POLICY</a> <i translate>SIGNUP.ACK2</i>
+        <a ui-sref="signUpTerms" translate>GLOBAL.TERMS_USE</a>.
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

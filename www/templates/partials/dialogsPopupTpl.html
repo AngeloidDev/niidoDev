@@ -1,0 +1,32 @@
+<md-dialog aria-label="dialog">
+  <md-dialog-content class="md-dialog-content">
+    <div>
+      <h2 class="md-title">{{displayOption.title}}</h2>
+
+      <p ng-bind-html="displayOption.content" md-auto-focus></p>
+    </div>
+  </md-dialog-content>
+
+  <md-dialog-actions>
+    <md-button
+      style="font-weight: {{displayOption.invertedButtons?'inherit':'bold'}}"
+      ng-class="displayOption.cancelClass"
+      ng-click="cancel()"
+      ng-if="displayOption.cancel">
+      {{displayOption.cancel}}
+    </md-button>
+    <md-button
+      style="font-weight: {{displayOption.invertedButtons || !displayOption.cancelClass?'bold':'inherit'}}"
+      ng-class="displayOption.okClass"
+      ng-click="ok()">
+      {{displayOption.ok}}
+    </md-button>
+    <!--<md-button
+      style="font-weight: bold"
+      ng-class="displayOption.okClass"
+      ng-click="cancel()"
+      ng-if="displayOption.cancel && !displayOption.invertedButtons">
+      {{displayOption.cancel}}
+    </md-button>-->
+  </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,17 @@
+<!--**** Show galery ****-->
+<div>
+  <div id="{{ sequence.content.templateIdBackup }}" class="item item-body"
+       style="margin: 10px 10px;">
+    <div style="">
+      <div
+        style="color:#505050; width: 100%; text-align: center"
+        ng-if="sequence.description.isUpdating">
+        <ion-spinner icon="lines"></ion-spinner>
+      </div>
+      <div ng-if="sequence.description.title != ' ' && !sequence.description.isUpdating"
+           ng-bind-html="trustAsHtml(sequence.description.title)"
+           ng-click="whatCliked($event, sequence)"></div>
+    </div>
+  </div>
+</div>
+

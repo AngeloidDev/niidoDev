@@ -1,0 +1,106 @@
+<ion-view title='{{HEADER_LOGO}}' can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button
+        class="button button-assertive"
+        ng-click="create(role.description)"
+        ng-if="!role.id && role.description">
+        <i translate>ADMIN_TOOLS.ADMIN_ROLES.CREATE</i>
+      </button>
+      <button
+        class="button button-assertive"
+        ng-click="update(role.description)"
+        ng-if="role.id && role.description && (roleNameHasChanged || permissionsToUpdate.length)">
+        <i translate>ADMIN_TOOLS.ADMIN_ROLES.UPDATE</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <ion-content class="has-footer">
+    <md-subheader class="md-no-sticky">
+      {{(role.id?"ADMIN_TOOLS.ADMIN_ROLES.EDIT_ROLE":"ADMIN_TOOLS.ADMIN_ROLES.CREATE_ROLE")|translate}}
+    </md-subheader>
+
+    <form id="permissionsForm" name="permissionsForm">
+      <div class="padding-horizontal">
+        <md-input-container class="md-block padding-vertical" style="border-bottom: none">
+          <label translate>ADMIN_TOOLS.ADMIN_ROLES.ROLE_NAME</label>
+          <input
+            required md-no-asterisk
+            name="description"
+            ng-disabled="role.id && !canEditAppRoleName()"
+            ng-model="role.description"
+            ng-change="checkForNameChanges()"
+            md-maxlength="30">
+          <div ng-messages="permissionsForm.description.$error">
+            <div ng-message="required" translate>ADMIN_TOOLS.FORM_ERROR.FIELD_REQUIRED</div>
+            <div ng-message="md-maxlength" translate>ADMIN_TOOLS.FORM_ERROR.NAME_LENGTH</div>
+          </div>
+        </md-input-container>
+      </div>
+
+
+      <md-subheader class="md-no-sticky">
+        <span translate>ADMIN_TOOLS.ADMIN_PERMISSIONS.PERMISSIONS</span>
+        <!--<span ng-if="role.id">({{currentRolePermissions.length+'/'+allRolePermissions.length}})</span>-->
+        <!--<span ng-if="!role.id">({{permissionsToUpdate.length+'/'+allRolePermissions.length}})</span>-->
+      </md-subheader>
+
+      <div ng-init="start=0">
+        <div ng-repeat="(i,pGroup) in allRolePermissions" ng-init="currId = $parent.start; $parent.start=$parent.start+pGroup.permissions.length">
+          <md-subheader
+            md-colors="{'background-color':'primary'}"
+            ng-click="toggleListVisibility(pGroup.tag, pGroup.tag+'_list'+(role.id?'edit':'create'))">
+          <span class="icon ion-chevron-{{listInitiallyOpen?'up':'down'}}" id="{{pGroup.tag}}"
+                style="font-size: 12px; float: right;"></span> {{'ADMIN_TOOLS.TAGS.'+pGroup.tag|translate}}
+          </md-subheader>
+          <div id="{{pGroup.tag}}_list{{role.id?'edit':'create'}}"
+               style="display: {{listInitiallyOpen?'block':'none'}}"
+               class="padding-horizontal">
+            <div
+              ng-repeat="(j,permission) in pGroup.permissions">
+              <md-switch
+                class="md-primary"
+                md-no-ink aria-label="Switch"
+                ng-model="permission.isSelected"
+                ng-change="checkForPermissionChanges(i, j)"
+                ng-disabled="role.id && !canEditRolePermissions()">
+                {{permission.description}}
+              </md-switch>
+              <md-divider ng-if="!$last"></md-divider>
+            </div>
+          </div>
+          <md-divider></md-divider>
+        </div>
+      </div>
+
+
+
+      <div class="text-right">
+        <md-button
+          class="md-raised md-primary"
+          ng-if="!role.id"
+          ng-click="create(role.description)" ng-disabled="!role.description">
+          {{'ADMIN_TOOLS.ADMIN_ROLES.CREATE'|translate}}
+        </md-button>
+        <md-button
+          class="md-raised md-primary"
+          ng-if="role.id"
+          ng-click="update(role.description)"
+          ng-disabled="!role.description || (!roleNameHasChanged && !permissionsToUpdate.length)">
+          {{'ADMIN_TOOLS.ADMIN_ROLES.UPDATE'|translate}}
+        </md-button>
+      </div>
+    </form>
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+</ion-view>

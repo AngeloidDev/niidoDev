@@ -1,0 +1,63 @@
+<ion-view title='{{data.visualTitle}}' cache-view="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="backClicked()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <!--<ion-nav-title>
+      {{data.visualTitle}}
+    </ion-nav-title>-->
+    <ion-nav-buttons side="right" ng-show="showSettingsBtn">
+      <button class="button button-clear" ng-click="openConfigPanel()">
+        <md-icon md-svg-icon="img/icons/settings_24px.svg"></md-icon>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="chatPage-ui has-header" style="margin-top:0;" scroll="true">
+    <ion-refresher
+      on-refresh="fillHistorial()">
+    </ion-refresher>
+
+    <div layout="column" layout-align="end none" style="min-height: 100%">
+      <md-listem-item class="md-2-line" ng-repeat="message in data.chatData track by $index">
+        <div ng-if="message.type==2" style="text-align:left;">
+          <div class="bubble-left"><!--Friends messages-->
+            <div class="md-list-item-text" layout="column">
+              <p class="assertive" style="font-weight: bold;">{{message.name}}</p>
+              <p style="margin-top: -7px; margin-bottom: 0;">{{message.message}}</p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div ng-if="message.type==3" class="bubble-right"><!--My owns messages-->
+            <!--<img ng-src="{{message.avatar}}" class="md-avatar" alt="{{message.username}}"/>-->
+            <div class="md-list-item-text" layout="column">
+              <p class="assertive" style="font-weight: bold;">{{message.name}}</p>
+              <p style="margin-top: -7px; margin-bottom: 0;">{{message.message}}</p>
+            </div>
+          </div>
+        </div>
+      </md-listem-item>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar
+    class="comments-fotter" style="background-color:rgba(255,255,255,1)">
+	            <textarea type="text"
+                        keydown="autosize()"
+                        ng-model="chatMessage"
+                        name="message"
+                        id="message"
+                        translate-attr="{ 'placeholder': 'COMMENT.WRITE' }"
+                        class="text-comment"
+                        style="height: 32px !important; margin-top:3px;">
+	            </textarea><!--ng-change="isTyping()"-->
+    <button id="sendMessageBtn" class="send-comment" ng-disabled="!chatMessage || !connected" translate>
+      <!--ng-click="sendMessage(chatMessage)"-->
+      GLOBAL.POST
+    </button>
+  </ion-footer-bar>
+</ion-view>

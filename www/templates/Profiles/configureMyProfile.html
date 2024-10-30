@@ -1,0 +1,96 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false" class="base-bg">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-outline button-assertive"
+            ng-show="data.fields[0].isActive==true || data.fields[1].isActive==true || data.fields[2].isActive==true"
+            ng-click="checkChanges()"
+            ng-disabled="data.fields[0].value == '' || data.fields[1].value == '' || data.fields[2].value == '' "
+            translate>
+      GLOBAL.SAVE
+    </button>
+  </ion-nav-buttons>
+  <div class="fixed-div has-header">
+    <form class="list base-bg padding" name="form">
+      <div class="row">
+        <div class="col col-100 text-center title-myConfig" translate>
+          EDIT_PROFILE.ACCOUNT
+        </div>
+      </div>
+      <div class="row rowMyConfig"><!--user name-->
+        <div class="item item-icon-left div-myConfig">
+          <i class="icon ion-person"></i>
+          <input
+            type="text"
+            ng-model="data.fields[3].value"
+            disabled="true"
+            class="myConfigInputDisabled">
+        </div>
+      </div>
+      <div class="row rowMyConfig"><!--name-->
+        <div class="item item-icon-left div-myConfig">
+          <i class="icon ion-ios-paper-outline" ng-click="chkTypeUser(0)"></i>
+          <input
+            type="text"
+            ng-model="data.fields[0].value"
+            ng-disabled="!data.fields[0].isActive"
+            maxlength="30"
+            ng-class="!data.fields[0].isActive ? 'myConfigInput' : 'myConfigEdit'">
+        </div>
+      </div>
+      <div class="row rowMyConfig"><!--mail-->
+        <div class="item item-icon-left div-myConfig">
+          <i id="btnEmail" class="icon ion-at" ng-click="chkTypeUser(1)"></i>
+          <input
+            type="text"
+            ng-model="data.fields[1].value"
+            ng-disabled="!data.fields[1].isActive"
+            maxlength="255"
+            ng-class="!data.fields[1].isActive ? 'myConfigInput' : 'myConfigEdit'">
+        </div>
+      </div>
+      <div class="row rowMyConfig"><!--Bio-->
+        <div class="item item-icon-left div-myConfig">
+          <i id="btnBio" class="icon ion-ios-information-outline" ng-click="chkTypeUser(2)"></i>
+          <input
+            type="text"
+            ng-model="data.fields[2].value"
+            ng-disabled="!data.fields[2].isActive"
+            ng-class="!data.fields[2].isActive ? 'myConfigInput' : 'myConfigEdit'">
+        </div>
+      </div>
+      <div style="clear:both;margin-top: 6px;margin-bottom: 6px;">
+        <div id="divAdvices" class="divAdvicesStyle" ng-show="advice">
+          <div translate>EDIT_PROFILE.FB_ERROR</div>
+        </div>
+      </div>
+      <div class="row rowMyConfig">
+        <a class="item item-icon-left item-icon-right div-myConfig" ui-sref="menu.listFavorites">
+          <i class="icon ion-android-bookmark"></i>
+          <div class="col col-100 text-center subtitle-myConfig" translate>
+            EDIT_PROFILE.FAVORITE_FRIENDS
+          </div>
+          <i class="icon ion-chevron-right"></i>
+        </a>
+      </div>
+      <div style="clear:both;height:20px"></div>
+      <div class="row rowMyConfig" style="border-bottom: none;" ng-show="showPrivateOptions">
+        <div class="item item-toggle subtitle-myConfig" style="width:100%;">
+          EDIT_PROFILE.PRIVATE_PROFILE
+          <label class="toggle toggle-balanced">
+            <input type="checkbox" ng-model="data.fields[4].value">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="row rowMyConfig" style="border-top: none;" ng-show="showPrivateOptions">
+        <div class="col col-100 text-center text-myConfig" translate>
+          EDIT_PROFILE.PRIVATE_WARNING
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

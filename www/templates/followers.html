@@ -1,0 +1,87 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <!--<ion-nav-back-button
+      class="button icon-left ion-chevron-left button-clear button-dark close-comments"
+      style="color:rgba(204,204,204,1); height:22px; padding-bottom:5px; visibility:visible !important; display:block !important;">
+    </ion-nav-back-button>-->
+  </ion-nav-bar>
+
+
+  <ion-content class="comments-box" style="margin-top:-10px; margin-left:5px;">
+
+    <div class="row" ng-repeat="follower in followers">
+      <div class="col col-20">
+        <div style="width:50px; height:55px; float:left; padding-top:7px; ">
+          <a class="item item-avatar" style="padding-left: 55px">
+            <img class="avatar-image" ng-src="{{ 'data:image/jpeg;base64,' + follower.profilePicture.split(':')[2] }}"
+                 ng-click="sendUserProfile(follower.userSubscription)" class="comments-avatar"
+                 ng-if="follower.profilePicture != null"/>
+            <img class="avatar-image" ng-src="{{ follower.profilePictureUrl }}"
+                 ng-click="sendUserProfile(follower.userSubscription)" class="comments-avatar"
+                 ng-if="follower.profilePictureUrl != null"/>
+            <img class="avatar-image" ng-src="img/ProfilePhoto.svg"
+                 ng-click="sendUserProfile(follower.userSubscription)" class="comments-avatar"
+                 ng-if="follower.profilePictureUrl == null && follower.profilePicture == null"/>
+          </a>
+        </div>
+      </div>
+      <div class="col" style="width:60%;">
+        <div class="userNameBold"
+             style="width:130px; float:left; vertical-align: middle; margin-left:2px; color:rgba(51,51,51,1); line-height:51px; height:55px; overflow: hidden;"
+             ng-click="sendUserProfile(follower.userSubscription)">
+          {{ ::follower.name }}
+        </div>
+      </div>
+
+      <div class="col col-20">
+        <div style="width:120px; float:right; margin-top: 0px; margin-right:-10px; ">
+
+          <div ng-init="getFollowingIsActive(follower)" ng-click="addFriends(follower);">
+            <button class="button button-small " ng-class="follower.isActive ? 'unfollow':'follow'"
+                    ng-disabled="follower.togglingFollow">{{follower.isActive ? unfollowText:followText}}
+            </button>
+          </div>
+          <div ng-init="findBlockUsers = findBlockUserById(follower.userSubscription.href.split('/')[6])"
+               style="margin-top:2px;">
+            <div ng-class="(findBlockUsers.length > 1) ? 'blockOff': 'blockOn' ">
+
+              <button ng-click="blockUser = blockToUser(follower.userSubscription.href.split('/')[6])"
+                      ng-show="findBlockUsers[1] == null || unblockUser != null" ng-hide="blockUser != null"
+                      class="block" id="block{{ follower.userSubscription.href.split('/')[6] }}">{{'GLOBAL.BLOCK' |
+                translate}}
+              </button>
+
+              <button
+                ng-click="unblockUser = unblockToUser(follower.userSubscription.href.split('/')[6]); blockUser = null; findBlockUsers[1] = null"
+                ng-show="blockUser != null || findBlockUsers[1] != null" class="unblock"
+                id="block{{ follower.userSubscription.href.split('/')[6] }}">{{'GLOBAL.UNBLOCK' | translate}}
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="init()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+
+</ion-view>

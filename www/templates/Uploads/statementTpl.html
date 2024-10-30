@@ -1,0 +1,133 @@
+<md-dialog style="background: none" aria-label="comments" id="statement-dialog">
+  <md-dialog-content style="padding-top: calc(50% - 60px)">
+
+    <md-content style="padding-bottom: 8px">
+      <div class="list card cards-round"
+           style="padding-top: 0; margin: auto 10px">
+        <div style="margin-left:0; margin-right:0;">
+          <div class="headerCard"
+               ng-style="{'background-color': data.selectedBgColor, color: data.selectedFontColor}">
+            <!-- user avatar -->
+            <div style="width:50px; height:50px; float:left; margin-top: 0 !important">
+              <a class="headerCardText item-avatar" style="margin-left:10px;">
+                <img class="avatar-image"
+                     ng-src="{{ ::advertisement.ownerMetadata.avatar}}"
+                     style="margin-left:4px;"/>
+              </a>
+            </div>
+
+            <div style="float:left; margin-top:4px; margin-left:1px;">
+              <!-- username -->
+              <div class="userNameBold">
+                {{advertisement.ownerMetadata.name}}
+              </div>
+
+              <!-- creation date -->
+              <div style="font-size: 11px; margin-left: 1px; margin-top: -5px;">
+                {{::advertisement.creationTime | creationTime}}
+              </div>
+            </div>
+
+            <div
+              style="position:relative; float: right; font-size: 24px; padding-top: 11px; color: rgba(102,102,102,.6); padding-left: 30px;">
+              <button
+                class="button button-small button-assertive"
+                ng-click="addStatement(data.commentValue);"
+                ng-disabled="!data.commentValue" translate>
+                GLOBAL.POST
+              </button>
+            </div>
+          </div>
+
+          <div class="row no-padding" ng-click="openTagsModal()">
+            <div class="col no-padding">
+              <textarea
+                rows="5"
+                readonly
+                style="width: 100%; padding: 8px;"
+                translate-attr="{placeholder:'COMMENT.WRITE'}"
+                ng-model="data.commentValue"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <md-switch
+            md-invert
+            ng-model="data.enableComments"
+            class="md-primary"
+            style="margin: 0 0 0 auto;"
+            aria-label="enable comments">
+            {{'UPLOAD.ENABLE_COMMENTS'|translate}}
+          </md-switch>
+        </div>
+        <!--<div class="row">
+          <md-switch
+            md-invert
+            ng-model="data.lifetime"
+            class="md-primary"
+            style="margin: 0 0 0 auto;"
+            aria-label="enable comments">
+            {{'UPLOAD.DELETE_AFTER'|translate}} 24 {{'GLOBAL.HOURS'|translate}}
+          </md-switch>
+        </div>-->
+        <div class="row">
+          <md-switch
+            md-invert
+            ng-model="data.shareable"
+            class="md-primary"
+            style="margin: 0 0 0 auto;"
+            aria-label="enable shareability">
+            {{'UPLOAD.ENABLE_SHARE'|translate}}
+          </md-switch>
+        </div>
+
+        <details style="margin: auto auto 18px 10px" ng-if="iAmAdvertiser">
+          <summary style="color: #0c60ee">
+            {{'UPLOAD.HEADER_OPTIONS_TAG'|translate}}
+          </summary>
+
+          <div style="color: gray;">
+            {{'UPLOAD.HEADER_BG_COLOR'|translate}}
+            <ngjs-color-picker selected-color="data.selectedBgColor" custom-colors="customColors"
+                               class="colorPicker"></ngjs-color-picker>
+            {{'UPLOAD.HEADER_FONT_COLOR'|translate}} {{data.selectedFontColor}}
+            <ngjs-color-picker selected-color="data.selectedFontColor" custom-colors="customColors"
+                               class="colorPicker"></ngjs-color-picker>
+          </div>
+        </details>
+
+        <details open style="margin: auto auto 18px 10px" ng-if="iAmAdvertiser">
+          <summary style="color: #0c60ee">
+            {{'UPLOAD.DATETIME_PICKER_TAG'|translate}} {{data.finalDate | date: "MMM d, y"}}
+          </summary>
+          <div class="list">
+            <a class="item item-icon-left"
+               style="color: #0c60ee; padding:8px 0 2px 34px;"
+               title="dateTimePickerTitle"
+               ion-datetime-picker date monday-first
+               only-valid="{'after': 'today', 'inclusive': true}"
+               ng-model="data.finalDate" ng-click="hideStatementFormAndBackdrop()">
+              <i class="icon ion-ios-calendar-outline" style="left: 0; padding-bottom: 4px"></i>
+              {{'UPLOAD.DATETIME_PICKER.TITLE'|translate}}
+            </a>
+          </div>
+        </details>
+      </div>
+    </md-content>
+
+  </md-dialog-content>
+
+  <md-button
+    class="md-fab"
+    style="position:absolute; bottom: 50px;right: 0; height: 50px;width: 50px;background: rgb(250, 127, 33); z-index:-1;"
+    aria-label="close"
+    ng-click="closeDialog()">
+    <md-icon md-svg-src="img/icons/close_24px.svg"></md-icon>
+  </md-button>
+
+</md-dialog>
+
+
+
+

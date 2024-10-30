@@ -1,0 +1,131 @@
+<ion-modal-view cache-view="false">
+  <ion-nav-bar class="bar-assertive bar bar-header item-input-inset">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="cancelClicked()" >
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right" >
+      <button class="button button-clear" ng-click="okClicked()" ng-show="!data.readyForMessage">
+        <i translate>GLOBAL.DONE</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-header" scroll="false">
+    <form name="searchForm">
+      <div class="row no-padding" ng-show="!data.readyForMessage">
+        <div class="col col-80">
+          <label class="item item-input" style="border: solid 1px #CCCCCC; margin-top: 8px">
+            <input type="text" translate-attr="{ 'placeholder' : 'DISCOVER.SEARCH_FOR' }"
+                   ng-minlength="3" ng-model="data.userName"
+                   id="search-input"
+                   name="userName" ng-change="searchUsers()">
+          </label>
+        </div>
+        <div class="col text-right no-padding">
+          <md-button class="md-fab md-primary" ng-click="showSelectedUsersList()">
+            {{data.selectedUsers.length | briefCounter}}
+            <ion-spinner icon="spiral" class="loadingAction over-button" ng-show="isSearching"></ion-spinner>
+          </md-button>
+        </div>
+      </div>
+
+      <div class="row no-padding" ng-show="data.readyForMessage">
+        <div class="col">
+          <label class="item item-input" style="border: solid 1px #CCCCCC; margin-top: 8px">
+            <input type="text" translate-attr="{ 'placeholder' : 'PRIVATEMESSAGE.WRITE_MESSAGE' }"
+                   ng-model="data.sentMessageChat"
+                   id="search-input"
+                   name="messageForChat">
+          </label>
+        </div>
+        <div class="col col-20 text-right no-padding" ng-show="!data.multipleUsers">
+          <md-button class="md-fab md-primary" ng-click="chatOneforOne()">
+            <i translate>PRIVATEMESSAGE.SEND_MSG_CHAT</i>
+            <ion-spinner icon="spiral" class="loadingAction over-button" ng-show="isTexting"></ion-spinner>
+          </md-button>
+        </div>
+      </div>
+
+<div class="row no-padding" ng-show="data.multipleUsers" style="width: 60%;
+    margin-left: auto;
+    margin-right: auto;">
+        <div class="button-bar">
+          <button class="button button-block button-assertive" style="border-radius: 5px;"
+                  ng-class="button-assertive" ng-click="chatOneforOne()"
+                  translate>PRIVATEMESSAGE.MULTIPLE_DIRECT_MSGS
+          </button><!--ng-click="changeTab('featured')"-->
+          <button style="display: none;" class="button button-block icon-left ion-ios-people"
+                  ng-class="button-light" ng-click="nameChatRoom()"
+                  translate>Chatroom
+          </button><!--ng-click="changeTab('newUsers')"-->
+        </div>
+      </div>
+
+      <!--<div class="row" ng-if="searchForm.userName.$invalid">
+        <div class="col">
+          <label class="assertive" translate>
+            DISCOVER.AT_LEAST
+          </label>
+        </div>
+      </div>-->
+    </form>
+
+    <div ng-show="!data.readyForMessage">
+      <!-- USERS RESULTS LIST-->
+      <ion-content class="padding results-users-list" style="margin-top: 60px;" ng-show="usersFound.length > 0">
+        <ion-scroll direction="y" style="padding-top: 4px">
+          <ion-list>
+            <div class="item-divider text-left" md-colors="{color:'default-primary'}" translate>
+              GROUPS.CREATE_S1.G_RESULTS_LABEL
+            </div>
+            <ion-item class="item-avatar"
+                      ng-repeat="user in usersFound"
+                      ng-class="{'selected-item':user.isSelected}"
+                      ng-click="selectUser(user, $index)">
+              <img ng-src="{{user.avatar}}">
+              <h2>{{user.name}}</h2>
+              <i class="blocked-item" ng-if="isUserBlocked(user.userSubscription)" translate>GROUPS.MAIN_PAGE.BANNED</i>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-content>
+    </div>
+
+    <!-- SELECTED USERS-->
+    <div>
+      <ion-content class="padding selected-users-list" ng-show="data.showSelectedContactsList">
+        <ion-list>
+          <div class="item-divider text-left" md-colors="{color:'default-primary'}">
+            <span translate>GROUPS.CREATE_S1.G_SELECTED_MEMBERS_LABEL</span> ({{data.selectedUsers.length}})
+          </div>
+          <ion-item class="item-avatar"
+                    ng-repeat="user in data.selectedUsers"
+                    ng-click="unselectUser(user, $index)">
+            <img ng-src="{{user.avatar}}">
+            <h2>{{user.name}}</h2>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </div>
+
+    <!--Show list selected users when writing the message 1x1-->
+    <div>
+      <ion-content class="padding selected-users-list" id="list-before-chat" style="margin-top: 60px;" ng-show="data.readyForMessage">
+        <ion-list>
+          <div class="item-divider text-left" md-colors="{color:'default-primary'}">
+            <span translate>GROUPS.CREATE_S1.G_SELECTED_MEMBERS_LABEL</span> ({{data.selectedUsers.length}})
+          </div>
+          <ion-item class="item-avatar"
+                    ng-repeat="user in data.selectedUsers"><!--ng-click="unselectUser(user, $index)"-->
+            <img ng-src="{{user.avatar}}">
+            <h2>{{user.name}}</h2>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </div>
+
+
+  </ion-content>
+</ion-modal-view>

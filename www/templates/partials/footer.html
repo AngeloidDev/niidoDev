@@ -1,0 +1,86 @@
+<div ng-controller="footerCtrl">
+
+  <div id="ButtonsAreaRedirect" class="bounceInUp"
+       style="background-color: rgba(255, 255, 255, 0); position: absolute; width: 100%; text-align: center; height: 100px; bottom: 60px; padding: 10px; z-index: 1000;"
+       ng-if="showButtonsArea" click-outside="closeButtonsArea()" outside-if-not="buttonUpload">
+    <div
+      style="   background-color: rgba(243, 243, 243, 1); height: 90px; border-radius: 10px; border: solid 2px rgb(10, 163, 157); box-shadow: rgba(0, 0, 0, 0.74902) -4px 3px 4px -1px; padding: 15px;">
+      <table style=" width: 100%;" border="0" cellpadding="0">
+        <tr>
+          <td>
+            <div class="ion-edit uploadpopupicons" ui-sref="menu.timeline({prepareStatement: 1})"
+                 ng-if="isGroupTimeline==null"></div>
+          </td>
+          <td>
+            <div class="ion-images uploadpopupicons"
+                 ui-sref="upload({isGroupTimeline: isGroupTimeline, groupData:groupData})"
+                 ></div>
+          </td>
+          <!--<td><div class="ion-images uploadpopupicons" ng-if="botonUploadOn" ng-click="showButtonsArea=false;"></div></td>-->
+          <td>
+            <div class="ion-social-youtube-outline uploadpopupicons"
+                 ui-sref="uploadVideo({isGroupTimeline: isGroupTimeline, groupData:groupData})"></div>
+          </td>
+          <!--<td><div class="ion-document uploadpopupicons"></div></td>
+          <td><div class="ion-stats-bars uploadpopupicons"></div></td>-->
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <ion-footer-bar align-title="left" class="footerGeneral">
+    <div class="buttons" style="width:100%">
+      <a class="button botones botonHomeOn" ng-if="botonHomeOn" ng-click="scrollMainToTop()"></a>
+      <a class="button botones botonHomeOff" ng-if="!botonHomeOn" ui-sref="menu.timeline({prepareStatement:0})"></a>
+    </div>
+
+    <div class="buttons" style="width:100%">
+      <a class="button botones botonSearchOn" ng-if="botonSearchOn" ng-click="initDiscover()"> </a>
+      <a class="button botones botonSearchOff" ng-if="!botonSearchOn" ui-sref="menu.discovery"> </a>
+    </div>
+
+    <div class="buttons" style="width:100%" id="buttonUpload">
+      <a class="button botones botonUpload{{botonUploadOn?'On':'Off'}}" ng-click="showButtonArea()"></a>
+    </div>
+
+    <div class="buttons" style="width:100%">
+      <a class="button botones" ng-class="botonMessageOn?'botonMessageOn':'botonMessageOff'"
+         ng-click="showInbox();">
+        <div
+          ng-bind="totalUnreadMessages<99?totalUnreadMessages:'+99'"
+          ng-show="totalUnreadMessages > 0"
+          class="footer-badge">
+        </div>
+      </a><!--ui-sref="menu.messagesInbox"-->
+    </div>
+
+    <div class="buttons" style="width:100%;">
+      <a class="button botones botonNotification{{botonNotificationOn?'On':'Off'}}"
+         ui-sref="menu.notificationTabs.regular">
+        <div
+          class="footer-badge"
+          ng-bind="totalNotifications < 99 ? totalNotifications:'+99'"
+          ng-show="totalNotifications > 0">
+        </div>
+      </a>
+    </div>
+  </ion-footer-bar>
+
+  <style>
+    .footer-badge {
+      position: absolute;
+      border-radius: 10px;
+      color: #fff;
+      background: red;
+      min-width: 18px;
+      font-size: 12px;
+      font-weight: bold;
+      height: 18px;
+      top: 5px;
+      right: 16px;
+      text-align: center;
+      line-height: 18px;
+      padding: 0 6px;
+    }
+  </style>
+</div>

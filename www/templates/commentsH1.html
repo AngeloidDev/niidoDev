@@ -1,0 +1,39 @@
+<div class="marginPop"></div>
+<div cache-view="false">
+  <div class="title-comments" on-swipe-up="sendOrder()" on-swipe-down="sendOrder()">
+    <label>
+      Comments {{ commentsToSequence.length-1 }}
+    </label>
+  </div>
+  <a ng-click="sendOrder()" class="button icon-left ion-chevron-left button-clear button-dark close-comments"
+     style="color:rgba(204,204,204,1); padding-bottom:5px; margin-top:-3px;">
+  </a>
+  <div>
+    <ion-content class="comments-box">
+      <div class="comments-in " style="overflow: hidden !important">
+        <div class="list" style="position: relative; margin-bottom:-5px;"
+             ng-repeat="commentToSequence in commentsUserToSequence | limitTo: commentsUserToSequence.length">
+          <a class="item item-avatar" href="#">
+            <img ng-src="{{ commentToSequence.profilePicture }}"/>
+            <h2 style="color:rgba(51,51,51,1); font-weight: bold;" ng-bind="commentToSequence.userName">{{
+              commentToSequence.userName }}</h2>
+            <p style="color:rgba(51,51,51,.8);">
+              {{ commentToSequence.commentSequence }}
+            </p>
+          </a>
+        </div>
+      </div>
+    </ion-content>
+
+    <footer style="background-color:rgba(255,255,255,1)">
+      <ion-footer-bar class="comments-fotter" style="background-color:rgba(255,255,255,1)">
+        <input autocorrect="off" autocapitalize="off" type="text" placeholder="Write your comment" class="text-comment"
+               ng-model="comment" name="comment" required/>
+        <button ng-click="addSequenceComments(sequenceId,comment)" class="send-comment"
+                ng-disabled="comment == null || success == false">
+          Post
+        </button>
+      </ion-footer-bar>
+    </footer>
+  </div>
+</div>

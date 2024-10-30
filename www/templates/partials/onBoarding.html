@@ -1,0 +1,38 @@
+ <div class="modal image-modal transparent exitIcon fondoonboarding" on-swipe-down="closeModal()" on-swipe-up="closeModal()">
+  <ion-slide-box active-slide="position">
+    <ion-slide ng-repeat="value in onBoardingList | orderBy:'position'">
+      <ion-scroll overflow-scroll="false" direction="x" scrollbar-x="false" scrollbar-y="false" style="width: 100%; height: 100%"
+      delegate-handle="scrollHandle{{value.position}}" on-swipe-left="updateSlideStatus(value.position)" locking="false" delegate-handle="imageScroll" >
+      <!--on-double-tap="doubleTapped(value.position)"
+        on-release="updateSlideStatus(value.position)"-->
+        <!--<div style="background-image:url({{value.imageUrl}}); background-repeat: no-repeat; background-size: auto;">-->
+        <div class="fondoonboarding" style="height: 100vh; ">
+        	<img src="{{value.imageUrl}}" style="width: 100%" />
+        </div>
+        <div ng-click="closeModal()" style="position: absolute;bottom: 0; width:100%; height: 80px;"></div>
+      </ion-scroll>
+    </ion-slide>
+  </ion-slide-box>
+</div>
+<style type="text/css">
+	.slider-pager{
+		margin-bottom: 5%;
+	}
+	.icon{
+		color: white !important;
+	}
+	.ion-record{
+		color: white !important;
+	}
+</style>
+
+
+
+
+
+
+
+
+
+
+

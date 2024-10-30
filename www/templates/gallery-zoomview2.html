@@ -1,0 +1,65 @@
+<div class="modal image-modal transparent exitIcon" on-swipe-down="closeModal()" on-swipe-up="closeModal()">
+  <ion-slide-box active-slide="activeSlide">
+    <!--images: {{msj}} {{ images[0].src }}-->
+    <ion-slide ng-repeat="value in picturesItem | orderBy:'itemId'">
+      <ion-scroll overflow-scroll="false" direction="xy" scrollbar-x="false" scrollbar-y="false" zooming="true"
+                  min-zoom="{{zoomMin}}" style="width: 100%; height: 100%" delegate-handle="scrollHandle{{$index}}"
+                  on-scroll="updateSlideStatus(activeSlide)" locking="false" on-release="updateSlideStatus(activeSlide)"
+                  delegate-handle="imageScroll" on-double-tap="doubleTapped(activeSlide)">
+        <div class="image" style="background-image:url({{value.src}})"></div>
+      </ion-scroll>
+      <div
+        style=" z-index: 2; position:absolute; bottom:15px;  height:50px; width:100%; padding-left:10px; padding-right:10px;"
+        ng-controller="SequenceCtrl">
+        <table border="0" cellspacing="0" cellpadding="0" style="width:100%">
+          <tr>
+            <td width="10%" align="right" valign="middle">
+              <!--<input type="text" ng-init="count = showImages()" ng-model="count">-->
+              <div ng-class="value.likeActive.result.value ? 'on2_disable' : 'on2'"
+                   id="happyoffItem{{ value.sequenceItemId }}"
+                   ng-click="setLikeToItem(value, $index);">
+                <img src="img/happyOff.svg"/>
+              </div>
+              <div ng-class="value.likeActive.result.value ? 'off2' : 'off2_disable'"
+                   id="happyonItem{{ value.sequenceItemId }}"
+                   ng-click="setLikeToItem(value, $index);">
+                <img src="img/happyOn.svg"/>
+              </div>
+            </td>
+            <td width="10%" align="left" valign="middle" style="vertical-align:top; padding-top:6px; padding-left:7px;">
+              <div ng-class="value.likeActive.result.value ? 'on2_disable' : 'on2'"
+                   id="happyNumberoffItem{{ value.sequenceItemId }}">
+                {{value.likeCount||0}}
+              </div>
+              <div ng-class="value.likeActive.result.value ? 'off2' : 'off2_disable'"
+                   id="happyNumberonItem{{ value.sequenceItemId }}">
+                {{value.likeCount||0}}
+              </div>
+            </td>
+            <td width="20%"></td>
+            <td width="10%" align="right">
+              <!--<div ng-if = "sequenceUser.followEachOthers.result.value">
+                <a ng-click = "redirectSendReaction(sequenceUser.sequence[0].sequence.href.split('/')[6])"> <img src="img/reactIcon.svg"></a>
+              </div>-->
+            </td>
+            <td width="10%" align="left" valign="middle" style="vertical-align:top; padding-top:6px; padding-left:7px;">
+              <!--<div ng-if = "sequenceUser.followEachOthers.result.value">
+                <a  ng-bind="sequenceUser.reactCount" id="reactNumber{{ sequenceUser.key }}"></a>
+              </div>-->
+            </td>
+            <td width="20%"></td>
+            <td width="10%" align="right" valign="middle"
+                style="vertical-align:top; padding-top:6px; padding-left:7px; text-align:right;">
+              <!--<div>
+                <a ng-bind="sequenceUser.sequenceCommentCount" id="commentNumber{{ sequenceUser.key }}"></a>
+              </div>-->
+            </td>
+            <td width="10%" align="center" style="text-align:center;">
+              <!--<td ng-controller="PopupCtrl" style="text-align:right;" ng-click="showPopupItem(value.sequenceItemId); findTheCommentsOfASequenceItem(value.sequenceItemId)"><img src="img/comment.svg"/></td>-->
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+</div>

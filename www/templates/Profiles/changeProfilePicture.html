@@ -1,0 +1,57 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="has-header padding">
+    <form action="" name="uploadForm" enctype="multipart/form-data" ng-controller="UserCtrl">
+      <h4 class="title-profile" translate>PROFILE.CHANGE_PICTURE</h4>
+      <div id="newProfileImage">
+        <img ng-show="newProfileImage.length == 0" ng-src="{{ pictureProfile }}" id="userPic" class="profile-picture"/>
+        <img ng-show="newProfileImage.length > 0" ng-src="{{ newProfileImage[0] }}" id="userPic"
+             class="profile-picture"/>
+      </div>
+      <div style="width:100%; text-align:center; alignment-adjust:central;">
+        <input type="button" translate-attr="{'value':'PROFILE.CHANGE'}" style=" width:50%;
+                    border-radius: 7px;
+                    text-shadow: 01px 1px 2px rgba(102,102,102,.5);
+                    color: rgba(51,51,51,.7);
+                    background: rgba(204,204,204,.2);
+                    background-image:url(img/TakephotoIcon.svg);
+                    background-repeat:no-repeat;
+                    background-position:left center;
+                    background-position: 20px;
+                    font-family: Arial;
+                    margin-bottom:15px;
+                    font-size: 14px;
+                    border: transparent;
+                    padding: 0px 0px 0px 38px;
+                    text-decoration: none;" class="button" ng-click="addMedia()">
+        <input type="button" translate-attr="{'value':'GLOBAL.SAVE'}" style="
+                    width:50%;
+                    border-radius: 7px;
+                    text-shadow: 3px 1px 3px #404040;
+                    font-family: Arial;
+                    color: #ffffff;
+                    font-size: 16px;
+                    background: #d93434;
+                    background-image:url(img/SendReactionIcon.svg);
+                    background-repeat:no-repeat;
+                    background-position:left center;
+                    background-position: 20px;
+                    padding: 0px 15px 0px 35px;
+                    border:none;
+                    border-color:transparent !important;
+                    text-decoration: none;" class="button" ng-click="changeProfilePicture()"
+               ng-disabled="uploadingPhoto">
+        <ion-spinner icon="spiral" class="loadingAction" ng-if="uploadingPhoto"></ion-spinner>
+      </div>
+    </form>
+  </ion-content>
+
+  <!--<ng-include src="'templates/partials/footer.html'"></ng-include>-->
+
+</ion-view>

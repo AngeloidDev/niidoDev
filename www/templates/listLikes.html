@@ -1,0 +1,40 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" ng-controller="listLikesCtrl" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="comments-box" style="margin-top:-10px; margin-left:5px;">
+    <div class="comments-in" ng-repeat="userLike in userLikeList" style="height:55px; margin-bottom:8px; "
+         ng-click="sendUserProfile(userLike.userSubscriptionId.href.split('/')[6])">
+      <div style="height:55px; float:left; padding-top:7px; ">
+        <a class="item item-avatar">
+          <img class="avatar-image"
+               ng-src="{{ userLike.profilePicture != null ? 'data:image/jpeg;base64,'+userLike.profilePicture.split(':')[2] : null }}"
+               class="comments-avatar"/></a>
+      </div>
+      <div class="userNameBold"
+           style="width:130px; float:left; vertical-align: middle; margin-left:2px; color:rgba(51,51,51,1); line-height:51px; height:55px; overflow: hidden;">
+        {{ ::userLike.name }}
+      </div>
+    </div>
+    <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="retry()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="18%"></ion-infinite-scroll>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

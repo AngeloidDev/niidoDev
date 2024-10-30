@@ -1,0 +1,2887 @@
+/* Empty. Add your own CSS if you like */
+
+/*CSS FOR SORTABLE PICTURES*/
+  #horizontal-container {
+    display: inline-block;
+    width: 100%;
+  }
+
+  #horizontal-container .as-sortable-item,
+  #horizontal-container .as-sortable-placeholder {
+    display: inline-block;
+    width: calc(33.33% - 4px);
+  }
+
+  #horizontal-container .sortable-row:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+/* B SERIES*/
+
+  /*Style template 2 images 2.1*/
+    /*Template Default*/
+    /*
+      ---- ----
+      |  | |  |
+      |  | |  |
+      ---- ----
+    */
+
+    /*Code align images*/
+      #templateB21 ul li{
+        width: calc(50% - 4px) !important;
+        float: left;
+      }
+
+      #templateB21 ul li .imgItemUpload{
+        padding-top: calc(100% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+ 
+      #templates #templateB21{
+        background:url(../img/2.1Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 2 images 2.2*/
+    /*
+      ---- ----
+      |  | |  |
+      |  | |  |
+      |  | |  |
+      |  | |  |
+      ---- ----
+    */
+
+    /*Code align images*/
+      #templateB22 ul li{
+        width: calc(50% - 4px) !important;
+        float: left;
+      }
+
+      #templateB22 ul li .imgItemUpload{
+        padding-top: calc(185% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB22{
+        background:url(../img/2.2Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 2 images 2.3*/
+    /*
+      ---- ----
+      |  | |  |
+      |  | |  |
+      |  | |  |
+      ---- ----
+    */
+
+    /*Code align images*/
+      #templateB23 ul li{
+        width: calc(50% - 4px) !important;
+        float: left;
+      }
+
+      #templateB23 ul li .imgItemUpload{
+        padding-top: calc(145% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB23{
+        background:url(../img/2.3Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 2 images 2.4*/
+    /*
+      ------ ---
+      |    | | |
+      |    | | |
+      ------ ---
+    */
+
+    /*Code align images*/
+      #templateB24 ul li:first-child{
+        width: calc(65% - 4px) !important;
+        float: left;
+      }
+
+      #templateB24 ul li:first-child .imgItemUpload{
+        padding-top: calc(74.1% - 4px) !important;
+      }
+
+      #templateB24 ul li:nth-child(2){
+        float:left !important;
+        overflow: hidden !important;
+        width: calc(35% - 4px) !important;
+      }
+
+      #templateB24 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(140% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB24{
+        background:url(../img/2.4Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 3 images 3.1*/
+    /*
+      -------- ---
+      |      | | |
+      |      | ---
+      |      | ---
+      |      | | |
+      -------- ---
+    */
+
+    /*Code align images*/
+
+      /*image 01*/
+      #templateB31 ul li:first-child {
+          width: calc(65% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB31 ul li:first-child .imgItemUpload{
+          padding-top: calc(152% - 3px) !important;
+      }
+      /*image 02*/
+      #templateB31 ul li:nth-child(2) {
+          width: calc(35% - 4px) !important;
+          height: calc(50%-4px)!important;
+          float:right !important;
+          display: block;
+      }
+
+      #templateB31 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(140%) !important;
+      }
+      /*image 03*/
+      #templateB31 ul li:nth-child(3) {
+          width: calc(35% - 4px) !important;
+          height: calc(50%-4px)!important;
+          float:right !important;
+          display: block;
+      }
+
+      #templateB31 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(140%) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB31{
+        background:url(../img/3.1Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 3 images 3.2*/
+    /*
+      ------------
+      |          |
+      |          |
+      |          |
+      ------------
+      ------------
+      |    ||    |
+      |    ||    |
+      ------------
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB32 ul li:first-child {
+          width: calc(100% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB32 ul li:first-child .imgItemUpload{
+          padding-top: calc(89% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB32 ul li:nth-child(2) {
+          width: calc(50% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB32 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(86% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB32 ul li:nth-child(3) {
+          width: calc(50% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB32 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(86% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+    
+      #templates #templateB32{
+        background:url(../img/3.2Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 3 images 3.3*/
+    /*
+      ----------- ---
+      |         | | |
+      |         | ---
+      |         | | |
+      ----------- ---
+    */
+
+    /*Code align images*/
+
+      /*image 01*/
+      #templateB33 ul li:first-child {
+          width: calc(75% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB33 ul li:first-child .imgItemUpload{
+          padding-top: calc(84% - 4px) !important;
+      }
+      /*image 02*/
+      #templateB33 ul li:nth-child(2) {
+          width: calc(25% - 4px) !important;
+          height: calc(50%-4px)!important;
+          float:right !important;
+          display: block;
+      }
+
+      #templateB33 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(125%) !important;
+      }
+      /*image 03*/
+      #templateB33 ul li:nth-child(3) {
+          width: calc(25% - 4px) !important;
+          height: calc(50%-4px)!important;
+          float:right !important;
+          display: block;
+      }
+
+      #templateB33 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(125%) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB33{
+        background:url(../img/3.3Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 3 images 3.4*/
+    /*
+      ------------
+      |          |
+      |          |
+      ------------
+      ------------
+      |    ||    |
+      |    ||    |
+      ------------
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB34 ul li:first-child {
+          width: calc(100% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB34 ul li:first-child .imgItemUpload{
+          padding-top: calc(55% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB34 ul li:nth-child(2) {
+          width: calc(50% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB34 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(100% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB34 ul li:nth-child(3) {
+          width: calc(50% - 4px) !important;
+          height: calc(100%-4px)!important;
+          float:left !important;
+      }
+
+      #templateB34 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(100% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+    
+      #templates #templateB34{
+        background:url(../img/3.4Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 3 images 3.5*/
+    /*
+      ------------------
+      |    ||    ||    |
+      |    ||    ||    |
+      |    ||    ||    |
+      |    ||    ||    |
+      ------------------
+    */
+
+    /*Code align images*/
+
+      #templateB35 ul li {
+        width: calc(33.33% - 4px) !important;
+        float: left;
+      }
+
+      #templateB35 ul li .imgItemUpload{
+        padding-top: calc(250% - 4px) !important;
+      }
+    
+    /*Code thumb template*/
+      #templates #templateB35{
+        background:url(../img/3.5Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 4 images 4.1*/
+    /*
+      ------------------
+      |                |
+      |                |
+      |                |
+      |                |
+      ------------------
+      ------------------
+      |    ||    ||    |
+      |    ||    ||    |
+      ------------------
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB41 ul li:first-child {
+          width: calc(100% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB41 ul li:first-child .imgItemUpload{
+          padding-top: calc(90% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB41 ul li:nth-child(2) {
+          width: calc(33.33% - 4px) !important;
+          float:initial;
+          /*height: calc(100%-4px)!important;
+          float:left !important;
+          clear: left;*/
+      }
+
+      #templateB41 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(86% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB41 ul li:nth-child(3) {
+          width: calc(33.33% - 4px) !important;
+          float:initial;
+          /*height: calc(100%-4px)!important;
+          margin-top: -26%;
+          margin-left: 33%;*/
+      }
+
+      #templateB41 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(86% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB41 ul li:nth-child(4) {
+          width: calc(33.33% - 4px) !important;
+          float:initial;
+          /*height: calc(100%-4px)!important;
+          margin-top: -26%;
+          margin-left: 67.5%;*/
+      }
+
+      #templateB41 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(86% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+    
+      #templates #templateB41{
+        background:url(../img/4.1Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 4 images 4.2*/
+    /*
+      ------------------
+      |          |     |
+      |          |     |
+      ------------------
+      |     |          |
+      |     |          |
+      ------------------
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB42 ul li:first-child {
+          width: calc(70% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB42 ul li:first-child .imgItemUpload{
+          padding-top: calc(70% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB42 ul li:nth-child(2) {
+          width: calc(30% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB42 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(167.53% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB42 ul li:nth-child(3) {
+          width: calc(30% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB42 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(167.53% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB42 ul li:nth-child(4) {
+          width: calc(70% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB42 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(70% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+    
+      #templates #templateB42{
+        /*background:url(../img/4.2Off.svg);*/
+        background:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4wLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4NCjwhLS0gQ3JlYXRvcjogQ29yZWxEUkFXIFg2IC0tPg0KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI0OTZweCIgaGVpZ2h0PSIzNjNweCIgdmVyc2lvbj0iMS4wIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgaW1hZ2UtcmVuZGVyaW5nPSJvcHRpbWl6ZVF1YWxpdHkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIg0Kdmlld0JveD0iMCAwIDUyNDIyNzU1NCAzODQzMzAwMzMiDQogeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPg0KIDxnIGlkPSJDYXBhX3gwMDIwXzEiPg0KICA8bWV0YWRhdGEgaWQ9IkNvcmVsQ29ycElEXzBDb3JlbC1MYXllciIvPg0KICA8cGF0aCBmaWxsPSIjQ0NDQ0NDIiBzdHJva2U9IiNGRUZFRkUiIHN0cm9rZS13aWR0aD0iNjM0NzAxIiBkPSJNMzE3MzUxIDMxNzM1MWwzMTE2MTg0MDUgMCAwIDE4OTc2MTU2NCAtMzExNjE4NDA1IDAgMCAtMTg5NzYxNTY0em0yMTE5NzM2MTUgMTkzOTMzNzY4bDMxMTYxOTIzOCAwIDAgMTg5NzYxNTY0IC0zMTE2MTkyMzggMCAwIC0xODk3NjE1NjR6bS02NzY0MzE4IDBsLTIwNTIwOTI5NyAwIDAgMTg5NzYxNTY0IDIwNTIwOTI5NyAwIDAgLTE4OTc2MTU2NHptMzE4MzgzNTU2IC0xOTM5MzM3NjhsLTIwNTIwODQ2NCAwIDAgMTg5NzYxNTY0IDIwNTIwODQ2NCAwIDAgLTE4OTc2MTU2NHoiLz4NCiA8L2c+DQo8L3N2Zz4NCg==');
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 4 images 4.3*/
+    /*
+      ------------------------
+      |    ||    ||    ||    |
+      |    ||    ||    ||    |
+      |    ||    ||    ||    |
+      |    ||    ||    ||    |
+      ------------------------
+    */
+
+    /*Code align images*/
+
+      #templateB43 ul li {
+        width: calc(25% - 4px) !important;
+        float: left;
+      }
+
+      #templateB43 ul li .imgItemUpload{
+        padding-top: calc((310% - 14px) - 4px) !important;
+      }
+    
+    /*Code thumb template*/
+      #templates #templateB43{
+        background:url(../img/4.3Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 4 imnages 4.4*/
+    /*
+    -----------------------
+    |         ||          |
+    |         ||          |
+    |         ||          |
+    -----------------------
+    |         ||          |
+    |         ||          |
+    |         ||          |
+    -----------------------
+    */
+
+    /*Code align images*/
+      #templateB44 ul li{
+        width: calc(50% - 4px) !important;
+        float: left;
+      }
+
+      #templateB44 ul li .imgItemUpload{
+        padding-top: calc((100% - 14px) - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB44{
+        background:url(../img/4.4Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 5 images 5.1*/
+    /*
+      ------------
+      |          |
+      |          |
+      |          |
+      |          |
+      ------------
+      |    ||    |
+      |    ||    |
+      ------------
+      |    ||    |
+      |    ||    |
+      ------------
+
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB51 ul li:first-child {
+          width: calc(100% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB51 ul li:first-child .imgItemUpload{
+          padding-top: calc(70% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB51 ul li:nth-child(2) {
+          width: calc(50% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB51 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(66% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB51 ul li:nth-child(3) {
+          width: calc(50% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB51 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(66% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB51 ul li:nth-child(4) {
+          width: calc(50% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB51 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(66% - 4px) !important;
+      }
+
+      /*image 05*/
+      #templateB51 ul li:nth-child(5) {
+          width: calc(50% - 4px) !important;
+          float:initial;
+      }
+
+      #templateB51 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(66% - 4px) !important;
+      }
+
+
+    /*Code thumb template*/
+    
+      #templates #templateB51{
+        background:url(../img/5.1Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 5 images 5.2*/
+    /*
+      ---------------------------
+      |             ||    ||    |
+      |             ||    ||    |
+      |             |------------
+      |             ||    ||    |
+      |             ||    ||    |
+      ---------------------------
+
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB52 ul li:first-child {
+          width: calc(50% - 4px) !important;
+          float:left;
+      }
+
+      #templateB52 ul li:first-child .imgItemUpload{
+          padding-top: calc(119% - 4px) !important;
+      }
+
+     .platform-ioss #templateB52 ul li:first-child .imgItemUpload{
+          padding-top: calc(110% - 1px) !important;
+      }
+
+      /*image 02*/
+      #templateB52 ul li:nth-child(2) {
+          width: calc(25% - 4px) !important;
+          float:left;
+      }
+
+      #templateB52 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(117%) !important;
+      }
+      /*image 03*/
+      #templateB52 ul li:nth-child(3) {
+          width: calc(25% - 4px) !important;
+          float:right;
+      }
+
+      #templateB52 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(117%) !important;
+      }
+
+      /*image 04*/
+      #templateB52 ul li:nth-child(4) {
+          width: calc(25% - 4px) !important;
+          float:left;
+      }
+
+      #templateB52 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(117%) !important;
+      }
+
+      /*image 05*/
+      #templateB52 ul li:nth-child(5) {
+          width: calc(25% - 4px) !important;
+          float:right;
+      }
+
+      #templateB52 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(117%) !important;
+      }
+
+
+    /*Code thumb template*/
+    
+      #templates #templateB52{
+        background:url(../img/5.2Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: -5px !important;
+      }
+
+  /*Style template 5 images 5.3*/
+    /*
+      ---------------------------
+      |             ||          |
+      |             ||          |
+      |             ||          |
+      |             |------------
+      |             ||          |
+      |-------------||          |
+      |             ||          |
+      |             |------------
+      |             ||          |
+      |             ||          |
+      |             ||          |
+      ---------------------------
+
+
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB53 ul li:first-child {
+          width: calc(50% - 4px) !important;
+          float:left;
+      }
+
+      #templateB53 ul li:first-child .imgItemUpload{
+          padding-top: calc(105% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB53 ul li:nth-child(2) {
+          width: calc(50% - 4px) !important;
+          float:right;
+      }
+
+      #templateB53 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(70% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB53 ul li:nth-child(3) {
+          width: calc(50% - 4px) !important;
+          float:right;
+      }
+
+      #templateB53 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(70% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB53 ul li:nth-child(4) {
+          width: calc(50% - 4px) !important;
+          float:left;
+      }
+
+      #templateB53 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(105% - 4px) !important;
+      }
+
+      /*image 05*/
+      #templateB53 ul li:nth-child(5) {
+          width: calc(50% - 4px) !important;
+          float:right;
+      }
+
+      #templateB53 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(70% - 4px) !important;
+      }
+
+
+    /*Code thumb template*/
+    
+      #templates #templateB53{
+        background:url(../img/5.3Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 5 images 5.4*/
+    /*
+      -------------------------------
+      |             ||              |
+      |             ||              |
+      |             ||              |
+      |             ||              |
+      -------------------------------
+      |         |         |         |
+      |         |         |         |
+      |         |         |         |
+      |         |         |         |
+      -------------------------------
+
+
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB54 ul li:first-child {
+          width: calc(50% - 4px) !important;
+          float:left;
+      }
+
+      #templateB54 ul li:first-child .imgItemUpload{
+          padding-top: calc(110% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB54 ul li:nth-child(2) {
+          width: calc(50% - 4px) !important;
+          float:right;
+      }
+
+      #templateB54 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(110% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB54 ul li:nth-child(3) {
+          width: calc(33.33% - 4px) !important;
+          float:left;
+      }
+
+      #templateB54 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(110% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB54 ul li:nth-child(4) {
+          width: calc(33.33% - 4px) !important;
+          float:right;
+      }
+
+      #templateB54 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(110% - 4px) !important;
+      }
+
+      /*image 05*/
+      #templateB54 ul li:nth-child(5) {
+          width: calc(33.33% - 4px) !important;
+          float:right;
+      }
+
+      #templateB54 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(110% - 4px) !important;
+      }
+
+
+    /*Code thumb template*/
+    
+      #templates #templateB54{
+        background:url(../img/5.4Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 5 images 5.5*/
+    /*
+      ---------------------------
+      |             ||    ||    |
+      |             ||    ||    |
+      |             ||    ||    |
+      |             |------------
+      |             ||    ||    |
+      |             ||    ||    |
+      |             ||    ||    |
+      ---------------------------
+
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB55 ul li:first-child {
+          width: calc(50% - 4px) !important;
+          float:left;
+      }
+
+      #templateB55 ul li:first-child .imgItemUpload{
+          padding-top: calc(195.1% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB55 ul li:nth-child(2) {
+          width: calc(25% - 4px) !important;
+          float:left;
+      }
+
+      #templateB55 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(200% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB55 ul li:nth-child(3) {
+          width: calc(25% - 4px) !important;
+          float:right;
+      }
+
+      #templateB55 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(200% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB55 ul li:nth-child(4) {
+          width: calc(25% - 4px) !important;
+          float:left;
+      }
+
+      #templateB55 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(200% - 4px) !important;
+      }
+
+      /*image 05*/
+      #templateB55 ul li:nth-child(5) {
+          width: calc(25% - 4px) !important;
+          float:right;
+      }
+
+      #templateB55 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(200% - 4px) !important;
+      }
+
+
+    /*Code thumb template*/
+    
+      #templates #templateB55{
+        background:url(../img/5.5Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 6 images 6.1*/
+    /*
+      ------------------------------
+      |                  ||        |
+      |                  ||        |
+      |                  ||        |
+      |                  |----------
+      |                  ||        |
+      |                  ||        |
+      |                  ||        |
+      ------------------------------
+      |        ||        ||        |
+      |        ||        ||        |
+      |        ||        ||        |
+      ------------------------------
+
+    */
+
+    /*Code align images*/
+    
+      /*image 01*/
+      #templateB61 ul li:first-child {
+          width: calc(66.9% - 4px) !important;
+          float:left;
+      }
+
+      #templateB61 ul li:first-child .imgItemUpload{
+          padding-top: calc(100.4% - 4px) !important;
+      }
+
+      /*image 02*/
+      #templateB61 ul li:nth-child(2) {
+          width: calc(33.1% - 4px) !important;
+          float:right;
+      }
+
+      #templateB61 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(103.5% - 4px) !important;
+      }
+      /*image 03*/
+      #templateB61 ul li:nth-child(3) {
+          width: calc(33.1% - 4px) !important;
+          float:right;
+      }
+
+      #templateB61 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(103.5% - 4px) !important;
+      }
+
+      /*image 04*/
+      #templateB61 ul li:nth-child(4) {
+          width: calc(33.33% - 4px) !important;
+          float:left;
+      }
+
+      #templateB61 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(102.8% - 4px) !important;
+      }
+
+      /*image 05*/
+      #templateB61 ul li:nth-child(5) {
+          width: calc(33.33% - 4px) !important;
+          float:left;
+      }
+
+      #templateB61 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(102.8% - 4px) !important;
+      }
+
+      /*image 06*/
+      #templateB61 ul li:nth-child(6) {
+          width: calc(33.33% - 4px) !important;
+          float:right;
+      }
+
+      #templateB61 ul li:nth-child(6) .imgItemUpload{
+          padding-top: calc(102.8% - 4px) !important;
+      }
+
+
+    /*Code thumb template*/
+    
+      #templates #templateB61{
+        background:url(../img/6.1Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 6 images 6.2*/
+    /*
+      ----------------
+      |      ||      |
+      |      ||      |
+      ----------------
+      ----------------
+      |      ||      |
+      |      ||      |
+      ----------------
+      ----------------
+      |      ||      |
+      |      ||      |
+      ----------------
+    */
+
+    /*Code align images*/
+      #templateB62 ul li{
+        width: calc(50% - 4px) !important;
+        float: left;
+      }
+
+      #templateB62 ul li .imgItemUpload{
+        padding-top: calc((100% - 14px) - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB62{
+        background:url(../img/6.2Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 6 images 6.3*/
+    /*
+      ------------------------
+      |      ||      ||      |
+      |      ||      ||      |
+      ------------------------
+      ------------------------
+      |      ||      ||      |
+      |      ||      ||      |
+      ------------------------
+    */
+
+    /*Code align images*/
+      #templateB63 ul li{
+        width: calc(33.33% - 4px) !important;
+        float: left;
+      }
+
+      #templateB63 ul li .imgItemUpload{
+        padding-top: calc((100% - 14px) - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB63{
+        background:url(../img/6.3Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-right: 3px !important;
+      }
+
+  /*Style template 6 images 6.4*/
+    /*
+      ------------------------
+      |      ||      ||      |
+      |      ||      ||      |
+      |      ||      ||      |
+      |      ||      ||      |
+      ------------------------
+      ------------------------
+      |      ||      ||      |
+      |      ||      ||      |
+      |      ||      ||      |
+      |      ||      ||      |
+      ------------------------
+    */
+
+    /*Code align images*/
+      #templateB64 ul li{
+        width: calc(33.33% - 4px) !important;
+        float: left;
+      }
+
+      #templateB64 ul li .imgItemUpload{
+        padding-top: calc((170% - 14px) - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateB64{
+        background:url(../img/6.4Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+/* C SERIES*/
+
+  /*Style template 2 images 2.1*/
+      /* OVAL
+        ---- ----
+        |  | |  |
+        |  | |  |
+        |  | |  |
+        |  | |  |
+        ---- ----
+      */
+
+      /*Code align images*/
+        #templateC21 ul li{
+          width: calc(50% - 4px) !important;
+          float: left;
+        }
+
+        #templateC21 ul li .imgItemUpload{
+          padding-top: calc(135%) !important;
+          border-radius: 50%;
+        }
+
+      /*Code thumb template*/
+        #templates #templateC21
+        {
+          background:url(../img/2.1cOff.svg);
+          background-size: contain !important;
+          background-repeat: no-repeat !important; 
+          background-position: center !important;
+          margin-left: 3px !important;
+          margin-right: 3px !important;
+        }
+
+  /*Style template 2 images 2.2*/
+      /* HEART
+        ---- ----
+        |  | |  |
+        |  | |  |
+        |  | |  |
+        |  | |  |
+        ---- ----
+      */
+
+      /*Code align images*/
+        #templateC22 ul li{
+          width: calc(50% - 4px) !important;
+          float: left;
+        }
+
+        #templateC22 ul li .imgItemUpload{
+          padding-top: calc(145% - 4px) !important;
+          -webkit-clip-path: polygon(51% 31%, 61% 14%, 82% 9%, 94% 23%, 97% 38%, 48% 100%, 3% 39%, 7% 23%, 14% 12%, 23% 7%, 37% 7%, 43% 16%);
+          clip-path: polygon(51% 31%, 61% 14%, 82% 9%, 94% 23%, 97% 38%, 48% 100%, 3% 39%, 7% 23%, 14% 12%, 23% 7%, 37% 7%, 43% 16%);
+        }
+
+      /*Code thumb template*/
+        #templates #templateC22
+        {
+          background:url(../img/2.1hOff.svg);
+          background-size: contain !important;
+          background-repeat: no-repeat !important; 
+          background-position: center !important; 
+        }
+
+  /*Style template 4 images 4.1*/
+    /* CIRCLE
+      ---- ----
+      |  | |  |
+      |  | |  |
+      ---- ----
+      |  | |  |
+      |  | |  |
+      ---- ----
+    */
+
+    /*Code align images*/
+      #templateC41 ul li{
+        width: calc(50% - 4px) !important;
+        float: left;
+      }
+      #templateC41 ul li .imgItemUpload{
+        padding-top: calc(100% - 4px) !important;
+        border-radius: 50%;
+      }
+
+    /*Code thumb template*/
+      #templates #templateC41
+      {
+        background:url(../img/4.1cOff.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 4 images 4.2*/
+    /* Diamond
+           
+           /\
+          /  \
+          \  /
+           \/
+        /\    /\
+       /  \  /  \
+       \  /  \  /
+        \/    \/
+           /\
+          /  \
+          \  /
+           \/
+    */
+    /*Code align images*/
+      /*image 01*/
+        #templateC42 ul li:first-child {
+            width: calc(48%) !important;
+            float:left;
+            left:25%;
+        }
+
+        #templateC42 ul li:first-child .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        #templateC42 ul li:first-child .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li:first-child .ion-close-round{
+          top:41%!important;
+        }
+
+        /*image 02*/
+        #templateC42 ul li:nth-child(2) {
+            width: calc(48%) !important;
+            float:left;
+            margin-top: -23.5%;
+            clear: left;
+        }
+
+        #templateC42 ul li:nth-child(2) .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        #templateC42 ul li:nth-child(2) .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li::nth-child(2).ion-close-round{
+          top:41%!important;
+        }
+        /*image 03*/
+        #templateC42 ul li:nth-child(3) {
+            width: calc(48%) !important;
+            float:left;
+            left: 1%;
+            margin-top: -23.5%;
+        }
+
+        #templateC42 ul li:nth-child(3) .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        #templateC42 ul li:nth-child(3) .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li::nth-child(3).ion-close-round{
+          top:41%!important;
+        }
+        /*image 04*/
+        #templateC42 ul li:nth-child(4) {
+            width: calc(48%) !important;
+            float:left;
+            left:25%;
+            margin-top: -23.5%;
+        }
+
+        #templateC42 ul li:nth-child(4) .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        #templateC42 ul li:nth-child(4) .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li::nth-child(4).ion-close-round{
+          top:41%!important;
+        }
+    /*Code thumb template*/
+      #templates #templateC42
+      {
+        background:url(../img/4.1SOff.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+/* D SERIES*/
+
+  /*Style template 2 images 2.1*/
+    /*
+      ----------
+      |        |
+      ----------
+      ----------
+      |        |
+      ----------
+    */
+
+    /*Code align images*/
+      #templateD21 ul li{
+        width: calc(100% - 4px) !important;
+        float: left;
+      }
+
+      #templateD21 ul li .imgItemUpload{
+        padding-top: calc(50% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateD21{
+        background:url(../img/2.5Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 3 images 3.1*/
+    /*
+       -----
+       |   |
+       |   | -------
+       |   | |     |
+       ----- -------
+      -------------
+      |           |
+      -------------
+    */
+
+    /*Code align images*/
+      #templateD31 ul li:first-child{
+        width: calc(35% - 4px) !important;
+        float: left;
+        left: 15% !important;
+      }
+
+      #templateD31 ul li:first-child .imgItemUpload{
+        padding-top: calc(150% - 4px) !important;
+      }
+
+      #templateD31 ul li:nth-child(2){
+        clear:right;
+        float:right !important;
+        /*overflow: hidden !important;*/
+        width: calc(50% - 4px) !important;
+        padding-top: 24%;
+      }
+
+      #templateD31 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(55% - 4px) !important;
+      }
+
+      #templateD31 ul li:nth-child(2) .icon{
+        top:45%!important;
+      }
+
+      #templateD31 ul li:nth-child(2).ion-close-round{
+        top:45%!important;
+      }
+
+      #templateD31 ul li:nth-child(3){
+        float:left !important;
+        overflow: hidden !important;
+        width: calc(95% - 4px) !important;
+        clear: left;
+      }
+
+      #templateD31 ul li:nth-child(3) .imgItemUpload{
+        padding-top: calc(35% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateD31{
+        background:url(../img/3.6Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 4 images 4.1*/
+      /*
+          ----- ------
+          |   | |    |
+          |   | |    |
+          ----- |    |
+      --------- |    |
+      |       | ------
+      |       | ----
+      |       | |  |
+      --------- ----
+
+      */
+
+      /*Code align images*/
+        #templateD41 ul li:first-child{
+          width: calc(35% - 4px) !important;
+          float: left;
+          left: 25% !important;
+        }
+
+        #templateD41 ul li:first-child .imgItemUpload{
+          padding-top: calc(100% - 4px) !important;
+        }
+
+        #templateD41 ul li:nth-child(2){
+          float:right !important;
+          overflow: hidden !important;
+          width: calc(40% - 4px) !important;
+        }
+
+        #templateD41 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(120% - 4px) !important;
+        }
+
+        #templateD41 ul li:nth-child(3){
+          float:left !important;
+          overflow: hidden !important;
+          width: calc(60% - 4px) !important;
+          clear: left;
+        }
+
+        #templateD41 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(60% - 4px) !important;
+        }
+
+        #templateD41 ul li:nth-child(4){
+          float:left !important;
+          overflow: hidden !important;
+          width: calc(25% - 4px) !important;
+        }
+
+        #templateD41 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(100% - 4px) !important;
+        }
+
+      /*Code thumb template*/
+        #templates #templateD41{
+          background:url(../img/4.5Off.svg);
+          background-size: contain !important;
+          background-repeat: no-repeat !important; 
+          background-position: center !important;
+          margin-left: 3px !important;
+          margin-right: 3px !important;
+        }
+
+  /*Style template 5 images 5.1*/
+      /*
+      ------ 
+      |    | ------
+      |    | |    |
+      ------ |    |
+         --- |    |
+         --- ------
+        ------- -----
+        |     | |   |
+        |     | |   |
+        ------- |   |
+                -----
+
+      */
+
+      /*Code align images*/
+        #templateD51 ul li:first-child{
+          width: calc(50% - 4px) !important;
+          float: left;
+        }
+
+        #templateD51 ul li:first-child .imgItemUpload{
+          padding-top: calc(80% - 4px) !important;
+        }
+
+        #templateD51 ul li:nth-child(2){
+          float:right !important;
+          overflow: hidden !important;
+          width: calc(32% - 4px) !important;
+          padding-top: 3%;
+          right:18%;
+        }
+
+        #templateD51 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(180% - 4px) !important;
+        }
+
+        #templateD51 ul li:nth-child(2) .icon{
+          top:4%!important;
+        }
+
+        #templateD51 ul li:nth-child(2).ion-close-round{
+          top:4%!important;
+        }
+
+        #templateD51 ul li:nth-child(3){
+          float:left !important;
+          overflow: hidden !important;
+          width: calc(20% - 4px) !important;
+          clear: left;
+          left: 30%;
+        }
+
+        #templateD51 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(103% - 4px) !important;
+        }
+
+        #templateD51 ul li:nth-child(4){
+          float:left !important;
+          overflow: hidden !important;
+          width: calc(40% - 4px) !important;
+          clear: left;
+          left:24%;
+        }
+
+        #templateD51 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(75% - 4px) !important;
+        }
+
+        #templateD51 ul li:nth-child(5){
+          float:right !important;
+          overflow: hidden !important;
+          width: calc(36% - 4px) !important;
+        }
+
+        #templateD51 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(160% - 4px) !important;
+        }
+
+      /*Code thumb template*/
+        #templates #templateD51{
+          background:url(../img/5.6Off.svg);
+          background-size: contain !important;
+          background-repeat: no-repeat !important; 
+          background-position: center !important; 
+        }
+
+  /*Style template 6 images 6.1*/
+      /*
+              ------
+          --- |    |
+          --- ------
+        -------- ------
+        |      | |    |
+        |      | |    |
+        -------- |    |
+      ----- ---- |    |
+      ----- |  | ------
+            |  |
+            ----
+      */
+
+      /*Code align images*/
+        #templateD61 ul li:first-child{
+          width: calc(20% - 4px) !important;
+          float: left;
+          padding-top: 4%;
+          left:10%;
+        }
+
+        #templateD61 ul li:first-child .imgItemUpload{
+          padding-top: calc(100% - 4px) !important;
+        }
+
+        #templateD61 ul li:first-child .icon{
+          top:17%!important;
+        }
+
+        #templateD61 ul li:first-child.ion-close-round{
+          top:17%!important;
+        }
+
+
+        #templateD61 ul li:nth-child(2){
+          float:right !important;
+          overflow: hidden !important;
+          width: calc(53% - 4px) !important;
+          right:17%;
+        }
+
+        #templateD61 ul li:nth-child(2) .imgItemUpload{
+          padding-top: calc(44% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(3){
+          clear: left;
+          float:left !important;
+          overflow: hidden !important;
+          width: calc(55% - 4px) !important;
+          left: 5%;
+        }
+
+        #templateD61 ul li:nth-child(3) .imgItemUpload{
+          padding-top: calc(65% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(4){
+          float:right !important;
+          overflow: hidden !important;
+          width: calc(40% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(4) .imgItemUpload{
+          padding-top: calc(160% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(5){
+          float:left !important;
+          overflow: hidden !important;
+          width: calc(40% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(5) .imgItemUpload{
+          padding-top: calc(60% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(6){
+          float:right !important;
+          overflow: hidden !important;
+          width: calc(20% - 4px) !important;
+        }
+
+        #templateD61 ul li:nth-child(6) .imgItemUpload{
+          padding-top: calc(200% - 4px) !important;
+        }
+
+      /*Code thumb template*/
+        #templates #templateD61{
+          background:url(../img/6.5Off.svg);
+          background-size: contain !important;
+          background-repeat: no-repeat !important; 
+          background-position: center !important; 
+        }
+
+/* E SERIES*/
+  /*Style template 2 images 2.1*/
+    /*
+      Comic style
+      ----------
+      |        |
+      ----------
+      ----------
+      |        |
+      ----------
+    */
+    
+    /*Code align images*/
+      #templateE21 ul li:first-child{
+        width: calc(100% - 4px) !important;
+        float: left;
+      }
+
+      #templateE21 ul li:first-child .imgItemUpload{
+        padding-top: calc(50% - 4px) !important;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 100%);
+      }
+
+      #templateE21 ul li:nth-child(2){
+        width: calc(100% - 4px) !important;
+        float: left;
+        margin-top: -10%;
+      }
+
+      #templateE21 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(50% - 4px) !important;
+        -webkit-clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
+        clip-path: polygon(0 25%, 100% 0, 100% 100%, 0% 100%);
+      }
+
+    /*Code thumb template*/
+      #templates #templateE21{
+        background:url(../img/c2o.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 3 images 3.1*/
+    /*
+      Comic style
+      -----------
+      |  |      |
+      |   -------
+      |    |    |
+      -----------
+    */
+
+    /*Code align images*/
+      #templateE31 ul li:first-child{
+        width: calc(48% - 4px) !important;
+        float: left;
+      }
+
+      #templateE31 ul li:first-child .imgItemUpload{
+        padding-top: calc(120% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 50% 0, 100% 50%, 100% 100%, 0 100%);
+        clip-path: polygon(0% 0%, 50% 0, 100% 50%, 100% 100%, 0 100%);
+      }
+
+      #templateE31 ul li:first-child .icon{
+        left: -96% !important;
+      }
+
+      #templateE31 ul li:first-child .ion-close-round{
+        left: -96% !important;
+      }
+
+      #templateE31 ul li:nth-child(2){
+        clear: right !important;
+        width: calc(75% - 4px) !important;
+        float: right !important;
+        margin-top:-55.4%;
+      }
+
+      #templateE31 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(39% - 4px) !important;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 31% 96%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 31% 96%);
+      }
+
+      #templateE31 ul li:nth-child(3){
+        width: calc(52% - 4px) !important;
+        float: right;
+        clear: right;
+        margin-top: -28%;
+      }
+
+      #templateE31 ul li:nth-child(3) .imgItemUpload{
+        padding-top: calc(56.4% - 4px) !important;
+        -webkit-clip-path: polygon(0 2%, 100% 7%, 100% 100%, 0% 100%);
+        clip-path: polygon(0 2%, 100% 7%, 100% 100%, 0% 100%);
+      }
+
+    /*Code thumb template*/
+      #templates #templateE31{
+        background:url(../img/c3o.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+  /*Style template 4 images 4.1*/
+    /*
+      comic style
+      -----------
+      |         |
+      -----------
+      -----------
+      |         |
+      -----------
+      ----- -----
+      |   | |   |
+      |   | |   |
+      |   | |   |
+      ----- -----
+    */
+
+    /*Code align images*/
+      #templateE41 ul li:first-child{
+        width: calc(100% - 4px) !important;
+        float: left;
+      }
+
+      #templateE41 ul li:first-child .imgItemUpload{
+        padding-top: calc(45% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 61%, 0% 100%);
+        clip-path: polygon(0% 0%, 100% 0, 100% 61%, 0% 100%);
+      }
+
+      #templateE41 ul li:nth-child(2){
+        width: calc(100% - 4px) !important;
+        float: left;
+        margin-top:-16%;
+      }
+
+      #templateE41 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(45% - 4px) !important;
+        -webkit-clip-path: polygon(0% 39%, 100% 0, 100% 100%, 0% 61%);
+        clip-path: polygon(0% 39%, 100% 0, 100% 100%, 0% 61%);
+      }
+
+      #templateE41 ul li:nth-child(2) .icon{
+        top: -1% !important;
+      }
+
+      #templateE41 ul li:nth-child(2) .ion-close-round{
+        top: -1% !important;
+      }
+
+      #templateE41 ul li:nth-child(3){
+        width: calc(50% - 4px) !important;
+        float: left;
+        clear: left;
+        margin-top: -15.8%;
+      }
+
+      #templateE41 ul li:nth-child(3) .imgItemUpload{
+        padding-top: calc(150% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 100% 12%, 82% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 100% 12%, 82% 100%, 0% 100%);
+      }
+
+      #templateE41 ul li:nth-child(3) .icon{
+        top: 10% !important;
+        left: 75% !important;
+        z-index:1;
+      }
+
+      #templateE41 ul li:nth-child(3) .ion-close-round{
+        top: 10% !important;
+        left: 75% !important;
+        z-index:1;
+      }
+
+      #templateE41 ul li:nth-child(4){
+        width: calc(61% - 4px) !important;
+        float: right;
+        clear: right;
+        margin-top: -63.5%;
+      }
+
+      #templateE41 ul li:nth-child(4) .imgItemUpload{
+        padding-top: calc(107.4% - 4px) !important;
+        -webkit-clip-path: polygon(19% 0%, 100% 13%, 100% 100%, 5% 100%);
+        clip-path: polygon(19% 0%, 100% 13%, 100% 100%, 5% 100%);
+      }
+
+      #templateE41 ul li:nth-child(4) .icon{
+        top: 11% !important;
+      }
+
+      #templateE41 ul li:nth-child(4) .ion-close-round{
+        top: 11% !important;
+      }
+
+    /*Code thumb template*/
+      #templates #templateE41{
+        background:url(../img/c4o.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+      }
+
+  /*Style template 5 images 5.1*/
+    /*
+      comic stylke
+      ------------
+      |    |     |
+      ------------
+      |    |     |
+      |    |     |
+      ------------
+      |          |
+      ------------
+    */
+
+    /*Code align images*/
+      #templateE51 ul li:first-child{
+        width: calc(70% - 4px) !important;
+        float: left;
+        z-index:1;
+      }
+
+      #templateE51 ul li:first-child .imgItemUpload{
+        padding-top: calc(50% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 100% 0, 78% 100%, 0% 75%);
+        clip-path: polygon(0% 0%, 100% 0, 78% 100%, 0% 75%);
+        z-index:1;
+      }
+
+      #templateE51 ul li:first-child .icon{
+        right: 4% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:first-child .ion-close-round{
+        right: 4% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(2){
+        width: calc(56% - 4px) !important;
+        float: right;
+        margin-top:-33.7%;
+      }
+
+      #templateE51 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(63% - 4px) !important;
+        -webkit-clip-path: polygon(49% 0%, 100% 0, 100% 100%, 21% 100%);
+        clip-path: polygon(49% 0%, 100% 0, 100% 100%, 21% 100%);
+      }
+
+      #templateE51 ul li:nth-child(2) .icon{
+        top: -1% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(2) .ion-close-round{
+        top: -1% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(3){
+        width: calc(57% - 4px) !important;
+        float: left;
+        clear: left;
+        margin-top: -8.5%;
+      }
+
+      #templateE51 ul li:nth-child(3) .imgItemUpload{
+        padding-top: calc(130% - 4px) !important;
+        -webkit-clip-path: polygon(0% 1%, 100% 13%, 87% 65%, 0% 100%);
+        clip-path: polygon(0% 1%, 100% 13%, 87% 65%, 0% 100%);
+      }
+
+      #templateE51 ul li:nth-child(3) .icon{
+        top: 12% !important;
+        left: 78% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(3) .ion-close-round{
+        top: 12% !important;
+        left: 78% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(4){
+        width: calc(50% - 4px) !important;
+        float: right;
+        clear: right;
+        margin-top: -63%;
+      }
+
+      #templateE51 ul li:nth-child(4) .imgItemUpload{
+        padding-top: calc(150% - 4px) !important;
+        -webkit-clip-path: polygon(15% 1%, 100% 0%, 100% 100%, 0% 52%);
+        clip-path: polygon(15% 1%, 100% 0%, 100% 100%, 0% 52%);
+      }
+
+      #templateE51 ul li:nth-child(4) .icon{
+        top: 1% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(4) .ion-close-round{
+        top: 1% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(5){
+        width: calc(100% - 4px) !important;
+        float: left;
+        clear: left;
+        margin-top: -34%;
+      }
+
+      #templateE51 ul li:nth-child(5) .imgItemUpload{
+        padding-top: calc(50% - 4px) !important;
+        -webkit-clip-path: polygon(0% 53%, 50% 1%, 100% 74%, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 53%, 50% 1%, 100% 74%, 100% 100%, 0% 100%);
+      }
+
+      #templateE51 ul li:nth-child(5) .icon{
+        top: 71% !important;
+        z-index:2;
+      }
+
+      #templateE51 ul li:nth-child(5) .ion-close-round{
+        top: 71% !important;
+        z-index:2;
+      }    
+
+    /*Code thumb template*/
+      #templates #templateE51{
+        background:url(../img/c5o.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-right: -12px !important;
+      }
+
+  /*Style template 6 images 6.1*/
+    /*
+      comic style
+      ------------
+      |    |     |
+      |     |    |
+      ------------
+      |    |     |
+      |   |      |
+      ------------
+      ------------
+      |    |     |
+      |     |    |
+      ------------
+    */
+
+    /*Code align images*/
+      #templateE61 ul li:first-child{
+        width: calc(64% - 4px) !important;
+        float: left;
+        z-index:1;
+      }
+
+      #templateE61 ul li:first-child .imgItemUpload{
+        padding-top: calc(60% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 70% 0, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 70% 0, 100% 100%, 0% 100%);
+        z-index:1;
+      }
+
+      #templateE61 ul li:first-child .icon{
+        right: 29% !important;
+        z-index:2;
+        top:-4% !important;
+      }
+
+      #templateE61 ul li:first-child .ion-close-round{
+        right: 29% !important;
+        z-index:2;
+        top:-4% !important;
+      }
+
+      #templateE61 ul li:nth-child(2){
+        width: calc(64% - 4px) !important;
+        float: left;
+        margin-top:-37%;
+        left:36%;
+      }
+
+      #templateE61 ul li:nth-child(2) .imgItemUpload{
+        padding-top: calc(60% - 4px) !important;
+        -webkit-clip-path: polygon(15% 0%, 100% 0, 100% 100%, 45% 100%);
+        clip-path: polygon(15% 0%, 100% 0, 100% 100%, 45% 100%);
+      }
+
+      #templateE61 ul li:nth-child(2) .icon{
+        top: -4% !important;
+        z-index:2;
+      }
+
+      #templateE61 ul li:nth-child(2) .ion-close-round{
+        top: -4% !important;
+        z-index:2;
+      }
+
+      #templateE61 ul li:nth-child(3){
+        width: calc(64% - 4px) !important;
+        float: left;
+        z-index:1;
+      }
+
+      #templateE61 ul li:nth-child(3) .imgItemUpload{
+        padding-top: calc(60% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 100% 0, 70% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 100% 0, 70% 100%, 0% 100%);
+        z-index:1;
+      }
+
+      #templateE61 ul li:nth-child(3) .icon{
+        right: 3% !important;
+        z-index:2;
+        top:-4% !important;
+      }
+
+      #templateE61 ul li:nth-child(3) .ion-close-round{
+        right: 3% !important;
+        z-index:2;
+        top:-4% !important;
+      }
+
+      #templateE61 ul li:nth-child(4){
+        width: calc(64% - 4px) !important;
+        float: left;
+        margin-top:-37%;
+        left:36%;
+      }
+
+      #templateE61 ul li:nth-child(4) .imgItemUpload{
+        padding-top: calc(60% - 4px) !important;
+        -webkit-clip-path: polygon(45% 0%, 100% 0, 100% 100%, 15% 100%);
+        clip-path: polygon(45% 0%, 100% 0, 100% 100%, 15% 100%);
+      }
+
+      #templateE61 ul li:nth-child(4) .icon{
+        top: -4% !important;
+        z-index:2;
+      }
+
+      #templateE61 ul li:nth-child(4) .ion-close-round{
+        top: -4% !important;
+        z-index:2;
+      }
+
+      #templateE61 ul li:nth-child(5){
+        width: calc(64% - 4px) !important;
+        float: left;
+        z-index:1;
+      }
+
+      #templateE61 ul li:nth-child(5) .imgItemUpload{
+        padding-top: calc(60% - 4px) !important;
+        -webkit-clip-path: polygon(0% 0%, 70% 0, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 70% 0, 100% 100%, 0% 100%);
+        z-index:1;
+      }
+
+      #templateE61 ul li:nth-child(5) .icon{
+        right: 29% !important;
+        z-index:2;
+        top:-4% !important;
+      }
+
+      #templateE61 ul li:nth-child(5) .ion-close-round{
+        right: 29% !important;
+        z-index:2;
+        top:-4% !important;
+      } 
+
+      #templateE61 ul li:nth-child(6){
+        width: calc(64% - 4px) !important;
+        float: left;
+        margin-top:-37%;
+        left:36%;
+      }
+
+      #templateE61 ul li:nth-child(6) .imgItemUpload{
+        padding-top: calc(60% - 4px) !important;
+        -webkit-clip-path: polygon(15% 0%, 100% 0, 100% 100%, 45% 100%);
+        clip-path: polygon(15% 0%, 100% 0, 100% 100%, 45% 100%);
+      }
+
+      #templateE61 ul li:nth-child(6) .icon{
+        top: -4% !important;
+        z-index:2;
+      }
+
+      #templateE61 ul li:nth-child(6) .ion-close-round{
+        top: -4% !important;
+        z-index:2;
+      }  
+
+    /*Code thumb template*/
+      #templates #templateE61{
+        background:url(../img/c6o.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+
+/* SlideShow series*/
+
+  /*Style template transition images*/
+
+    /*
+    -------------
+    |           |--
+    |           | |--
+    |           | | |
+    |           | | |
+    ------------- | |
+     -------------- |
+      ---------------
+    */
+
+    /*css for sortable */
+
+    /*css needed for container drag and drop*/
+      #select-container {
+        width: 500px;
+        height: 80px;
+      }
+
+      #select-container .as-sortable-item,
+      #select-container .as-sortable-placeholder {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+      }
+
+      #select-container .select-row:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+
+    /*CSS for show images in scroll*/
+      .imagesSlide{
+        position:relative;
+        display:inline-block;
+        vertical-align: middle;
+        width: 80px;
+        height: 80px;
+        margin:0px 5px 0px 5px;       
+      }
+
+      .imagesSlide .imgItemSlide{
+        background-position:50% 30% !important;
+        position:relative !important;
+        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 70px;
+        padding-top: calc(((100% / 2) + 16px) - 4px);
+        background-size: cover;
+        background-repeat:no-repeat;
+        background-origin: border-box;
+      }
+
+      #changeStyleButton{
+
+      }
+
+    /*Style for button to change between frame and slide */
+      #changeStyleButton #slideShowDiv{
+        background:url(../img/slideshowFrame.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+        height: 70px !important;
+        width: 70px !important;
+      }
+
+      #changeStyleButton #frameShowDiv{
+        background:url(../img/slideshowSlides.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+        height: 70px !important;
+        width: 70px !important;
+      }
+
+    /*CSS temporal temporal to slide show*/
+      #templateAutomate01 ul li{
+        width: calc(100% - 4px) !important;
+        float: left;
+      }
+
+      #templateAutomate01 ul li .imgItemUpload{
+        padding-top: calc(100% - 4px) !important;
+      }
+
+      #templateAutomate01 ul li:nth-child(1) {
+        display: block;
+        height: 21em;
+      }  
+      /*hide all other elements fron two to n*/
+      #templateAutomate01 ul li:nth-child(n+2) {
+        display: none;
+      }
+    
+    /*CSS for showslide 2 photos*/
+
+      /*KEY FRAME FOR ANIMATION WITH 2 PHOTOS*/
+        @keyframes FadeInOutTwoPhotos {
+          0%{
+              
+              opacity:1;
+          }
+          11%{
+              
+              opacity:1;
+          }
+          
+          35% {
+              
+              opacity:0;
+          }
+          
+          60% {
+              
+              opacity:0;
+          }
+          
+          
+          95% {
+              
+              opacity:1;
+          }
+          
+          
+          
+          100% {
+              
+               opacity:1;
+          }
+        }
+
+      #templateAutomate02{
+        position: relative;
+        width: 110% !important;
+        height: 21em;
+        overflow: hidden;
+        margin-bottom: 8px !important;
+      }
+
+      #templateAutomate02 .photo-slide{
+        position: absolute;
+        display: block;
+        width: 26em;
+      }
+
+      #templateAutomate02 .photo-slide div{
+        width: 110% !important;
+        height: 21em;
+      }
+
+      #templateAutomate02 li:nth-child(1){
+        animation-name: FadeInOutTwoPhotos;
+        transition: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 2s;
+        animation-delay: 1s;
+      }
+
+      #templateAutomate02 li:nth-child(2){
+        animation-name: FadeInOutTwoPhotos;
+        transition: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 2s;
+        animation-delay: 0s;
+      }
+
+    /*CSS for showslide 3 photos*/
+
+      /*KEY FRAME FOR ANIMATION WITH 3 PHOTOS*/
+        @keyframes FadeInOutThreePhotos {
+          0% {
+            opacity:1;
+          }
+          20% {
+            opacity:1;
+          }
+          33% {
+            opacity:0;
+          }
+          85% {
+            opacity:0;
+          }
+          
+          100% {
+            opacity:1;
+          }
+        }
+
+      #templateAutomate03{
+        position: relative;
+        width: 110% !important;
+        height: 21em;
+        overflow: hidden;
+        margin-bottom: 8px !important;
+      }
+
+      #templateAutomate03 .photo-slide{
+        position: absolute;
+        display: block;
+        width: 26em;
+      }
+
+      #templateAutomate03 .photo-slide div{
+        width: 110% !important;
+        height: 21em;
+      }
+
+      #templateAutomate03 li:nth-child(1){
+        animation-name: FadeInOutThreePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 3s;
+        animation-delay: 2s;
+      }
+
+      #templateAutomate03 li:nth-child(2){
+        animation-name: FadeInOutThreePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 3s;
+        animation-delay: 1s;
+      }
+
+      #templateAutomate03 li:nth-child(3){
+        animation-name: FadeInOutThreePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 3s;
+        animation-delay: 0s;
+      }
+
+    /*CSS for showslide 4 photos*/
+
+      /*KEY FRAME FOR ANIMATION WITH 4 PHOTOS*/
+        @keyframes FadeInOutFourPhotos {
+          0% {
+            opacity:1;
+          }
+          17% {
+            opacity:1;
+          }
+          25% {
+            opacity:0;
+          }
+          92% {
+            opacity:0;
+          }
+          95% {
+              opacity:1;
+          }
+          100% {
+            opacity:1;
+          }
+        }
+
+      #templateAutomate04{
+        position: relative;
+        width: 110% !important;
+        height: 21em;
+        overflow: hidden;
+        margin-bottom: 8px !important;
+      }
+
+      #templateAutomate04 .photo-slide{
+        position: absolute;
+        display: block;
+        width: 26em;
+      }
+
+      #templateAutomate04 .photo-slide div{
+        width: 110% !important;
+        height: 21em;
+      }
+
+      #templateAutomate04 li:nth-child(1){
+        animation-name: FadeInOutFourPhotos;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 4s;
+        animation-delay: 3s ;
+      }
+
+      #templateAutomate04 li:nth-child(2){
+        animation-name: FadeInOutFourPhotos;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 4s;
+        animation-delay: 2s;
+      }
+
+      #templateAutomate04 li:nth-child(3){
+        animation-name: FadeInOutFourPhotos;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 4s;
+        animation-delay: 1s;
+      }
+
+      #templateAutomate04 li:nth-child(4){
+        animation-name: FadeInOutFourPhotos;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-duration: 4s;
+        animation-delay: 0s;
+      }
+
+    /*CSS for showslide 5 photos*/
+
+      /*KEY FRAME FOR ANIMATION WITH 5 PHOTOS*/
+        @keyframes FadeInOutFivePhotos {
+          0% {
+            opacity:1;
+          }
+          12% {
+            opacity:1;
+          }
+          20% {
+            opacity:0;
+          }
+          85% {
+            opacity:0;
+          }
+          96% {
+              opacity:1;
+          }
+          100% {
+            opacity:1;
+          }
+        }
+
+      #templateAutomate05{
+        position: relative;
+        width: 110% !important;
+        height: 21em;
+        overflow: hidden;
+        margin-bottom: 8px !important;
+      }
+
+      #templateAutomate05 .photo-slide{
+        position: absolute;
+        display: block;
+        width: 26em;
+      }
+
+      #templateAutomate05 .photo-slide div{
+        width: 110% !important;
+        height: 21em;
+      }
+
+      #templateAutomate05 li:nth-child(1){
+        animation-name: FadeInOutFivePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+        animation-delay: 4s;
+      }
+
+      #templateAutomate05 li:nth-child(2){
+        animation-name: FadeInOutFivePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+        animation-delay: 3s;
+      }
+
+      #templateAutomate05 li:nth-child(3){
+        animation-name: FadeInOutFivePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+        animation-delay: 2s;
+      }
+
+      #templateAutomate05 li:nth-child(4){
+        animation-name: FadeInOutFivePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+        animation-delay: 1s;
+      }
+
+      #templateAutomate05 li:nth-child(5){
+        animation-name: FadeInOutFivePhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 5s;
+        animation-delay: 0s;
+      }
+
+    /*CSS for showslide 6 photos*/
+
+      /*KEY FRAME FOR ANIMATION WITH 6 PHOTOS*/
+        @keyframes FadeInOutSixPhotos {
+          0% {
+            opacity:1;
+          }
+          10% {
+            opacity:1;
+          }
+          17% {
+            opacity:0;
+          }
+          93% {
+            opacity:0;
+          }
+          
+          97% {
+              opacity:1;
+          }
+          100% {
+            opacity:1;
+          }
+        }
+      
+      #templateAutomate06{
+        position: relative;
+        width: 110% !important;
+        height: 21em;
+        overflow: hidden;
+        margin-bottom: 8px !important;
+      }
+
+      #templateAutomate06 .photo-slide{
+        position: absolute;
+        display: block;
+        width: 26em;
+      }
+
+      #templateAutomate06 .photo-slide div{
+        width: 110% !important;
+        height: 21em;
+      }
+
+      #templateAutomate06 li:nth-child(1){
+        animation-name: FadeInOutSixPhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        animation-delay: 5s;
+      }
+
+      #templateAutomate06 li:nth-child(2){
+        animation-name: FadeInOutSixPhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        animation-delay: 4s;
+      }
+
+      #templateAutomate06 li:nth-child(3){
+        animation-name: FadeInOutSixPhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        animation-delay: 3s;
+      }
+
+      #templateAutomate06 li:nth-child(4){
+        animation-name: FadeInOutSixPhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        animation-delay: 2s;
+      }
+
+      #templateAutomate06 li:nth-child(5){
+        animation-name: FadeInOutSixPhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        animation-delay: 1s;
+      }
+
+      #templateAutomate06 li:nth-child(6){
+        animation-name: FadeInOutSixPhotos;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-duration: 6s;
+        animation-delay: 0s;
+      }
+
+/*fix for photoframe upload*/
+      .photo-slide-upload{
+        width: 82% !important;
+      }
+
+/*SERIES OF ONE PICTURE*/
+  /*Style template 2 images 2.1*/
+    /*Template Default*/
+    /*
+      ---------
+      |       |
+      |       |
+      ---------
+    */
+
+    /*Code align images*/
+      #templateA11 ul li{
+        width: calc(100% - 4px) !important;
+        float: left;
+      }
+
+      #templateA11 ul li .imgItemUpload{
+        padding-top: calc(100% - 4px) !important;
+      }
+
+    /*Code thumb template*/
+ 
+      #templates #templateB11{
+        background:url(../img/1.1Off.svg);
+        background-size: contain !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important;
+        margin-left: 3px !important;
+        margin-right: 3px !important;
+      }
+
+/*
+ANOTHER DIAMOND ORDER
+  /*Style template 4 images 4.2*/
+    /* Diamond
+           
+           /\
+          /  \
+          \  /
+           \/
+        /\    /\
+       /  \  /  \
+       \  /  \  /
+        \/    \/
+           /\
+          /  \
+          \  /
+           \/
+    */
+    /*Code align images*/
+      /*image 01
+        #templateC42 ul li:first-child {
+            width: calc(48%) !important;
+            float:left;
+            left:21vw;
+        }
+
+        #templateC42 ul li:first-child .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        #templateC42 ul li:first-child .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li:first-child .ion-close-round{
+          top:41%!important;
+        }
+
+        /*image 02
+        #templateC42 ul li:nth-child(2) {
+            width: calc(48%) !important;
+            float:left;
+            clear: left;
+            top:-13.5vh;
+        }
+
+        #templateC42 ul li:nth-child(2) .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        #templateC42 ul li:nth-child(2) .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li::nth-child(2).ion-close-round{
+          top:41%!important;
+        }
+        /*image 03
+        #templateC42 ul li:nth-child(3) {
+            width: calc(48%) !important;
+            top:13.3vh;
+            left:-.3vw;
+        }
+
+        #templateC42 ul li:nth-child(3) .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        #templateC42 ul li:nth-child(3) .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li::nth-child(3).ion-close-round{
+          top:41%!important;
+        }
+        /*image 04
+        #templateC42 ul li:nth-child(4) {
+            width: calc(48%) !important;
+            float:right;
+            left:-22.5vw;
+            top:-.3vh;
+        }
+
+        #templateC42 ul li:nth-child(4) .imgItemUpload{
+            padding-top: calc(100%) !important;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        #templateC42 ul li:nth-child(4) .icon{
+          top:41%!important;
+        }
+
+        #templateC42 ul li::nth-child(4).ion-close-round{
+          top:41%!important;
+        }
+    /*Code thumb template
+      #templates #templateC42
+      {
+        background:url(../img/4.1SOff.svg);
+        background-size: 70px !important;
+        background-repeat: no-repeat !important; 
+        background-position: center !important; 
+      }
+*/

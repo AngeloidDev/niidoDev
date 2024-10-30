@@ -1,0 +1,383 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="has-header has-footer padding">
+    <form action="" name="editCQNZForm" enctype="multipart/form-data" onsubmit="return false;">
+      <div
+        style="
+                    width:99%;
+                    border:rgba(204,204,204,.8) 5px;
+                    border-style: dashed;
+                    margin:auto;
+                    height:200px;
+                    background:url(img/photoFrame.svg) no-repeat;
+                    background-position:center;
+                    background-size: 30%;
+                    padding:20px;
+                    font-size:9px;
+                    opacity: .3;
+                    margin-bottom: 15px;"
+        class="ng-hide" ng-show="(temporalLength <1)">
+      </div>
+      <div id="{{ data.tempTemplate }}"
+           style=" margin-right:15px;
+                    margin-left:15px;">
+        <div id="horizontal-container" style="border: 5px; " ng-show="data.tempMode == 'F'">
+          <ul class="sortable-row" as-sortable="sortableOptions" data-ng-model="data.images">
+            <li class="imagesUpload" ng-repeat="picture in data.images track by UniqueTracking($index, picture)"
+                as-sortable-item>
+              <div class="imgItemUpload" as-sortable-item-handle
+                   style=" padding-right:10px;
+                                        background-image:url({{ picture }}) !important;">
+              </div>
+              <i class="icon ion-close-round"
+                 style=" position:absolute !important;
+                                        right: 0px;
+                                        top: 0px;
+                                        color:#fff !important;
+                                        text-shadow: 2px 1px 1px rgba(150, 150, 150, 1);
+                                        padding: 3px 3px 18px 18px"
+                 ng-click="removeImage($index,data.cqnzSeen[0].noDelete)"
+                 ng-show="data.deleteList[$index]">
+              </i>
+            </li>
+          </ul>
+        </div>
+        <div id="horizontal-container" style="border: 5px; " ng-show="data.tempMode == 'S'">
+          <ul class="sortable-row" as-sortable="sortableOptions" data-ng-model="data.images">
+            <li class=" imagesUpload photo-slide photo-slide-upload photo-slide-upload"
+                ng-repeat="picture in data.images track by UniqueTracking($index, picture)" as-sortable-item><!-- -->
+              <div class="imgItemUpload photo-slide"
+                   style=" padding-right:10px;
+                                        background-image:url({{ picture}}) !important">
+              </div>
+              <i class="icon ion-close-round"
+                 style="position:absolute !important;
+                                        right: 0px;
+                                        top: 0px;
+                                        color:#fff !important;
+                                        text-shadow: 2px 1px 1px rgba(150, 150, 150, 1);
+                                        padding: 3px 3px 18px 18px"><!--ng-click="removeImage($index)"-->
+              </i>
+            </li>
+          </ul>
+        </div>
+        <div class="ng-hide" ng-show="data.images.length > 6" translate><!-- -->
+          UPLOAD.PHOTOS_LENGHT
+        </div>
+      </div>
+      <div ng-show="data.images.length >= 1">
+        <div class="row" id="changeStyleButton">
+          <div class="col col-25">
+            <div id="slideShowDiv" ng-show="data.tempMode == 'S' && data.images.length >= 1"
+                 ng-click="showScrollBars('F')"></div>
+            <div id="frameShowDiv" ng-show="data.tempMode == 'F' && data.images.length >= 1"
+                 ng-click="showScrollBars('S')"></div>
+          </div>
+          <div class="col col-75" style="height: 80px;">
+            <div style=" z-index: 999; " ng-show="data.images.length >= 1">
+              <div class="ion-arrow-right-b"
+                   style="color: red;
+                                    position: absolute;
+                                    z-index: 999;
+                                    right: 1px;
+                                    width: 15px;
+                                    margin-top: 20px !important;"></div>
+              <div class="ion-arrow-left-b"
+                   style="color: red;
+                                    position: absolute;
+                                    z-index: 999;
+                                    left: 85px;
+                                    width: 15px;
+                                    margin-top: 20px !important;"></div>
+            </div>
+            <ion-scroll direction="x"
+                        scrollbar-x="true"
+                        scrollbar-y="true"
+                        has-bouncing="true"
+                        zooming="false"
+                        delegate-handle="horizontal"
+                        style=" width: 200%;
+                                position: relative;
+                                overflow: scroll !important;
+                                padding-right: 15px;
+                                padding-left: 15px;"
+                        ng-show="data.images.length >= 1 && data.tempMode == 'F'">
+              <ul id="templates" style="width: 200%; height: 80px;">
+                <!--1 photo -->
+                <li id="templateA11" ng-style="A11" ng-click="changeTemplate('templateA11','A11',data)"
+                    ng-show="data.images.length == 1"></li>
+                <!--2 photos-->
+                <li id="templateE21" ng-style="E21" ng-click="changeTemplate('templateE21','E21',data)"
+                    ng-show="data.images.length == 2"></li>
+                <li id="templateB21" ng-style="B21" ng-click="changeTemplate('templateB21','B21',data)"
+                    ng-show="data.images.length == 2"></li>
+                <li id="templateB24" ng-style="B24" ng-click="changeTemplate('templateB24','B24',data)"
+                    ng-show="data.images.length == 2"></li>
+                <li id="templateB23" ng-style="B23" ng-click="changeTemplate('templateB23','B23',data)"
+                    ng-show="data.images.length == 2"></li>
+                <li id="templateB22" ng-style="B22" ng-click="changeTemplate('templateB22','B22',data)"
+                    ng-show="data.images.length == 2"></li>
+                <li id="templateC21" ng-style="C21" ng-click="changeTemplate('templateC21','C21',data)"
+                    ng-show="data.images.length == 2"></li>
+                <!--<li id="templateC22" ng-click="changeTemplate('templateC22','C22')" ng-show="data.pictures.length == 2" ng-style="C22"></li>-->
+                <li id="templateD21" ng-style="D21" ng-click="changeTemplate('templateD21','D21',data)"
+                    ng-show="data.images.length == 2"></li>
+                <!--3 photos-->
+                <li id="templateE31" ng-style="E31" ng-click="changeTemplate('templateE31','E31',data)"
+                    ng-show="data.images.length == 3"></li>
+                <li id="templateB33" ng-style="B33" ng-click="changeTemplate('templateB33','B33',data)"
+                    ng-show="data.images.length == 3"></li>
+                <li id="templateB34" ng-style="B34" ng-click="changeTemplate('templateB34','B34',data)"
+                    ng-show="data.images.length == 3"></li>
+                <li id="templateB31" ng-style="B31" ng-click="changeTemplate('templateB31','B31',data)"
+                    ng-show="data.images.length == 3"></li>
+                <li id="templateB32" ng-style="B32" ng-click="changeTemplate('templateB32','B32',data)"
+                    ng-show="data.images.length == 3"></li>
+                <li id="templateB35" ng-style="B35" ng-click="changeTemplate('templateB35','B35',data)"
+                    ng-show="data.images.length == 3"></li>
+                <li id="templateD31" ng-style="D31" ng-click="changeTemplate('templateD31','D31',data)"
+                    ng-show="data.images.length == 3"></li>
+                <!--4 photos-->
+                <li id="templateE41" ng-style="E41" ng-click="changeTemplate('templateE41','E41',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateC41" ng-style="C41" ng-click="changeTemplate('templateC41','C41',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateC42" ng-style="C42" ng-click="changeTemplate('templateC42','C42',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateB41" ng-style="B41" ng-click="changeTemplate('templateB41','B41',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateB42" ng-style="B42" ng-click="changeTemplate('templateB42','B42',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateB43" ng-style="B43" ng-click="changeTemplate('templateB43','B43',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateB44" ng-style="B44" ng-click="changeTemplate('templateB44','B44',data)"
+                    ng-show="data.images.length == 4"></li>
+                <li id="templateD41" ng-style="D41" ng-click="changeTemplate('templateD41','D41',data)"
+                    ng-show="data.images.length == 4"></li>
+                <!--5 photos-->
+                <li id="templateE51" ng-style="E51" ng-click="changeTemplate('templateE51','E51',data)"
+                    ng-show="data.images.length == 5"></li>
+                <li id="templateB51" ng-style="B51" ng-click="changeTemplate('templateB51','B51',data)"
+                    ng-show="data.images.length == 5"></li>
+                <li id="templateB52" ng-style="B52" ng-click="changeTemplate('templateB52','B52',data)"
+                    ng-show="data.images.length == 5"></li>
+                <li id="templateB53" ng-style="B53" ng-click="changeTemplate('templateB53','B53',data)"
+                    ng-show="data.images.length == 5"></li>
+                <li id="templateB54" ng-style="B54" ng-click="changeTemplate('templateB54','B54',data)"
+                    ng-show="data.images.length == 5"></li>
+                <li id="templateB55" ng-style="B55" ng-click="changeTemplate('templateB55','B55',data)"
+                    ng-show="data.images.length == 5"></li>
+                <li id="templateD51" ng-style="D51" ng-click="changeTemplate('templateD51','D51',data)"
+                    ng-show="data.images.length == 5"></li>
+                <!--6 photos-->
+                <li id="templateE61" ng-style="E61" ng-click="changeTemplate('templateE61','E61',data)"
+                    ng-show="data.images.length == 6"></li>
+                <li id="templateB61" ng-style="B61" ng-click="changeTemplate('templateB61','B61',data)"
+                    ng-show="data.images.length == 6"></li>
+                <li id="templateB62" ng-style="B62" ng-click="changeTemplate('templateB62','B62',data)"
+                    ng-show="data.images.length == 6"></li>
+                <li id="templateB63" ng-style="B63" ng-click="changeTemplate('templateB63','B63',data)"
+                    ng-show="data.images.length == 6"></li>
+                <li id="templateB64" ng-style="B64" ng-click="changeTemplate('templateB64','B64',data)"
+                    ng-show="data.images.length == 6"></li>
+                <li id="templateD61" ng-style="D61" ng-click="changeTemplate('templateD61','D61',data)"
+                    ng-show="data.images.length == 6"></li>
+              </ul>
+            </ion-scroll>
+            <ion-scroll direction="x"
+                        scrollbar-x="true"
+                        scrollbar-y="true"
+                        has-bouncing="true"
+                        zooming="false"
+                        delegate-handle="horizontal"
+                        style="width: 160%;
+                                position: relative;
+                                overflow: scroll !important;
+                                padding-left: 15px;"
+                        ng-show="data.images.length >= 1 && data.tempMode == 'S'">
+              <div id="select-container">
+                <ul style="width: 150%; height: 80px; ">
+                  <li class="imagesSlide"
+                      ng-class="{'slide-selected' : $index === origin }"
+                      ng-repeat="picture in data.images | orderBy:'picture':true track by UniqueTracking($index, picture)"
+                      ng-click="changePhotoFrameOrder($index)">
+                    <div class="imgItemSlide"
+                         style=" padding-right:10px;
+                                                background-image:url({{ picture }}) !important"
+                         ng-class="{'slide-img-selected' : $index === origin }">
+                    </div>
+                    <i class="icon ion-close-round"
+                       style="position:absolute !important;
+                                                right: 0px;
+                                                top: 0px;
+                                                color:#fff !important;
+                                                text-shadow: 2px 1px 1px rgba(150, 150, 150, 1);
+                                                padding: 3px 3px 18px 18px"
+                       ng-click="removeImage($index,data.cqnzSeen[0].noDelete)"
+                       ng-show="data.deleteList[$index]">
+                    </i>
+                  </li>
+                </ul>
+              </div>
+            </ion-scroll>
+          </div>
+        </div>
+      </div>
+      <div for="sequenceName"
+           ng-if="isAndroid"
+           class="item item-input spacer"
+           style="border:solid 1px #CCCCCC;
+                    padding-top:16px;
+                    margin-bottom:10px;">
+                <textarea type="text"
+                          keydown="autosize()"
+                          mentio-id="'content-editable'"
+                          mentio
+                          mentio-typed-term="typedTerm"
+                          mentio-require-leading-space="true"
+                          mentio-iframe-element="iframeElement"
+                          ng-model="data.tempTitle"
+                          name="sequenceName"
+                          id="sequenceName"
+                          translate-attr="{ 'placeholder' : 'UPLOAD.TITLE' }"
+                          required
+                          style="height: 32px !important">
+                </textarea>
+        <mentio-menu
+          id="hastmenu"
+          mentio-for="'content-editable'"
+          mentio-trigger-char="'@'"
+          mentio-items="tags"
+          mentio-template-url="/tag-mentions.tpl"
+          mentio-search="searchTags(term)"
+          mentio-select="getTagTextRaw(item)"
+          style="display: block; top: 159px; left: 15px; position: absolute; z-index: 100;">
+        </mentio-menu>
+        <label ng-if="data.tempTitle.length>=1"
+               ng-style="{ color : data.tempTitle.length>=430 && data.tempTitle.length<=500 ? 'brown' : (data.tempTitle.length>500 ? 'red': 'initial')}">
+          {{data.tempTitle.length}}/500
+        </label>
+      </div>
+      <div for="sequenceName"
+           ng-if="isIOS"
+           class="item item-input spacer"
+           style="border:solid 1px #CCCCCC;
+                    padding-top:16px;
+                    margin-bottom:10px; ">
+                <textarea type="text"
+                          keydown="autosize()"
+                          mentio2-id="'content-editable'"
+                          mentio2
+                          mentio2-typed-term="typedTerm"
+                          mentio2-require-leading-space="true"
+                          mentio2-iframe-element="iframeElement"
+                          ng-model="data.tempTitle"
+                          name="sequenceName"
+                          id="sequenceName"
+                          translate-attr="{ 'placeholder' : 'UPLOAD.TITLE' }"
+                          required
+                          maxlength="255"
+                          style="height: 32px !important">
+                </textarea>
+        <mentio2-menu
+          id="hastmenu"
+          mentio2-for="'content-editable'"
+          mentio2-trigger-char="'@'"
+          mentio2-items="tags"
+          mentio2-template-url="/tag-mentions2.tpl"
+          mentio2-search="searchTags(term)"
+          mentio2-select="getTagTextRaw(item)"
+          style="display: block; top: 159px; left: 15px; position: absolute; z-index: 100;">
+        </mentio2-menu>
+        <label ng-if="data.tempTitle.length>=1"
+               ng-style="{ color : data.tempTitle.length>=230 && data.tempTitle.length<=260 ? 'brown' : (data.tempTitle.length>260 ? 'red': 'initial')}">
+          {{data.tempTitle.length}}/130
+        </label>
+      </div>
+      <div style="padding-left:5px;
+                    padding-right:5px;
+                    margin:0px;"
+           align="center">
+        <input type="button"
+               translate-attr="{'value':'UPLOAD.CAMERA_LIBRARY'}"
+               style=" width:70%;
+                        border-radius: 7px;
+                        text-shadow: 01px 1px 2px rgba(102,102,102,.5);
+                        color: rgba(51,51,51,.8);
+                        background: rgba(247,207,126,.18);
+                        background-image:url(img/photoIcon.svg);
+                        background-repeat:no-repeat;
+                        background-position:left center;
+                        background-position: 15px;
+                        border: transparent;
+                        font-family: Arial;
+                        font-size: 14px;
+                        padding: 0px 0px 0px 42px;
+                        text-decoration: none;"
+               class="button button-block"
+               ng-click="addMedia()"
+               ng-disabled="data.images.length>=6"/>
+      </div>
+      <div class="errorMessage">{{uploadErrorMessage}}</div>
+      <div style="text-align:center; margin-top:17px;">
+        <input type="button"
+               translate-attr="{'value':'UPLOAD.UPDATE'}"
+               ng-click="checkAddedPics(data.cqnzSeen[0])"
+               id="uploadCQNZ"
+               style="width:68%;
+                        border-radius: 7px;
+                        text-shadow: 3px 1px 3px #404040;
+                        font-family: Arial;
+                        color: #ffffff;
+                        font-size: 14px;
+                        background: #d93434;
+                        background-image:url(img/uploadCqnz.svg);
+                        background-repeat:no-repeat;
+                        background-position:left center;
+                        background-position: 15px;
+                        padding: 0px 15px 0px 55px;
+                        border:none;
+                        border-color:transparent !important;
+                        text-decoration: none;"
+               class=" button button-positive "
+               ng-disabled="data.images.length > 6 || blockScreen == 0  || uploading || (data.images.length < 1 && data.temptitle == null) || data.tempTitle.length>500"/>
+        <ion-spinner icon="spiral" class="loadingAction" ng-if="uploading"></ion-spinner>
+      </div>
+    </form>
+    <div id="templateId">
+      <!-- <select name="selectTemplate" id="" ng-change="changeTemplate()" ng-model = "selectTemplate">
+          <option value="template1"></option>
+          <option value="template2"></option>
+          </select> -->
+    </div>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+  <script type="text/ng-template" id="/tag-mentions.tpl">
+    <ul class="list-group">
+      <li mentio-menu-item="Tag" ng-repeat="Tag in items" class="list-group-item">
+        <div style="width: 30px; height: 30px; float: left; margin-right: 4px;">
+          <img class="mentio-avatar mentio-image-avatar" ng-src="{{Tag.photo}}"/>
+        </div>
+        <span>{{ ::Tag.name }}</span>
+      </li>
+    </ul>
+  </script>
+  <script type="text/ng-template" id="/tag-mentions2.tpl">
+    <ul class="list-group">
+      <li mentio2-menu-item="Tag" ng-repeat="Tag in items" class="list-group-item">
+        <div style="width: 30px; height: 30px; float: left; margin-right: 4px;">
+          <img class="mentio2-avatar mentio2-image-avatar" ng-src="{{Tag.photo}}"/>
+        </div>
+        <span>{{ ::Tag.name }}</span>
+      </li>
+    </ul>
+  </script>
+</ion-view>

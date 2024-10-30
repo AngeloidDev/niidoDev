@@ -1,0 +1,82 @@
+<ion-view title='{{HEADER_LOGO}}'>
+  <ion-nav-bar style=" visibility:visible !important; display:block !important;">
+    <ion-nav-buttons side="right">
+      <button class="button icon-right ion-chevron-right button-clear button-red" ng-click="skipFriends()">
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="has-header has-footer" ng-init="fillList();">
+    <div class="item-divider" ng-if="data.friends.length > 0"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">
+      <span translate>MENU.FIND_FACEBOOK_FRIENDS.TITLE</span>
+    </div>
+    <div ng-repeat="user in data.users" class="item item-avatar"
+         style="margin-bottom:5px; margin-top:10px; margin-right: 2px; padding-left: 4px; min-height: 24px;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="40" align="left" valign="top" style="width:35px; vertical-align:top;   ">
+            <img class="comments-avatar avatar-image" ng-src="data:image/jpeg;base64,{{ user.photoId.split(':')[2] }}"
+                 ng-click="sendUserProfile(user.id)"/>
+          </td>
+          <td align="left" valign="top" style="vertical-align:top; padding-top:7px; ">
+            <div
+              style="vertical-align:top; padding-top:7px; margin-left:2px; height:16px !important; width:18px !important; background-image:url(img/verifedSearch.svg) !important; background-repeat:no-repeat; background-position: left; position:absolute;   "
+              ng-if="user.verify== true">
+            </div>
+            <div style="vertical-align: middle; margin-left:23px; color:rgba(51,51,51,1);
+              overflow: hidden; font-weight: bold;
+              white-space: nowrap;
+              width: 11em !important;
+              position:absolute;
+              text-overflow:ellipsis;" ng-click="sendUserProfile(user.id)">
+              {{ user.name }}
+            </div>
+          </td>
+          <td width="130" align="left" valign="top"
+              style="width:20px; margin-right:7px; vertical-align:top; padding-top:5px; ">
+            <div>
+              <ion-spinner icon="spiral" class="loadingAction" ng-if="user.sending"
+                           style="z-index: 2;margin-top: 1px; margin-left: 1%">
+              </ion-spinner>
+              <button ng-if="user.friend.result.value == false"
+                      ng-click="sendContactRequest(user.id,user.friend.result.value, user); user.friend.result.value = true"
+                      class="button button-small follow" translate>
+                GLOBAL.FOLLOW
+              </button>
+              <button ng-if="user.friend.result.value == true" class="button button-small unfollow" translate>
+                <!--ng-click="sendContactRequest(user.id,user.friend.result.value,user); user.friend.result.value = false"-->
+                GLOBAL.UNFOLLOW
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="item-divider" ng-if="data.friends.length == 0"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">
+      <strong translate>LOGIN.NO_FRIENDS</strong>
+    </div>
+    <div style="margin-bottom:5px; margin-top:10px; margin-right: 2px; padding-left: 4px; min-height: 24px;"
+         ng-if="data.friends.length == 0">
+      <button class="button button-block button-assertive" ng-click="Appmessage()"
+              style="width: 50vw !important; left: 24vw !important; top:10vh" translate>
+        LOGIN.SHARE
+      </button>
+    </div>
+    <div class="text-center">
+      <ion-spinner ng-if="data.searching==true"></ion-spinner>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+

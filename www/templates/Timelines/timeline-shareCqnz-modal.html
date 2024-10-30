@@ -1,0 +1,154 @@
+<md-dialog aria-label="Modal">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="cancel" ng-click="cancel()">
+        <i class="ion-chevron-left"></i>
+      </md-button>
+      {{"TIMELINE.SHARE_UI.SHARE_CQNZ"|translate}}
+      <span flex></span>
+      <md-button
+        class="md-button md-raised md-accent"
+        ng-if="selected.length"
+        ng-click="ok()">
+        {{"TIMELINE.SHARE_UI.SHARE"|translate}}
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="md-dialog-content" style="padding: 12px">
+    <md-card class="text-center" style="padding: 12px">
+      <h4 md-colors='{color:"default-primary"}' translate>
+        TIMELINE.SHARE_UI.SHARE_MAIN_MSG
+      </h4>
+    </md-card>
+
+    <md-content layout-padding id="share-groups-modal">
+      <!--<md-subheader class="md-no-sticky">
+        {{locals.groupList.length}} {{"TIMELINE.SHARE_UI.GROUP"|translate}}{{locals.groupList.length>1?'s':''}}
+      </md-subheader>-->
+
+      <div>
+        <md-checkbox
+          aria-label="Select All"
+          ng-checked="selected.length == locals.groupList.length"
+          md-indeterminate="isIndeterminate()"
+          ng-click="toggleAll()">
+          <span ng-if="selected.length == locals.groupList.length" translate>TIMELINE.SHARE_UI.UNSELECT_ALL</span>
+          <span ng-if="selected.length != locals.groupList.length" translate>TIMELINE.SHARE_UI.SELECT_ALL</span>
+          ({{locals.groupList.length}})
+        </md-checkbox>
+        <md-divider></md-divider>
+      </div>
+
+      <!-- LOCKED GROUPS -->
+      <div ng-repeat='group in locals.groupList' ng-if="group.imLocked">
+        <div style="display: flex; margin-left: 30px; padding-bottom: 5px">
+          <img class="md-avatar" ng-src="{{::group.image}}" alt="{{::group.name}}"/>
+          <div class="md-list-item-text">
+            <h4 md-colors="{color:'default-primary'}"> {{ ::group.name }} </h4>
+            <p class="privacy-tag tag-{{::group.privacy}} text-center"> {{ ::group.privacy }} </p>
+            <!--<p md-colors="{color:'default-accent'}" ng-if="group.imAdministrator" translate>TIMELINE.SHARE_UI.UR_ADMIN</p>
+            <p md-colors="{color:'default-accent'}" ng-if="group.imModerator" translate>TIMELINE.SHARE_UI.UR_MODERATOR</p>-->
+            <p md-colors="{color:'default-accent'}" ng-if="group.imLocked" translate>GROUPS.MAIN_PAGE.LOCKED</p>
+            <!--<p md-colors="{color:'default-accent'}" ng-if="group.imBanned" translate>GROUPS.MAIN_PAGE.BANNED</p>-->
+          </div>
+        </div>
+        <md-divider></md-divider>
+      </div>
+
+      <!-- NOT LOCKED GROUPS -->
+      <div ng-repeat='group in locals.groupList' ng-if="!group.imLocked">
+        <md-checkbox
+          aria-label="{{ ::group.name }}"
+          ng-disabled="group.imLocked"
+          ng-checked="exists(group)"
+          ng-click="toggle(group)">
+          <div style="display: flex;">
+            <img class="md-avatar" ng-src="{{::group.image}}" alt="{{::group.name}}"/>
+            <div class="md-list-item-text">
+              <h4 md-colors="{color:'default-primary'}"> {{ ::group.name }} </h4>
+              <p class="privacy-tag tag-{{::group.privacy}} text-center"> {{ ::group.privacy }} </p>
+              <p md-colors="{color:'default-accent'}" ng-if="group.imAdministrator" translate>
+                TIMELINE.SHARE_UI.UR_ADMIN</p>
+              <p md-colors="{color:'default-accent'}" ng-if="group.imModerator" translate>
+                TIMELINE.SHARE_UI.UR_MODERATOR</p>
+              <!--<p md-colors="{color:'default-accent'}" ng-if="group.imLocked" translate>GROUPS.MAIN_PAGE.LOCKED</p>
+              <p md-colors="{color:'default-accent'}" ng-if="group.imBanned" translate>GROUPS.MAIN_PAGE.BANNED</p>-->
+            </div>
+          </div>
+        </md-checkbox>
+        <md-divider ng-if="!$last"></md-divider>
+      </div>
+
+      <!--<md-radio-group ng-model="locals.selectedItemIdx">
+        <md-list>
+          <div ng-repeat='group in locals.groupList'>
+            <md-list-item class="md-2-line" style="padding: 0">
+              <md-radio-button
+                flex
+                aria-label="{{ ::group.name }}"
+                class="md-primary"
+                ng-value="$index">
+                <div style="display: flex;">
+                  <img class="md-avatar" ng-src="{{::group.image}}" alt="{{::group.name}}"/>
+                  <div class="md-list-item-text">
+                    <h3 md-colors="{color:'default-primary'}"> {{ ::group.name }} </h3>
+                    <h4 class="privacy-tag tag-{{::group.privacy}} text-center"> {{ ::group.privacy }} </h4>
+                    <p md-colors="{color:'default-accent'}" ng-if="group.imAdministrator" translate>
+                      TIMELINE.SHARE_UI.UR_ADMIN</p>
+                    <p md-colors="{color:'default-accent'}" ng-if="group.imModerator" translate>
+                      TIMELINE.SHARE_UI.UR_MODERATOR</p>
+                    <p md-colors="{color:'default-accent'}" ng-if="group.imLocked" translate>GROUPS.MAIN_PAGE.LOCKED</p>
+                    <p md-colors="{color:'default-accent'}" ng-if="group.imBanned" translate>GROUPS.MAIN_PAGE.BANNED</p>
+                  </div>
+                </div>
+              </md-radio-button>
+            </md-list-item>
+
+            <md-divider ng-if="!$last"></md-divider>
+            <!--<md-divider></md-divider>--**
+          </div>
+        </md-list>
+      </md-radio-group>-->
+    </md-content>
+
+
+    <!--<md-dialog-actions>
+      <md-button class="md-raised md-warn" ng-click="cancel()">
+        cancelar
+      </md-button>
+      <md-button
+        class="md-raised md-primary"
+        ng-disabled="locals.selectedItemIdx == null"
+        ng-click="ok()">
+        Aceptar
+      </md-button>
+    </md-dialog-actions>-->
+  </md-dialog-content>
+</md-dialog>
+
+<style>
+  #share-groups-modal md-checkbox {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #share-groups-modal h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  #share-groups-modal img.md-avatar {
+    width: 60px;
+    height: 60px;
+    /*border-radius: 50%;*/
+    margin-right: 8px;
+    margin-top: 0;
+  }
+
+  #share-groups-modal p, #share-groups-modal p.privacy-tag {
+    margin: 0;
+  }
+</style>
+
+

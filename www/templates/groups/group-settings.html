@@ -1,0 +1,126 @@
+<ion-view view-title='{{"GROUPS.SETTINGS.VIEW_TITLE"|translate}}'>
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear"
+              ng-click="goBack()">
+        <!--ng-click="$ionicGoBack()">-->
+  <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+</button>
+</ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-footer">
+    <md-card>
+      <div style="min-height: 150px">
+        <img
+          ng-src="{{group.image}}"
+          class="md-card-image"
+          style="width: 100%;"
+          alt="{{group.name}}">
+      </div>
+
+      <div
+        class="text-right"
+        style="bottom: 45px; position:relative; margin-bottom: -60px"
+        ng-if="$_canUpdateGroupImage()">
+        <md-button
+          class="md-fab md-fab-mini md-primary"
+          aria-label="add group"
+          ng-click="showListBottomSheet()">
+          <div class="icon ion-ios-compose-outline" style="font-size: xx-large"></div>
+          <!--<md-icon md-svg-src="img/icons/edit_24px.svg"></md-icon>-->
+        </md-button>
+      </div>
+
+      <md-card-title ng-if="!imTheAdmin">
+        <md-card-title-text>
+          <span class="md-headline">{{group.name}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <p ng-if="!imTheAdmin">
+          {{group.description}}<br>
+          <span ng-if="group.creationDate">{{"GROUPS.SETTINGS.CREATED"|translate}}: {{group.creationDate}}</span>
+        </p>
+
+        <form name="groupForm" layout="column" ng-if="imTheAdmin">
+          <!-- group's name-->
+          <md-input-container class="md-block">
+            <label class="input-label" md-colors="{color:'primary'}" translate>GROUPS.SETTINGS.NAME</label>
+            <input
+              type="text" name="groupname"
+              style="font-size: x-large;"
+              required
+              translate-attr="{'placeholder':'GROUPS.CREATE_S1.G_NAME_PHOLDER'}"
+              ng-change="checkForChanges()"
+              md-maxlength="500"
+              ng-disabled="!$_canUpdateGroupName()"
+              ng-model="group.name">
+            <div ng-messages="groupForm.groupname.$error">
+              <div ng-message="required" translate>GROUPS.FORM_ERROR.REQUIRED</div>
+              <div ng-message="md-maxlength" translate>GROUPS.CREATE_S1.ERR_NAME_LEN17</div>
+            </div>
+          </md-input-container>
+
+          <!-- group's description-->
+          <md-input-container class="md-block">
+            <label class="input-label" md-colors="{color:'primary'}" translate>GROUPS.SETTINGS.DESCRIPTION</label>
+            <input
+              type="text" name="description"
+              required
+              translate-attr="{'placeholder':'GROUPS.CREATE_S2.G_DESCR_PHOLDER'}"
+              ng-change="checkForChanges()"
+              ng-disabled="!$_canUpdateGroupName()"
+              md-maxlength="500"
+              ng-model="group.description">
+            <div ng-messages="groupForm.description.$error">
+              <div ng-message="required" translate>GROUPS.FORM_ERROR.REQUIRED</div>
+              <div ng-message="md-maxlength" translate>GROUPS.CREATE_S2.ERR_DESC_LEN256</div>
+            </div>
+          </md-input-container>
+
+          <!-- group visibility -->
+          <md-input-container>
+            <label translate>GROUPS.SETTINGS.CHANGE_VISIBILITY</label>
+            <md-select
+              required
+              ng-model="group.privacy"
+              ng-disabled="!$_canUpdateGroupPrivacy()"
+              ng-change="checkForChanges()">
+              <md-option value="Public"><i translate>GROUPS.CREATE_S1.G_VISIB_PUBLIC</i></md-option>
+              <md-option value="Private"><i translate>GROUPS.CREATE_S1.G_VISIB_PRIVATE</i></md-option>
+              <md-option value="Hidden"><i translate>GROUPS.CREATE_S1.G_VISIB_HIDDEN</i></md-option>
+            </md-select>
+          </md-input-container>
+
+          <!--<p>Creado: {{group.creationDate}}</p>-->
+
+          <md-button
+            class="md-raised md-primary"
+            ng-disabled="!hasValidChanges"
+            ng-click="updateGroupFields()">
+            {{"GROUPS.SETTINGS.APPLY_CHANGES"|translate}}
+          </md-button>
+        </form>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button
+          class="md-raised {{imTheAdmin?'md-accent':'md-primary'}}"
+          ng-if="$_canLeaveGroup()"
+          ng-click="confirmLeave()">
+          {{"GROUPS.SETTINGS.LEAVE_GROUP"|translate}}
+        </md-button>
+        <md-button
+          class="md-raised md-primary"
+          ng-if="$_canRemoveGroup()"
+          ng-click="confirmRemove()">
+          {{"GROUPS.SETTINGS.REMOVE_GROUP"|translate}}
+        </md-button>
+      </md-card-actions>
+    </md-card>
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+</ion-view>

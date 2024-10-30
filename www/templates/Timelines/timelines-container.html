@@ -1,0 +1,85 @@
+<ion-view
+  title="{{groupData.name? '<div class=\'header-avatar-container\'><img src=\''+groupData.image+'\' class=\'header-avatar\'></div>'+groupData.name : HEADER_LOGO}}"
+  class="with-linear-bg"
+  cache-view="true">
+  <ion-nav-buttons side="right">
+    <!--<div ng-include="'templates/partials/timelineMenuTpl.html'"></div>-->
+    <button
+      class="button button-clear"
+      id="timeline-order-btn"
+      ng-click="showSortingMenu();"
+      ng-if="totalGroups === 0">
+      <i class="icon {{menuIcons[order]}}"></i>
+    </button>
+
+    <md-button
+      aria-label="groups options"
+      class="md-icon-button"
+      ng-click="popover.show($event)"
+      ng-if="groups.length">
+      <md-icon md-menu-origin md-svg-icon="img/icons/more_vert_24px.svg"></md-icon>
+    </md-button>
+  </ion-nav-buttons>
+  <ion-content class="scroll-content-shrinking" scroll="false">
+
+    <!-- user timeline -->
+    <ng-include
+      ng-cloak
+      src="''+slideTemplate"
+      ng-controller="TimeLineCtrl"
+      ng-if="totalGroups===0 && slideTemplate"></ng-include>
+
+    <!-- user & groups timelines -->
+    <ion-slides
+      pager="false"
+      options="sliderOptions"
+      slider="sliderDelegate"
+      ng-if="totalGroups>0">
+      <ion-slide-page>
+        <!-- user timeline as 1st slide-->
+        <ng-include
+          ng-cloak
+          src="''+slideTemplate"
+          ng-controller="TimeLineCtrl"
+          ng-if="activeIndex == 0"></ng-include>
+      </ion-slide-page>
+
+      <!-- groups timelines -->
+      <ion-slide-page ng-repeat="group in groups">
+        <ng-include
+          src="''+slideTemplate"
+          ng-controller="groupTimelineCtrl"
+          ng-if="$index+1 == activeIndex">
+        </ng-include>
+      </ion-slide-page>
+    </ion-slides>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'" onload="botonHomeOn = true"></ng-include>
+
+  <div
+    class="statement-button ion-edit"
+    ng-show="statementBtnAction == 'open' && !groupData.imLocked"
+    ng-if="showStatementButton"
+    ng-click="openStatementForm()">
+  </div>
+
+  <style>
+    #timeline-order-btn{
+      font-size: 12px
+    }
+    #timeline-order-btn i::before{
+      font-size: 18px
+    }
+
+    .with-linear-bg{
+      background: linear-gradient(to bottom, rgba(219, 253, 253, .5) 0%, rgba(114, 232, 232, .5) 100%);
+    }
+
+    [nav-view-transition="ios"][nav-view-direction="back"],
+    [nav-view-transition="ios"][nav-view-direction="forward"]{
+      background: none;
+    }
+
+  </style>
+</ion-view>

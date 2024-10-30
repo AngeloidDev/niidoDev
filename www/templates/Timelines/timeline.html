@@ -1,0 +1,124 @@
+<div ng-controller="GalleryCtrl">
+
+  <div ng-if="isRefreshing && !_sequenceList.length"
+       style="width: 100%; height:100%; z-index: 999; color: #fff; position: absolute; text-align:center; top: 0">
+    <div style="height:25%; width: 100%; position: relative"></div>
+    <div
+      style="width:95%; margin:auto; height:200px; background:url(img/photoFrame.svg) no-repeat center; background-size: 60% ; padding:20px; font-size:9px; opacity: .4;"></div>
+  </div>
+
+  <ion-content
+    id="ion-content-userTimeline"
+    class="has-footer"
+    header-shrink
+    scroll-event-interval="5"
+    delegate-handle="mainScroll">
+
+    <ion-refresher
+      pulling-text="{{refreshText}}"
+      spinner="lines"
+      on-refresh="refreshDefaultTimeline()">
+    </ion-refresher>
+
+    <div class="separateHeader"></div>
+
+    <div
+      style="text-align: center;"
+      ng-if="!_sequenceList.length && !isRefreshing && !isLoadingContent && !canGetMoreItems">
+      <p translate>TIMELINE.FIND_FRIENDS</p><br/>
+      <input type="button" ui-sref="menu.discovery" translate-attr="{'value':'TIMELINE.BETTER_WITH_FRIENDS'}"
+             class="button button-block" style=" background-color:#0AA39D; border-color:#0AA39D; color: #fff">
+    </div>
+
+    <ion-list ng-controller="SequenceCtrl">
+      <div  ng-controller="CommentsCtrl">
+        <!-- START OF SEQUENCES -->
+        <div class="list card cards-round"
+             ng-class="{'pinned-sequence':sequence.metadata.isPinned}"
+             style="padding-top: 0; min-height: 85px;"
+             ng-repeat="sequence in _sequenceList track by $index"
+             ng-if="!sequence.metadata.isPinned || (sequence.metadata.isPinned && $index <= _totalPinnedSequences -1)"
+             id="{{_controllerName}}_seq_{{$index}}">
+          <div style="margin-left:0; margin-right:0; min-height: 85px">
+            <div ng-if="sequence.metadata.isAdvertisement" id="{{_controllerName}}_Ad_{{$index}}"
+                 ng-click="increaseAdClicks(sequence, $index)">
+              <!-- cqnz header (avatar, 3-dot-menu, username, date) -->
+              <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+            </div>
+
+            <div ng-if="!sequence.metadata.isAdvertisement">
+              <!-- cqnz header (avatar, 3-dot-menu, username, date) -->
+              <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+            </div>
+
+            <!--**** Show sequence Content ****-->
+            <ng-include
+              src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+            <!--**** Show bottom strip buttons ****-->
+            <ng-include src="'templates/SequenceTemplates/sequenceStripButtonsTpl.html'"></ng-include>
+
+            <!--**** Show Comments ****-->
+            <ng-include src="'templates/SequenceTemplates/sequenceCommentsListTpl.html'"></ng-include>
+          </div>
+        </div>
+        <!-- END OF SEQUENCES -->
+      </div>
+
+      <div class="text-center" ng-if="isLoadingContent && !isRefreshing">
+        <ion-spinner icon="lines"></ion-spinner>
+      </div>
+
+      <ion-infinite-scroll
+        style="visibility: hidden"
+        ng-if="canGetMoreItems && !isFirstTime"
+        immediate-check="false"
+        on-infinite="getMoreDefaultSequences()"
+        distance="18%"></ion-infinite-scroll>
+
+      <div class="bottom-spacer"></div>
+
+    </ion-list>
+
+    <div class="text-center" ng-if="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="refreshDefaultTimeline()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+
+
+  </ion-content>
+</div>
+
+<style>
+  .subheader-no-padding .md-subheader-inner {
+    padding: 8px 16px;
+  }
+
+  .empty-timeline {
+    text-align: center;
+    height: 100%;
+    background: linear-gradient(to bottom, #dbfdfd, #72e8e8, #014e4b);
+    padding-top: 40px;
+    font-size: large;
+    position: absolute;
+    width: 100%;
+    top: 44px;
+  }
+
+  .empty-timeline div {
+    position: fixed;
+    bottom: 40px;
+    width: 100%;
+  }
+
+  .scroll-refresher {
+    top: -15px;
+  }
+</style>

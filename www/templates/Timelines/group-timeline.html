@@ -1,0 +1,111 @@
+<div ng-controller="GalleryCtrl">
+
+  <!-- EMPTY TIMELINE MESSAGE -->
+  <div
+    class="empty-timeline texte-center"
+    style="background:transparent;"
+    ng-if="!_totalPinnedSequences && !_sequenceList.length && !isRefreshing && !isLoadingContent">
+    <p class="timeline-msg platform-{{PLATFORM_NAME}}" ng-if="!peviewTimeline && !groupData.imLocked" translate>
+      GROUPS.G_TIMELINE.EMPTY_TL_MSG
+    </p>
+    <p class="timeline-msg platform-{{PLATFORM_NAME}}" ng-if="peviewTimeline ||  groupData.imLocked" translate>
+      GROUPS.G_TIMELINE.EMPTY_PREVIEW_TL_MSG
+    </p>
+    <div
+      style="z-index: 9999;"
+      ng-style="{'bottom':peviewTimeline?'-5px':'40px'}">
+      <img src="img/empty-timeline.png">
+    </div>
+  </div>
+
+  <ion-content
+    id="ion-content-groupTimeline"
+    ng-class="peviewTimeline?'':'has-footer'"
+    header-shrink
+    scroll-event-interval="5"
+    delegate-handle="mainScroll">
+
+    <ion-refresher
+      pulling-text="{{refreshText}}"
+      spinner="lines"
+      on-refresh="refreshGroupTimeline()">
+    </ion-refresher>
+
+    <div class="separateHeader"></div>
+
+
+    <ion-list ng-controller="SequenceCtrl">
+      <div ng-controller="CommentsCtrl">
+        <!-- START OF SEQUENCES -->
+        <div
+          class="list card cards-round"
+          ng-class="{'pinned-sequence':sequence.metadata.isPinned}"
+          style="padding-top: 0; min-height: 85px;"
+          ng-repeat="sequence in _sequenceList track by $index"
+          ng-if="!sequence.metadata.isPinned || (sequence.metadata.isPinned && $index <= _totalPinnedSequences -1)"
+          id="{{_controllerName}}_seq_{{$index}}">
+          <div style="margin-left:0; margin-right:0; min-height: 85px">
+            <div ng-if="sequence.metadata.isAdvertisement" id="{{_controllerName}}_Ad_{{$index}}"
+                 ng-click="increaseAdClicks(sequence, $index)">
+              <!-- cqnz header (avatar, menu, username, date) -->
+              <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+            </div>
+
+            <div ng-if="!sequence.metadata.isAdvertisement">
+              <!-- cqnz header (avatar, menu, username, date) -->
+              <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+            </div>
+
+            <!--**** Show sequence Content ****-->
+            <ng-include
+              src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+            <!--**** Show bottom strip buttons ****-->
+            <ng-include src="'templates/SequenceTemplates/sequenceStripButtonsTpl.html'"></ng-include>
+
+            <!--**** Show Comments ****-->
+            <ng-include src="'templates/SequenceTemplates/sequenceCommentsListTpl.html'"></ng-include>
+
+          </div>
+        </div>
+        <!-- END OF UNPINNED SEQUENCE -->
+      </div>
+
+      <div class="text-center" ng-if="isLoadingContent && !isRefreshing">
+        <ion-spinner icon="lines"></ion-spinner>
+      </div>
+
+      <ion-infinite-scroll
+        style="visibility: hidden"
+        ng-if="canGetMoreItems && !isFirstTime"
+        immediate-check="false"
+        on-infinite="getMoreGroupSequences()"
+        distance="18%"></ion-infinite-scroll>
+
+      <div class="bottom-spacer" ng-if="!peviewTimeline"></div>
+
+    </ion-list>
+
+    <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="refreshGroupTimeline()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+
+
+  </ion-content>
+
+</div>
+
+
+<style>
+  .scroll-refresher {
+    top: -15px;
+  }
+</style>

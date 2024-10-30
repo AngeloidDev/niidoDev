@@ -1,0 +1,80 @@
+<ion-view title='{{HEADER_LOGO}}' id="admin-permissions-tpl" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <md-button
+        class="md-fab md-mini md-accent md-fab-top-right"
+        aria-label="Create group"
+        ng-if="canCreateAppPermission()"
+        ng-click="showCreatePrompt()">
+        <!--ui-sref="adminCreateEditPermission">-->
+        <md-icon
+          md-svg-src="img/icons/add_circle_outline_24px.svg"></md-icon>
+      </md-button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <ion-content class="has-footer">
+    <md-subheader class="md-no-sticky">
+      <h3 md-colors="{color:'primary'}" translate>ADMIN_TOOLS.ADMIN_PERMISSIONS.PERMISSIONS</h3>
+    </md-subheader>
+
+    <div ng-repeat="(i, pGroup) in permissionsList">
+      <md-subheader
+        md-colors="{'background-color':'primary'}" ng-click="toggleListVisibility(pGroup.tag, pGroup.tag+'_list')">
+        {{'ADMIN_TOOLS.TAGS.'+pGroup.tag|translate}} ({{pGroup.permissions.length}})
+        <span class="icon ion-chevron-{{$first?'up':'down'}}" id="{{pGroup.tag}}" style="font-size: 12px; float: right;"></span>
+      </md-subheader>
+      <div id="{{pGroup.tag}}_list" style="display:{{$first?'block':'none'}}">
+        <md-list-item
+          class="noright"
+          ng-repeat="(j, permission) in pGroup.permissions">
+          <div layout="column" style="margin-top: auto; margin-bottom: auto">
+            <div>{{permission.description}}</div>
+            <!--<div class="small-text" md-colors="{color:'primary'}">{{permission.codeName}}</div>-->
+          </div>
+
+          <md-icon
+            class="md-secondary"
+            md-svg-icon="img/icons/edit_24px.svg"
+            style="margin-right: 12px"
+            aria-label="edit"
+            ng-if="canEditAppPermission()"
+            ng-click="showEditPrompt(i, j)">
+          </md-icon>
+
+          <md-icon
+            class="md-secondary"
+            md-svg-icon="img/icons/delete_24px.svg"
+            aria-label="delete"
+            ng-if="canDeleteAppPermission()"
+            ng-click="confirmDeletePermission(i, j)"></md-icon>
+          <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+      </div>
+      <md-divider></md-divider>
+    </div>
+
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+  <style>
+    .popup-container .popup {
+      width: unset;
+      min-width: 260px;
+      height: auto !important;
+    }
+
+    #admin-permissions-tpl .small-text {
+      font-size: 10px;
+    }
+  </style>
+
+</ion-view>

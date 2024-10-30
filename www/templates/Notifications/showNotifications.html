@@ -1,0 +1,94 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="scroll-content-shrinking"
+               ng-class="{'has-footer':canComment}"
+               header-shrink scroll-event-interval="5"
+               style="margin-bottom: 12px;">
+
+    <ion-refresher
+      pulling-text="{{refreshText}}"
+      spinner="lines"
+      on-refresh="reloadNotifComments()">
+    </ion-refresher>
+
+    <div class="separateHeader"></div>
+
+    <div ng-controller="GalleryCtrl">
+      <div ng-controller="SequenceCtrl">
+        <div class="list card cards-round" style="padding-top: 0; min-height: 85px">
+
+          <!--<div class="text-center" style="margin-top: auto; margin-bottom: auto" ng-if="!sequence.metadata">
+            <ion-spinner icon="lines"></ion-spinner>
+          </div>-->
+
+          <div ng-if="sequence.metadata && sequence.metadata.isAdvertisement" id="{{_controllerName}}_Ad_{{$index}}"
+               ng-click="increaseAdClicks(sequence, $index)">
+            <!-- cqnz header (avatar, menu, username, date) -->
+            <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+          </div>
+
+          <div ng-if="sequence.metadata && !sequence.metadata.isAdvertisement">
+            <!-- cqnz header (avatar, menu, username, date) -->
+            <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+          </div>
+
+          <!--**** Show sequence Content ****-->
+          <ng-include
+            ng-if="sequence.content"
+            src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+          <!--**** Show bottom strip buttons ****-->
+          <ng-include ng-if="sequence.metadata"
+                      src="'templates/SequenceTemplates/sequenceStripButtonsTpl.html'"></ng-include>
+
+          <!--**** Show Comments ****-->
+          <ng-include src="'templates/SequenceTemplates/sequenceCommentsListTpl.html'" ng-controller="CommentsCtrl"
+                      onload="sequence = sequenceAux"></ng-include>
+
+          <div class="text-center" style="margin-top: auto; margin-bottom: auto"
+               ng-if="isCreatingComment || isLoadingComments">
+            <ion-spinner icon="lines"></ion-spinner>
+          </div>
+        </div>
+        <!-- end of card -->
+      </div>
+    </div>
+
+    <div class="text-center" ng-if="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="reloadNotifComments()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col">
+        You need internet connection to see this content.
+      </div>
+    </div>
+
+    <ion-infinite-scroll
+      style="visibility: hidden"
+      ng-if="canGetMoreItems"
+      on-infinite="loadComments()"
+      distance="40%"></ion-infinite-scroll>
+  </ion-content>
+
+
+  <ion-footer-bar
+    class="comments-fotter"
+    ng-show="canComment">
+    <textarea
+      ng-click="openCommentComposer()"
+      readonly
+      style="width: 100%; padding: 8px; background-color:white"
+      placeholder="comenta aqui"></textarea>
+  </ion-footer-bar>
+
+</ion-view>

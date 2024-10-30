@@ -1,0 +1,169 @@
+<ion-view title='{{HEADER_LOGO}}' can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="goBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <ion-content class="has-footer" id="admin-tools-members">
+    <md-subheader>
+      <h3 md-colors="{color:'primary'}"><span translate>ADMIN_TOOLS.ADMIN_MEMBERS.MEMBERS_MANAGEMENT</span></h3>
+    </md-subheader>
+
+    <div style="padding-left: 10px;" ng-show="selectedContact">
+      <label class="input-label assertive" style="font-size:75%; width: 100%; padding: 5px 10px 7px 2px" translate>ADMIN_TOOLS.ADMIN_MEMBERS.SELECTED_MEMBER</label>
+      <div style="
+           background: rgb(224, 224, 224); cursor: default;
+            border-radius: 16px;
+            display: block;
+            height: 32px;
+            line-height: 32px;
+            margin: 8px 8px 0 0;
+            padding: 0 0 0 2px;
+            float: left;
+            box-sizing: border-box;
+            max-width: 100%;
+            position: relative;">
+        <div style="position:relative; float: left">
+          <img
+            ng-src="{{selectedContact.avatar || 'img/ProfilePhoto.svg'}}"
+            alt="{{selectedContact.name}}"
+            style="height: 32px;border-radius: 16px;margin: 0;padding: 0;border: 0;vertical-align: baseline;">
+        </div>
+
+        <div style="float: left; margin-left: 5px;">
+          {{selectedContact.name}}
+        </div>
+        <div style="float: right; margin-left: 5px">
+          <button
+            class="md-chip-remove"
+            style="border: none;
+              box-shadow: none;
+              min-width: 0;
+              padding: 0;
+              margin-right: 5px;"
+            ng-click="unselectContact()">
+            <md-icon
+              md-svg-src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnPjxwYXRoIGQ9Ik0xOSA2LjQxbC0xLjQxLTEuNDEtNS41OSA1LjU5LTUuNTktNS41OS0xLjQxIDEuNDEgNS41OSA1LjU5LTUuNTkgNS41OSAxLjQxIDEuNDEgNS41OS01LjU5IDUuNTkgNS41OSAxLjQxLTEuNDEtNS41OS01LjU5eiIvPjwvZz48L3N2Zz4="
+              role="img" aria-hidden="true">
+              <svg version="1.1" x="0px" y="0px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fit=""
+                   height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <g>
+                  <path
+                    d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path>
+                </g>
+              </svg>
+            </md-icon>
+          </button>
+        </div>
+      </div>
+
+      <div style="clear: both;"></div>
+      <div style="width: 100%; height: 2px; margin-top: 5px; background: rgb(10, 163, 157)"></div>
+
+    </div>
+
+    <div class="padding-horizontal" ng-hide="selectedContact || !canSearchMembers()">
+      <form name="searchForm">
+        <md-input-container class="md-block" style="border-bottom: none">
+          <label translate>ADMIN_TOOLS.ADMIN_MEMBERS.SEARCH_TITLE</label>
+          <input required md-no-asterisk name="username" ng-model="formData.searchedName"
+                 ng-change="searchChanged()"> <!--md-maxlength="30" -->
+          <div ng-messages="searchForm.username.$error">
+            <div ng-message="required" translate>ADMIN_TOOLS.FORM_ERROR.FIELD_REQUIRED</div>
+            <!--<div ng-message="md-maxlength" translate>ADMIN_TOOLS.FORM_ERROR.DESCRIPTION_LENGTH</div>-->
+          </div>
+        </md-input-container>
+      </form>
+    </div>
+
+    <md-subheader ng-show="formData.searchedName.length>=3 && !loadingMembers && !selectedContact">
+      {{asyncContacts.length}} <span translate>ADMIN_TOOLS.ADMIN_MEMBERS.USER</span>{{asyncContacts.length==1?'':'s'}}
+    </md-subheader>
+    <div class="text-center" ng-if="loadingMembers">
+      <ion-spinner icon="lines"></ion-spinner>
+    </div>
+    <md-list-item class="md-2-line" ng-repeat="member in asyncContacts" ng-click="selectContact(member)"
+                  ng-show="!selectedContact">
+      <img ng-src="{{::member.avatar}}" class="md-avatar" alt="{{::member.name}}"/>
+      <div class="md-list-item-text">
+        <h3 md-colors="{color:'primary'}"> {{ ::member.name }} </h3>
+        <p> {{ ::member.bio }} </p>
+      </div>
+
+      <md-divider></md-divider>
+    </md-list-item>
+
+    <div ng-show="selectedContact">
+      <md-subheader class="md-no-sticky">
+        <span translate>ADMIN_TOOLS.ADMIN_MEMBERS.ACTIONS</span>
+      </md-subheader>
+
+      <ion-list>
+        <ion-item class="item-icon-right" ng-click="showUserRoleModal()" ng-if="canChangeUserRole()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.CHANGE_ROLE'|translate}}
+          <i class="icon ion-ios-arrow-right"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="showChangeUserPwrdPrompt()" ng-if="canChangeUserPassword()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.CHG_PASSWD'|translate}}
+          <i class="icon ion-asterisk"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="showChangeUserNamePrompt()" ng-if="canChangeUserName()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.CHG_NAME'|translate}}
+          <i class="icon ion-edit"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="showChangeUserEmailPrompt()" ng-if="canChangeUserEmail()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.CHG_EMAIL'|translate}}
+          <i class="icon ion-email"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmVerifyUser()" ng-if="canVerifyAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.VERIFY_ACCOUNT'|translate}}
+          <i class="icon ion-checkmark-circled"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmUnverifyUser()" ng-if="canUnverifyAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.UNVERIFY_ACCOUNT'|translate}}
+          <i class="icon ion-close-circled"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmActivateAccount()" ng-if="canActivateAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.ACTIVATE_ACCOUNT'|translate}}
+          <i class="icon ion-checkmark-circled"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmDeactivateAccount()" ng-if="canDeactivateAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.DEACTIVATE_ACCOUNT'|translate}}
+          <i class="icon ion-close-circled"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmLockUser()" ng-if="canLockAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.LOCK'|translate}}
+          <i class="icon ion-alert-circled"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmBanUser()" ng-if="canBanAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.BAN'|translate}}
+          <i class="icon ion-locked"></i>
+        </ion-item>
+        <ion-item class="item-icon-right" ng-click="confirmDeleteUser()" ng-if="canDeleteAccount()">
+          {{'ADMIN_TOOLS.ADMIN_MEMBERS.DELETE_ACCOUNT'|translate}}
+          <i class="icon ion-minus-circled"></i>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+  <style>
+    #admin-tools-members .item {
+      border-width: 1px;
+    }
+
+    .popup-container .popup {
+      width: unset;
+      min-width: 260px;
+      height: auto !important;
+    }
+  </style>
+</ion-view>

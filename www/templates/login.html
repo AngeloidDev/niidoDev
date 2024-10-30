@@ -1,0 +1,97 @@
+<style type="text/css">
+  .slide {
+    height: 100vh;
+  }
+
+  .slider-pager-page {
+    color: gray !important;
+    fill: #f90 !important;
+    stroke: gray !important;
+  }
+
+  .slider-pager-page.active {
+    fill: #f90 !important;
+    stroke: red !important;
+    color: red !important;
+  }
+</style>
+<ion-view title="Login" hide-nav-bar="true" cache-view="false">
+  <div>
+    <div class="bg1"></div>
+    <div class="bg2"></div>
+    <div class="bg3"></div>
+    <div class="bg4"></div>
+    <div class="bg5"></div>
+    <div style="z-index:9999">
+      <ion-content overflow-scroll="false" padding="true" scroll="true" style=" padding:15px; padding-top: 10%;">
+        <div class="spacer" style="height: 10%;"></div>
+        <div style="text-align:center;">
+          <img src="img/LogoLogin.png" width="90%" height="auto">
+        </div>
+        <div ng-if="!checkTerms">
+          <div class="spacer" style="width: 300px; height: 24px;"></div>
+          <form class="list" onsubmit="return false;"><!--ng-submit="login()"-->
+            <ion-list>
+              <label class="item item-input"
+                     style="background: rgba(255, 255, 255, 0.94);   border:1px solid #0AA39D; margin-bottom:5px; color:#000;">
+                <input type="text" translate-attr="{ 'placeholder': 'LOGIN.USERNAME' }" style="color:#000;"
+                       ng-model="data.userName"/>
+              </label>
+              <label class="item item-input" style="background: rgba(255, 255, 255, 0.94); border :1px solid #0AA39D;">
+                <input type="password" translate-attr="{ 'placeholder': 'LOGIN.PASSWORD' }" style="color:#000"
+                       ng-model="data.password">
+              </label>
+              <div class="forgot-password" ui-sref="forgotPassword" translate>
+                LOGIN.FORGOT_PASSWORD
+              </div>
+              <div ng-if="ErrorMessage != '' " ng-bind="ErrorMessage" class="item-input assertive" style="color: #F00;">
+              </div>
+            </ion-list>
+            <div class="spacer" style="width: 283px; height: 34px;"></div>
+            <input
+              type="submit"
+              translate-attr="{ 'value': 'LOGIN.LOG_IN' }"
+              class="button button-stable button-block  button-full"
+              ng-click="login()"
+              ng-disabled="!data.userName || !data.password"
+              style="color: #fff; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); background-color: #0AA39D; border:none; ">
+            <a ng-click="facebookSignIn()" class="button button-stable button-block  button-full"
+               style="color: #fff; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); background-color: rgba(59,89,152,.88); border:none; "
+               translate>
+              LOGIN.LOG_IN_WITH_FACEBOOK
+            </a>
+            <a ui-sref="signup" class="button button-light button-clear button-block"
+               style="color: #fff; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); background-color: rgba(102,102,102,.88) "
+               translate>
+              LOGIN.SIGN_UP
+            </a>
+          </form>
+        </div>
+        <div ng-if="checkTerms" style="padding-top: 5vh !important;">
+          <div
+            style="width:100% !important; margin:auto !important; height:100% !important; background-color: rgba(255,255,255,.9); padding: 10px; border-radius: 10px;">
+            <div style="height:1.5vh;"></div>
+            <div style="  padding-left:10px; padding-right:10px; text-align:left;">
+              <span translate>LOGIN.FACEBOOK_ACK</span> <a ui-sref="signUpPolicy" style="color:#6495ED;" translate>GLOBAL.PRIVACY_POLICY</a>
+              <span translate>LOGIN.FACEBOOK_ACK2</span> <a ui-sref="signUpTerms" style="color:#6495ED;" translate>GLOBAL.TERMS_USE</a>
+            </div>
+            <div style="height:1.5vh;"></div>
+            <div style="margin-bottom:5px; margin-top:10px; margin-right: 2px; padding-left: 4px; min-height: 24px;">
+              <button class="button button-light button-clear" ng-click="cancelTerms()"
+                      style="width: 25vw !important; left: 12vw !important; border-radius: 10px; color: #fff; background-color: rgba(102,102,102,.5) "
+                      translate>
+                GLOBAL.CANCEL
+              </button>
+              <button class="button button-stable" ng-click="askAge()"
+                      style="width: 25vw !important; left: 19vw !important; border-radius: 10px; color: #fff; background-color: rgba(153,0,0,.88); border:none; "
+                      translate>
+                GLOBAL.OK
+              </button>
+            </div>
+            <div style="height:1.5vh;"></div>
+          </div>
+        </div>
+      </ion-content>
+    </div>
+  </div>
+</ion-view>

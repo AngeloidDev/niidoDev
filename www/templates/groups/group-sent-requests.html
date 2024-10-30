@@ -1,0 +1,39 @@
+<ion-view title="{{'GROUPS.MAIN_PAGE.POPUP_MENU.SENT_REQS'|translate}}">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <!-- Todo: add I18N support -->
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-footer padding">
+    <div class="text-center" ng-if="loadingContent">
+      <ion-spinner></ion-spinner>
+    </div>
+
+
+    <div ng-if="!groupsList.length && !loadingContent" translate>
+      GROUPS.SENT_REQS.NO_ITEMS
+    </div>
+
+    <ion-list class="swipable-list" show-delete="false" can-swipe="true">
+      <ion-item class="item-thumbnail-left" ng-repeat="group in groupsList">
+        <img ng-src="{{group.image}}">
+        <h2 md-colors="{color:'primary'}">{{group.name}}</h2>
+        <p>{{group.description}}</p>
+
+        <ion-option-button
+          md-colors="{color:'warn'}"
+          class="icon ion-trash-a"
+          ng-click="confirmRejectRequest($index)"></ion-option-button>
+        <!--<ion-option-button
+          class="button-light icon ion-ios-plus-outline" add></ion-option-button>
+      </ion-item>-->
+    </ion-list>
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+</ion-view>

@@ -1,0 +1,81 @@
+<ion-view cache-view="false">
+  <ion-nav-bar class="bar-assertive">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-title translate>SIGNUP.TITLE</ion-nav-title>
+  </ion-nav-bar>
+
+  <!--<div class="bar bar-header">
+    <button class="button button-icon icon ion-chevron-left button-clear button-stable"
+            ng-click="methods.goBack()"></button>
+    <div class="h1 title assertive" style="margin-left:10px;" translate>SIGNUP.TITLE</div>
+  </div>-->
+  <ion-content class="has-header">
+    <form class="list base-bg" name="form">
+      <div class="row">
+        <div class="col col-50">
+          <label class="item item-input"
+                 ng-class="{ 'has-error' : form.firstName.$invalid && form.firstName.$touched }">
+            <input type="text" translate-attr="{ 'placeholder': 'SIGNUP.NAME' }" name="firstName"
+                   ng-model="data.newUser.firstName" required autofocus>
+          </label>
+        </div>
+        <div class="col col-50">
+          <label class="item item-input" ng-class="{ 'has-error' : form.lastName.$invalid && form.lastName.$touched }">
+            <input type="text" translate-attr="{ 'placeholder': 'SIGNUP.LAST_NAME' }" name="lastName"
+                   ng-model="data.newUser.lastName" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-100">
+          <label class="item item-input" ng-class="{ 'has-error' : form.email.$invalid && form.email.$touched }">
+            <input type="email" translate-attr="{ 'placeholder': 'SIGNUP.EMAIL' }" name="email"
+                   ng-model="data.newUser.email" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-100">
+          <label class="item item-input" ng-class="{ 'has-error' : form.username.$invalid && form.username.$touched }">
+            <input type="text" translate-attr="{ 'placeholder': 'SIGNUP.USERNAME' }" name="username"
+                   ng-model="data.newUser.username" ng-change="methods.findUsername()" ng-minlength="4"
+                   ng-pattern="'[\\w\\d\\_]+'" required>
+          </label>
+          <div ng-if="form.username.$error.minlength" class="item-input assertive">
+            <span translate>SIGNUP.TOO_SHORT</span>
+          </div>
+          <div ng-if="form.username.$error.pattern" class="item-input assertive">
+            <span translate>SIGNUP.CANT_HAVE_SPECIAL_CHARACTERS</span>
+          </div>
+          <div ng-if="data.newUser.availableUsername == 1 && form.username.$valid" class="item-input assertive">
+            <span translate>SIGNUP.ALREADY_EXISTS</span>
+          </div>
+          <div ng-if="data.newUser.availableUsername == 2 && form.username.$valid" class="item-input balanced">
+            <span translate>SIGNUP.AVAILABLE</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-100">
+          <label class="item item-input" ng-class="{ 'has-error' : form.password.$invalid && form.password.$touched }">
+            <input type="password" translate-attr="{ 'placeholder': 'SIGNUP.PASSWORD' }" name="password"
+                   ng-model="data.newUser.password" required>
+          </label>
+        </div>
+      </div>
+      <div class="row" ng-show="form.$valid && data.newUser.availableUsername == 2">
+        <div class="col col-100 text-right">
+          <button class="button button-icon icon-right ion-chevron-right button-clear button-assertive"
+                  ng-click="methods.continue()" ng-disabled="form.$invalid && data.newUser.availableUsername != 2"
+                  translate>GLOBAL.CONTINUE
+          </button>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

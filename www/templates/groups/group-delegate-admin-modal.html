@@ -1,0 +1,75 @@
+<md-dialog aria-label="Modal">
+  <md-dialog-content class="md-dialog-content" style="padding: 12px">
+    <md-card class="text-center" style="padding: 12px">
+      <h5 md-colors='{color:"default-accent"}'>{{"GROUPS.SETTINGS.DELEGATE_ADMIN.MAIN_MSG"|translate}}</h5>
+    </md-card>
+
+    <md-content layout-padding>
+      <md-subheader class="md-no-sticky" ng-if="locals.membersList.length">
+        {{locals.membersList.length}} {{"GROUPS.MEMBERS_MGMT.MEMBER"|translate}}{{locals.membersList.length>1?'s':''}}
+      </md-subheader>
+
+      <div ng-hide="!isLoadingMembers" class="text-center">
+        <ion-spinner></ion-spinner>
+      </div>
+      <md-radio-group ng-model="locals.selectedUserHrefId">
+        <md-list>
+          <div ng-repeat='member in locals.membersList'>
+            <md-list-item class="md-2-line" style="padding: 0">
+              <div style="display: flex;" ng-if="member.isAdmin || member.isBanned || member.isLocked">
+                <img ng-src="{{member.avatar}}" class="md-avatar" alt="{{member.name}}"/>
+                <div class="md-list-item-text">
+                  <h3 md-colors="{color:'default-primary'}"> {{ member.name }} </h3>
+                  <p> {{ member.bio }} </p>
+                  <p md-colors="{color: 'default-accent-600'}" ng-show="member.isAdmin" translate>
+                    GROUPS.MEMBERS_MGMT.ADMINISTRATOR
+                  </p>
+                  <p md-colors="{color: 'default-accent-600'}" ng-show="member.isModerator" translate>
+                    GROUPS.MEMBERS_MGMT.MODERATOR
+                  </p>
+                  <p md-colors="{color: 'default-accent-600'}" ng-show="member.isBanned" translate>
+                    GROUPS.MEMBERS_MGMT.BANNED
+                  </p>
+                  <p md-colors="{color: 'default-accent-600'}" ng-show="member.isLocked" translate>
+                    GROUPS.MEMBERS_MGMT.LOCKED
+                  </p>
+                </div>
+              </div>
+
+              <md-radio-button
+                flex
+                aria-label="{{ ::member.name }}"
+                class="md-primary"
+                ng-if="!member.isAdmin && !member.isBanned && !member.isLocked"
+                ng-value="member.groupMemberHrefId">
+                <div style="display: flex;">
+                  <img ng-src="{{::member.avatar}}" class="md-avatar" alt="{{::member.name}}"/>
+                  <div class="md-list-item-text">
+                    <h3 md-colors="{color:'default-primary'}"> {{ ::member.name }} </h3>
+                    <p> {{ ::member.bio }} </p>
+                  </div>
+                </div>
+              </md-radio-button>
+            </md-list-item>
+            <md-divider ng-if="!$last"></md-divider>
+          </div>
+        </md-list>
+      </md-radio-group>
+    </md-content>
+
+
+    <md-dialog-actions>
+      <md-button class="md-raised md-primary" ng-click="cancel()">
+        <i translate>GROUPS.CANCEL_TXT</i>
+      </md-button>
+      <md-button
+        class="md-raised md-primary"
+        ng-disabled="!locals.selectedUserHrefId"
+        ng-click="ok()">
+        <i translate>GROUPS.OK_TXT</i>
+      </md-button>
+    </md-dialog-actions>
+  </md-dialog-content>
+</md-dialog>
+
+

@@ -1,0 +1,528 @@
+<ion-view title="{{groupData.name || HEADER_LOGO}}" cache-view="false" can-swipe-back="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right"></ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="padding">
+    <form action="" name="uploadForm" enctype="multipart/form-data" onsubmit="return false;">
+      <div style="width:99%; border:rgba(204,204,204,.8) 5px dashed; margin:auto;
+                height:200px; background:url(img/photoFrame.svg) no-repeat center; background-size: 30% ; padding:20px; font-size:9px; opacity: .3;"
+           ng-click="addMedia()"
+           class="ng-hide"
+           ng-show="(data.pictures.length <1 && data.haveVideo == 0)">
+      </div>
+      <div id="{{ idImages }}" style="margin-right:15px; margin-left:15px;" ng-init="defaultTemplate()">
+        <div id="horizontal-container" style="border: 5px; " ng-show="data.modeSelect == 'F'">
+          <ul class="sortable-row" as-sortable="sortableOptions" data-ng-model="data.pictures">
+            <li ng-repeat="picture in data.pictures track by UniqueTracking($index, picture)" class="imagesUpload"
+                as-sortable-item>
+              <div class="imgItemUpload" as-sortable-item-handle
+                   style=" padding-right:10px;background-image:url({{ picture }}) !important"></div>
+              <i class="icon ion-close-round"
+                 style="position:absolute !important; right: 0px; top: 0px; color:#fff !important; text-shadow: 2px 1px 1px rgba(150, 150, 150, 1); padding: 3px 3px 18px 18px"
+                 ng-click="removeImage($index)">
+              </i>
+            </li>
+          </ul>
+        </div>
+        <div id="horizontal-container" style="border: 5px; " ng-show="data.modeSelect == 'S'">
+          <ul class="sortable-row" as-sortable="sortableOptions" data-ng-model="data.pictures">
+            <li ng-repeat="picture in data.pictures track by UniqueTracking($index, picture)"
+                class="imagesUpload photo-slide photo-slide-upload photo-slide-upload" as-sortable-item>
+              <div class="imgItemUpload photo-slide"
+                   style=" padding-right:10px;background-image:url({{ picture }}) !important"></div>
+              <i class="icon ion-close-round"
+                 style="position:absolute !important; right: 0px; top: 0px; color:#fff !important; text-shadow: 2px 1px 1px rgba(150, 150, 150, 1); padding: 3px 3px 18px 18px"
+                 ng-click="removeImage($index)">
+              </i>
+            </li>
+          </ul>
+        </div>
+        <!--<div id="horizontal-container" style="border: 5px; " ng-show="data.haveVideo == 1">
+            <video id="videoArea" width="100%" height="310px" controls ng-src="{{data.video}}" poster="img/LogoShare.png">
+        </div>-->
+        <div class="ng-hide" ng-show="data.pictures.length > 6" translate>
+          UPLOAD.PHOTOS_LENGHT
+        </div>
+      </div>
+      <div ng-show="data.pictures.length >= 1">
+        <div class="row" id="changeStyleButton">
+          <div class="col col-25">
+            <div id="slideShowDiv" ng-show="data.modeSelect == 'S' && data.pictures.length >= 1"
+                 ng-click="showScrollBars('F')"></div>
+            <div id="frameShowDiv" ng-show="data.modeSelect == 'F' && data.pictures.length >= 1"
+                 ng-click="showScrollBars('S')"></div>
+          </div>
+          <div class="col col-75" style="height: 80px;">
+            <div style=" z-index: 999; " ng-show="data.pictures.length >= 1">
+              <div class="ion-arrow-right-b"
+                   style="color: red; position: absolute;  z-index: 999;  right: 1px; width: 15px; margin-top: 20px !important; "></div>
+              <div class="ion-arrow-left-b"
+                   style="color: red;  position: absolute; z-index: 999;    left: 85px; width: 15px; margin-top: 20px !important; "></div>
+            </div>
+            <ion-scroll direction="x" scrollbar-x="true" scrollbar-y="true" has-bouncing="true" zooming="false"
+                        delegate-handle="horizontal"
+                        style="width: 200%; position: relative; overflow: scroll !important; padding-right: 15px; padding-left: 15px;"
+                        ng-show="data.pictures.length >= 1 && data.modeSelect == 'F'">
+              <ul id="templates" style="width: 200%; height: 80px; ">
+                <!--1 photo -->
+                <li id="templateA11" ng-click="changeTemplate('templateA11','A11')" ng-show="data.pictures.length == 1"
+                    ng-style="A11"></li>
+                <!--2 photos-->
+                <li id="templateE21" ng-click="changeTemplate('templateE21','E21')" ng-show="data.pictures.length == 2"
+                    ng-style="E21"></li>
+                <li id="templateB21" ng-click="changeTemplate('templateB21','B21')" ng-show="data.pictures.length == 2"
+                    ng-style="B21"></li>
+                <li id="templateB24" ng-click="changeTemplate('templateB24','B24')" ng-show="data.pictures.length == 2"
+                    ng-style="B24"></li>
+                <li id="templateB23" ng-click="changeTemplate('templateB23','B23')" ng-show="data.pictures.length == 2"
+                    ng-style="B23"></li>
+                <li id="templateB22" ng-click="changeTemplate('templateB22','B22')" ng-show="data.pictures.length == 2"
+                    ng-style="B22"></li>
+                <li id="templateC21" ng-click="changeTemplate('templateC21','C21')" ng-show="data.pictures.length == 2"
+                    ng-style="C21"></li>
+                <!--<li id="templateC22" ng-click="changeTemplate('templateC22','C22')" ng-show="data.pictures.length == 2" ng-style="C22"></li>
+                -->
+                <li id="templateD21" ng-click="changeTemplate('templateD21','D21')" ng-show="data.pictures.length == 2"
+                    ng-style="D21"></li>
+                <!--3 photos-->
+                <li id="templateE31" ng-click="changeTemplate('templateE31','E31')" ng-show="data.pictures.length == 3"
+                    ng-style="E31"></li>
+                <li id="templateB33" ng-click="changeTemplate('templateB33','B33')" ng-show="data.pictures.length == 3"
+                    ng-style="B33"></li>
+                <li id="templateB34" ng-click="changeTemplate('templateB34','B34')" ng-show="data.pictures.length == 3"
+                    ng-style="B34"></li>
+                <li id="templateB31" ng-click="changeTemplate('templateB31','B31')" ng-show="data.pictures.length == 3"
+                    ng-style="B31"></li>
+                <li id="templateB32" ng-click="changeTemplate('templateB32','B32')" ng-show="data.pictures.length == 3"
+                    ng-style="B32"></li>
+                <li id="templateB35" ng-click="changeTemplate('templateB35','B35')" ng-show="data.pictures.length == 3"
+                    ng-style="B35"></li>
+                <li id="templateD31" ng-click="changeTemplate('templateD31','D31')" ng-show="data.pictures.length == 3"
+                    ng-style="D31"></li>
+                <!--4 photos-->
+                <li id="templateE41" ng-click="changeTemplate('templateE41','E41')" ng-show="data.pictures.length == 4"
+                    ng-style="E41"></li>
+                <li id="templateC41" ng-click="changeTemplate('templateC41','C41')" ng-show="data.pictures.length == 4"
+                    ng-style="C41"></li>
+                <li id="templateC42" ng-click="changeTemplate('templateC42','C42')" ng-show="data.pictures.length == 4"
+                    ng-style="C42"></li>
+                <li id="templateB41" ng-click="changeTemplate('templateB41','B41')" ng-show="data.pictures.length == 4"
+                    ng-style="B41"></li>
+                <li id="templateB42" ng-click="changeTemplate('templateB42','B42')" ng-show="data.pictures.length == 4"
+                    ng-style="B42"></li>
+                <li id="templateB43" ng-click="changeTemplate('templateB43','B43')" ng-show="data.pictures.length == 4"
+                    ng-style="B43"></li>
+                <li id="templateB44" ng-click="changeTemplate('templateB44','B44')" ng-show="data.pictures.length == 4"
+                    ng-style="B44"></li>
+                <li id="templateD41" ng-click="changeTemplate('templateD41','D41')" ng-show="data.pictures.length == 4"
+                    ng-style="D41"></li>
+                <!--5 photos-->
+                <li id="templateE51" ng-click="changeTemplate('templateE51','E51')" ng-show="data.pictures.length == 5"
+                    ng-style="E51"></li>
+                <li id="templateB51" ng-click="changeTemplate('templateB51','B51')" ng-show="data.pictures.length == 5"
+                    ng-style="B51"></li>
+                <li id="templateB52" ng-click="changeTemplate('templateB52','B52')" ng-show="data.pictures.length == 5"
+                    ng-style="B52"></li>
+                <li id="templateB53" ng-click="changeTemplate('templateB53','B53')" ng-show="data.pictures.length == 5"
+                    ng-style="B53"></li>
+                <li id="templateB54" ng-click="changeTemplate('templateB54','B54')" ng-show="data.pictures.length == 5"
+                    ng-style="B54"></li>
+                <li id="templateB55" ng-click="changeTemplate('templateB55','B55')" ng-show="data.pictures.length == 5"
+                    ng-style="B55"></li>
+                <li id="templateD51" ng-click="changeTemplate('templateD51','D51')" ng-show="data.pictures.length == 5"
+                    ng-style="D51"></li>
+                <!--6 photos-->
+                <li id="templateE61" ng-click="changeTemplate('templateE61','E61')" ng-show="data.pictures.length == 6"
+                    ng-style="E61"></li>
+                <li id="templateB61" ng-click="changeTemplate('templateB61','B61')" ng-show="data.pictures.length == 6"
+                    ng-style="B61"></li>
+                <li id="templateB62" ng-click="changeTemplate('templateB62','B62')" ng-show="data.pictures.length == 6"
+                    ng-style="B62"></li>
+                <li id="templateB63" ng-click="changeTemplate('templateB63','B63')" ng-show="data.pictures.length == 6"
+                    ng-style="B63"></li>
+                <li id="templateB64" ng-click="changeTemplate('templateB64','B64')" ng-show="data.pictures.length == 6"
+                    ng-style="B64"></li>
+                <li id="templateD61" ng-click="changeTemplate('templateD61','D61')" ng-show="data.pictures.length == 6"
+                    ng-style="D61"></li>
+              </ul>
+            </ion-scroll>
+            <ion-scroll direction="x" scrollbar-x="true" scrollbar-y="true" has-bouncing="true" zooming="false"
+                        delegate-handle="horizontal"
+                        style="width: 160%; position: relative; overflow: scroll !important; padding-left: 15px;"
+                        ng-show="data.pictures.length >= 1 && data.modeSelect == 'S'">
+              <div id="select-container">
+                <ul style="width: 150%; height: 80px; ">
+                  <li class="imagesSlide" ng-class="{'slide-selected' : $index === origin }"
+                      ng-repeat="picture in data.pictures | orderBy:'picture':true track by UniqueTracking($index, picture)"
+                      ng-click="changePhotoFrameOrder($index)">
+                    <div class="imgItemSlide" style=" padding-right:10px;background-image:url({{ picture }}) !important"
+                         ng-class="{'slide-img-selected' : $index === origin }"></div>
+                    <i class="icon ion-close-round"
+                       style="position:absolute !important; right: 0px; top: 0px; color:#fff !important; text-shadow: 2px 1px 1px rgba(150, 150, 150, 1); padding: 3px 3px 18px 18px"
+                       ng-click="removeImage($index)">
+                    </i>
+                  </li>
+                </ul>
+              </div>
+            </ion-scroll>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="true" class="item item-input spacer" ng-click="openTextEditArea()"
+           style=" border:solid 1px #CCCCCC; padding-top:16px; margin-bottom:10px; ">
+              <div type="text"
+                  ng-model="data.sequenceName"
+                  name="sequenceName"
+                  id="sequenceName"
+                  style="height: 32px !important">
+                  {{data.sequenceName}}{{!data.sequenceName? 'UPLOAD.TITLE':'' |translate}}
+              </div>
+              <!--
+                translate-attr="{ 'placeholder' : 'UPLOAD.TITLE' }"
+                keydown="autosize()"
+                ng-trim="false"
+                required
+                ng-change="catchTagsWhenWritten(data.sequenceName)"-->
+      </div>
+      <!--<div ng-if="false" class="item item-input spacer"
+           style=" border:solid 1px #CCCCCC; padding-top:16px; margin-bottom:10px; ">
+                <textarea type="text"
+                          keydown="autosize()"
+                          ng-model="data.sequenceName"
+                          name="sequenceName"
+                          id="sequenceName"
+                          translate-attr="{'placeholder':'UPLOAD.TITLE'}"
+                          required
+                          style="height: 32px !important">
+                </textarea>
+        <mentio2-menu
+          id="tagsMenu"
+          mentio2-for="'content-editable'"
+          mentio2-trigger-char="'@'"
+          mentio2-items="tags"
+          mentio2-template-url="/tag-mentions2.tpl"
+          mentio2-search="searchTags(term)"
+          mentio2-select="getTagTextRaw(item)"
+          style="display: block; top: 159px; left: 15px; position: absolute; z-index: 100;">
+        </mentio2-menu>
+        <mentio2-menu
+          id="hashtagsMenu"
+          mentio2-for="'content-editable'"
+          mentio2-trigger-char="'#'"
+          mentio2-items="hashs"
+          mentio2-template-url="/hash-mentions2.tpl"
+          mentio2-search="searchHashs(term)"
+          mentio2-select="getHashTextRaw(item)"
+          style="display: block; top: 159px; left: 15px; position: absolute; z-index: 100;">
+        </mentio2-menu>
+      </div>-->
+      <div class="text-right" style="background-color: white">
+        <label
+          style="font-size: 12px"
+          ng-style="{ color : data.sequenceName.length>=440 && data.sequenceName.length<=500 ? '#e0b000' : (data.sequenceName.length>500 ? 'red': 'gray')}">
+          {{data.sequenceName.length||0}}/500
+        </label>
+      </div>
+      <!--<div style="clear:both;"></div>
+      <div>
+        <ul class="list-group" ng-if="data.isTagging">
+          <li ng-repeat="Tag in data.mentionsList" class="list-group-item">
+            <div style="width: 30px; height: 30px; float: left; margin-right: 4px;">
+              <img class="mentio-avatar mentio-image-avatar" ng-src="{{Tag.photo}}"/>
+            </div>
+            <span>{{ ::Tag.name }}</span>
+          </li>
+          <li class="list-group-item">
+            <div style="height: 30px; margin-top: 8px;">
+              <a ng-click="openTagsMenu()">Show more...</a>
+            </div>
+          </li>
+        </ul>
+      </div>-->
+
+      <div class="row">
+        <md-switch
+          md-invert
+          ng-model="data.enableComments"
+          class="md-primary"
+          style="margin: 0 0 0 auto;"
+          aria-label="enable comments">
+          {{'UPLOAD.ENABLE_COMMENTS'|translate}}
+        </md-switch>
+      </div>
+      <!--<div class="row">
+        <md-switch
+          md-invert
+          ng-model="data.lifetime"
+          class="md-primary"
+          style="margin: 0 0 0 auto;"
+          aria-label="enable comments">
+          {{'UPLOAD.DELETE_AFTER'|translate}} 24 {{'GLOBAL.HOURS'|translate}}
+        </md-switch>
+      </div>-->
+      <div class="row">
+        <md-switch
+          md-invert
+          ng-model="data.shareable"
+          class="md-primary"
+          style="margin: 0 0 0 auto;"
+          aria-label="enable shareability">
+          {{'UPLOAD.ENABLE_SHARE'|translate}}
+        </md-switch>
+      </div>
+
+      <div class="list" ng-if="iAmAdvertiser">
+        <div class="item item-divider" style="font-size: 13px">{{'UPLOAD.HEADER_OPTIONS_TAG'|translate}}</div>
+        <div style="padding-top: 5px">
+          <div
+            class="list card cards-round"
+            style="padding-top: 0; margin: 10px 0 15px 0">
+            <div style="margin-left:0; margin-right:0;">
+              <div
+                class="headerCard"
+                ng-style="{'background-color': data.selectedBgColor, color: data.selectedFontColor}">
+                <!-- user avatar -->
+                <div style="width:50px; height:50px; float:left; margin-top: 0 !important">
+                  <a class="headerCardText item-avatar" style="margin-left:10px;">
+                    <img class="avatar-image"
+                         ng-src="{{ ::advertisement.ownerMetadata.avatar}}"
+                         style="margin-left:4px;"/>
+                  </a>
+                </div>
+
+                <div style="float:left; margin-top:4px; margin-left:1px;">
+                  <!-- username -->
+                  <div
+                    class="userNameBold"
+                    style="width: 61%; float:left; margin-top:4px; margin-left:1px;">
+                    {{advertisement.ownerMetadata.name}}
+                  </div>
+
+                  <!-- creation date -->
+                  <div style="font-size: 11px; float: left; margin-left: 1px; margin-top: -5px;">
+                    {{::advertisement.creationTime | creationTime}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="item-divider" style=" text-align:left; color: gray">
+                {{'UPLOAD.TITLE' |translate}}
+              </div>
+            </div>
+          </div>
+
+          <div style="color: gray;">
+            {{'UPLOAD.HEADER_BG_COLOR'|translate}}
+            <ngjs-color-picker selected-color="data.selectedBgColor" custom-colors="customColors"
+                               class="colorPicker"></ngjs-color-picker>
+            {{'UPLOAD.HEADER_FONT_COLOR'|translate}}
+            <ngjs-color-picker selected-color="data.selectedFontColor" custom-colors="customColors"
+                               class="colorPicker"></ngjs-color-picker>
+          </div>
+        </div>
+
+        <div class="item item-divider" style="font-size: 13px">{{'UPLOAD.DATETIME_PICKER_TAG'|translate}}</div>
+        <a class="item item-icon-left"
+           style="color: #0c60ee; padding:8px 0 2px 34px; font-size: 13px"
+           title="dateTimePickerTitle"
+           ion-datetime-picker date monday-first
+           only-valid="{'after': 'today', 'inclusive': true}"
+           ng-model="data.finalDate">
+          <i class="icon ion-ios-calendar-outline" style="left: 0; padding-bottom: 4px"></i>
+          {{data.finalDate|date: 'MMM d, y'}}
+        </a>
+      </div>
+
+
+
+
+      <div id="step2" style="  padding-left:5px; padding-right:5px; margin: 15px 0 0 0" align="center"
+           data-tooltipClass='forLastStep'>
+        <table width="70%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="43" onclick="toggle_background('faa'); toggle_visibility('foo')" id="faa" class="arrowDown"
+                style="padding-right:3px; background-position:13px; width:43px !important;">
+              <input type="button" value="a" style=" width:43px;
+                                border-radius: 7px;
+                                color: transparent !important;
+                                background: rgba(204,204,204,.2);
+                                font-family: Arial;
+                                font-size: 14px;
+                                border: transparent;
+                                padding: 10px 0px 10px 41px;
+                                text-decoration: none;"
+                     class="button button-small button-block button-calm"/>
+            </td>
+            <td width="80%">
+              <input type="button" value="{{ cameraType == 'front' ? 'MultiSelfie' : 'MultiShot'}}"
+                     style=" width:100%;
+                                border-radius: 7px;
+                                text-shadow: 01px 1px 2px rgba(102,102,102,.5);
+                                color: rgba(51,51,51,.8);
+                                background: rgba(204,204,204,.2);
+                                font-family: Arial;
+                                font-size: 14px;
+                                border: transparent;
+                                padding: 10px 0px 10px 0px;
+                                text-decoration: none;"
+                     class="button button-small button-block button-calm" ng-click="openCamera()"
+                     ng-disabled="data.pictures.length>=6"/>
+            </td>
+            <td width="43" ng-class="  cameraType == 'front' ? ' multiselfieButton' : 'multishootButton'"
+                style="padding-left:3px; background-position:6px;"
+                ng-click=" cameraType == 'front' ? cameraType = 'back' : cameraType = 'front'">
+              <input type="button" value="a" style=" width:100%;
+                                border-radius: 7px;
+                                color: transparent !important;
+                                background: rgba(204,204,204,.2);
+                                font-family: Arial;
+                                font-size: 14px;
+                                border: transparent;
+                                padding: 10px 0px 10px 41px;
+                                text-decoration: none;"
+                     class="button button-small button-block button-calm"/>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="foo"
+           style=" padding:7px; padding-top:3px; margin-top:-7px;  margin-bottom:20px;  margin-left:2px; margin-right:2px; border: solid 1px;   background: rgba(209,209,209,.2) ; color:rgba(51,51,51,1); border-radius:7px; display:none; border-color: rgba(204,0,0,1);">
+        <table width="100%" border="1" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="10" colspan="5" align="center" valign="bottom">
+              <div style="font-size:14px; color:rgba(51,51,51,.6); margin-bottom:5px; margin-top:5px;">
+                {{'UPLOAD.PERSONALIZE' | translate}} {{ cameraType == 'front' ? 'MultiSelfie' : 'MultiShot'}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="top">
+              <label for="in_second" style="font-size:10px; color:rgba(51,51,51,.6);"
+                     translate>UPLOAD.SECONDS</label><br/>
+              <select id="in_second" name="in_second" ng-change="chkCount()"
+                      ng-options="option.name for option in time.availableOptions track by option.id"
+                      ng-model="time.selectedOption"
+                      style="border:none; background-color:rgba(255,255,255,1); color: rgba(102,102,102,1);  border-radius:5px;">
+              </select>
+            </td>
+            <td align="center" valign="top">
+              <label for="in_count" style="font-size:10px; color:rgba(51,51,51,.6);" translate>UPLOAD.PHOTOS</label>
+              <br/><select id="in_count" name="in_count"
+                           ng-options="option.name for option in photo.availableOptions track by option.id"
+                           ng-model="photo.selectedOption"
+                           style="border:none; background-color:rgba(255,255,255,1);  color: rgba(102,102,102,1);  border-radius:5px;">
+            </select>
+            </td>
+            <td align="center" valign="top">
+              <label for="delayTime" style="font-size:10px; color:rgba(51,51,51,.6);"
+                     translate>UPLOAD.DELAY</label><br/>
+              <select id="delayTime" name="delayTime"
+                      style="border:none; background-color:rgba(255,255,255,1);  color: rgba(102,102,102,1);  border-radius:5px;">
+                <option value="0">0</option>
+                <option value="1" selected="selected">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+            </td>
+            <td align="center" valign="top">
+              <label for="modeType" style="font-size:10px; color:rgba(51,51,51,.6);" translate>UPLOAD.CAMERA</label>
+              <br/>
+              <select id="modeType" ng-model="cameraType" name="modeType"
+                      style="border:none; background-color:rgba(255,255,255,1);  color: rgba(102,102,102,1);  border-radius:5px;">
+                <option value='back'>MultiShot</option>
+                <option selected value='front'>MultiSelfie</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" align="center">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div height="3px" align="center"
+           style=" font-size:12px; color:rgba(102,102,102,.7); margin:0px; padding:0px;   margin-bottom:-5px; margin-top:-6px;">
+        - &nbsp; {{'UPLOAD.OR' | translate}} &nbsp; -
+      </div>
+      <div id="step3" style="padding-left:5px; padding-right:5px; margin:0; " align="center">
+        <input type="button" translate-attr="{'value':'UPLOAD.CAMERA_LIBRARY'}"
+               style=" width:70%;
+                    border-radius: 7px;
+                    text-shadow: 01px 1px 2px rgba(102,102,102,.5);
+                    color: rgba(51,51,51,.8);
+                    background: rgba(247,207,126,.18);
+                    background-image:url(img/photoIcon.svg);
+                    background-repeat:no-repeat;
+                    background-position:left center;
+                    background-position: 15px;
+                    border: transparent;
+                    font-family: Arial;
+                    font-size: 14px;
+                    padding: 0px 0px 0px 42px;
+                    text-decoration: none;"
+               class="button button-block" ng-click="addMedia()" ng-disabled="data.pictures.length>=6"/><!---->
+      </div>
+      <!--<div style="padding-left:5px; padding-right:5px; margin:0px; " align="center">
+          <label for="file-upload" class="custom-file-upload">
+              Custom Upload
+          </label>
+          <input id="file-upload" class="file-upload" type="file" accept="video/*" ng-model="data.video" style="display: none;"/>
+          <button type="button" onclick="document.getElementById('file-upload').click()">Click me!</button>
+      </div>-->
+      <!--<input type="hidden" ng-model = "idImages">-->
+      <div class="errorMessage">{{uploadErrorMessage}}</div>
+      <div style="text-align:center; margin-top:17px;">
+        <!--id="step4"-->
+        <!-- translate-attr="{'value':'UPLOAD.UPLOAD'}" -->
+        <input
+          type="button"
+          ng-value="uploadButtonText"
+          ng-click="addNewSequence(idImages)" id="uploadCQNZ"
+          style="
+                    width:68%;
+                    border-radius: 7px;
+                    text-shadow: 3px 1px 3px #404040;
+                    font-family: Arial;
+                    color: #ffffff;
+                    font-size: 14px;
+                    background: #0AA39D;
+                    background-image:url(img/uploadCqnz.svg);
+                    background-repeat:no-repeat;
+                    background-position: 15px;
+                    padding: 0 15px 0 55px;
+                    border:none;
+                    border-color:transparent !important;
+                    text-decoration: none;" class=" button button-positive "
+          ng-disabled="(data.pictures.length < 1 || data.pictures.length > 6) || blockScreen == 0  || uploading || !data.sequenceName || data.sequenceName.length>500"/>
+        <ion-spinner icon="spiral" class="loadingAction" ng-if="uploading"></ion-spinner><!---->
+      </div>
+    </form>
+    <div id="templateId">
+      <!-- <select name="selectTemplate" id="" ng-change="changeTemplate()" ng-model = "selectTemplate">
+          <option value="template1"></option>
+          <option value="template2"></option>
+          </select> -->
+    </div>
+
+    <div class="bottom-spacer"></div>
+    <!--<div class="bottom-spacer"></div>-->
+
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'" onload="botonUploadOn = true"></ng-include>
+
+</ion-view>

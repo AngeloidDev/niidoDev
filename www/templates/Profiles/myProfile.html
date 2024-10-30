@@ -1,0 +1,213 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="true" can-swipe-back="false">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-gear-b" ui-sref="menu.configureMyProfile"></button>
+  </ion-nav-buttons>
+  <div ng-controller="GalleryCtrl">
+    <div ng-init="loadingInit = 0" ng-hide="showImagesFromService.$resolved || loadingInit == 0"
+         style="background:#000; width: 100%; height:100%; z-index: 10000000; color: #fff; position: absolute; opacity: 0.6;text-align:center; top: 0">
+      <ion-spinner style="position: absolute; top: calc( 50% - 30px );"></ion-spinner>
+    </div>
+
+    <ion-content header-shrink scroll-event-interval="5"
+                 class="has-footer scroll-content-shrinking background-line"
+                 id="ion-content-myProfile">
+
+      <div class="avers">
+        <div class="separateHeader"></div>
+        <img src="img/LogoShare.png" style="display: none;"/>
+        <div style="right:0; text-align: right; height:26px; position: absolute;">
+
+        </div>
+        <div class="photo-container" ng-init="verifiedUser()"><!--ng-controller="UserCtrl"-->
+          <div class="photo-profile" id="photoProfileTest" style="position:relative">
+            <a ui-sref="menu.changeProfilePicture" style="color: #000;">
+              <div id="editPhoto">
+                <div class="icon ion-ios-compose-outline" id="edit-icon"></div>
+              </div>
+              <img style=" background:url({{ ::pictureProfile }}) center no-repeat; background-size:cover;"
+                   ng-src="{{ ::pictureProfile }}" id="userPic" class="profile-avatar"/>
+
+            </a>
+          </div>
+          <div style="clear:both;"></div>
+          <div class="name-profile">{{ ::nameProfile }}
+
+
+            <SPAN
+              style="height:18px !important; width:18px !important; background-image:url(img/verifedSearch.svg) !important; background-repeat:no-repeat; background-position:center; position:absolute; margin-left:5px;"
+              ng-if="verifyUser== true">
+                    </SPAN>
+
+
+          </div>
+          <div style="clear:both;"></div>
+          <div ng-show="editBio==false" class="row">
+            <div class="col"
+                 style="font-size:15px;
+                                width:100%;
+                                font-weight:300;
+                                margin:auto;
+                                text-align:center;
+                                color: #000;">
+              {{userBio}}
+              <div class="icon ion-ios-compose-outline" id="edit-icon-bio" ng-click="editBio=true"></div>
+            </div>
+          </div>
+          <div ng-show="editBio==true" class="row"> <!--class="item-divider"-->
+            <div class="col col-80">
+              <label class="item item-input"
+                     style="font-size:15px;
+                                    width:100%;
+                                    font-weight:300;
+                                    margin:auto;
+                                    text-align:center;
+                                    color: #000;
+                                    margin-top:15px;">
+                                <textarea type="text"
+                                          keydown="autosize()"
+                                          ng-model="userBio"
+                                          name="descriptionSequence"
+                                          translate-attr="{'placeholder':'PROFILE.WRITE'}">
+                                </textarea>
+              </label>
+            </div>
+            <div class="col col-20">
+              <input type="button" translate-attr="{'value':'GLOBAL.UPDATE'}" id="editTitle"
+                     style="
+                                    border-radius: 7px;
+                                    text-shadow: 3px 1px 3px #404040;
+                                    font-family: Arial;
+                                    color: #ffffff;
+                                    font-size: 14px;
+                                    background: #d93434;
+                                    background-repeat:no-repeat;
+                                    background-position: 15px;
+                                    border:none;
+                                    border-color:transparent !important;
+                                    text-decoration: none;
+                                    z-index: 999;
+                                    top:10px;
+                                    padding:0;
+                                    top:12px;
+                                    "
+                     class=" button button-positive"
+                     ng-click="editBiography(userBio); editBio=false;"
+                     ng-disabled="userBio.length>500"
+              />
+            </div>
+            <!---->
+          </div>
+          <div align="center" ng-show="editBio==true">
+            <label
+              ng-style="{ color : userBio.length>=405 && userBio.length<=500 ? 'brown' : (userBio.length>500 ? 'red': 'initial')}">
+              {{userBio.length}}/500
+            </label>
+          </div>
+          <!--  <div class="description-profile">I love to travel around the globe.</div> -->
+          <div></div>
+          <div class="divider-profile" style="margin-bottom:0; margin-top:18px;"></div>
+          <div class="description-profile"
+               style="background-color:rgba(228,228,228,.1); margin:0; height:65px; padding-top:10px;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="3%">&nbsp;</td>
+                <td width="30%" class="infoTitles-profile userNameBold" translate>
+                  PROFILE.MY_CQNZS
+                </td>
+                <td width="3%">&nbsp;</td>
+                <td width="30%" class="infoTitles-profile userNameBold" ng-click="reDirectFollowersPage()" translate>
+                  PROFILE.FOLLOWERS
+                </td>
+                <td width="3%">&nbsp;</td>
+                <td width="30%" class="infoTitles-profile userNameBold" ng-click="reDirectFriendsPage()" translate>
+                  PROFILE.FOLLOWING
+                </td>
+                <td width="3%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td style="color:rgba(102,102,102,1)" ng-bind="numberSequences" class="userNameBold">
+                </td>
+                <td>&nbsp;</td>
+                <td ng-click="reDirectFollowersPage()" ng-bind="numberFollowers" style="color:rgba(102,102,102,1)"
+                    class="userNameBold"></td>
+                <td>&nbsp;</td>
+                <td ng-click="reDirectFriendsPage()" ng-bind="numberFollowing" style="color:rgba(102,102,102,1)"
+                    class="userNameBold"></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+
+      <div class="divider-profile" style="margin-top:0; margin-bottom:17px;"></div>
+
+      <div ng-controller="myProfileTimelineCtrl">
+        <ion-list ng-controller="SequenceCtrl">
+          <div ng-controller="CommentsCtrl">
+            <div class="list card cards-round"
+                 style="padding-top: 0; min-height: 85px"
+                 ng-repeat="sequence in _sequenceList | orderBy: '-key'"
+                 id="myProfile-sequence{{$index}}">
+              <div style="margin-left:0; margin-right:0; min-height: 85px">
+                <div ng-if="sequence.metadata.isAdvertisement" id="{{_controllerName}}_Ad_{{$index}}">
+                  <!-- cqnz header (avatar, menu, username, date) -->
+                  <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+                </div>
+
+                <div ng-if="!sequence.metadata.isAdvertisement">
+                  <!-- cqnz header (avatar, menu, username, date) -->
+                  <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+                </div>
+
+                <!--**** Show sequence Content ****-->
+                <ng-include
+                  src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+                <!--**** Show bottom strip buttons ****-->
+                <ng-include src="'templates/SequenceTemplates/sequenceStripButtonsTpl.html'"></ng-include>
+
+                <!--**** Show Comments ****-->
+                <ng-include src="'templates/SequenceTemplates/sequenceCommentsListTpl.html'"></ng-include>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center" ng-if="isLoadingContent && !isRefreshing">
+            <ion-spinner icon="lines"></ion-spinner>
+          </div>
+
+          <div class="text-center" ng-if="!canGetMoreItems && errorLoading && network.status != 'none'">
+            <a class="button button-icon icon ion-refresh" ng-click="refreshMyProfileTimeline()"></a>
+          </div>
+
+          <div class="row" ng-if="network.status == 'none'">
+            <div class="col col-20">
+              <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+            </div>
+            <div class="col" translate>
+              ERROR.NO_INTERNET2
+            </div>
+          </div>
+
+        </ion-list>
+
+        <ion-infinite-scroll
+          style="visibility: hidden"
+          ng-if="canGetMoreItems"
+          on-infinite="findSequencesFromTheUser()"
+          distance="18%"></ion-infinite-scroll>
+        <div ng-if="!_sequenceList.length && !isLoadingContent">
+          <a ui-sref="upload" style=" background-color:#0AA39D;  color: #fff" class=" button button-block"
+             translate>PROFILE.START</a>
+        </div>
+      </div>
+    </ion-content>
+  </div>
+
+  <ng-include src="'templates/partials/footer.html'" onload="botonProfileOn = true"></ng-include>
+
+</ion-view>

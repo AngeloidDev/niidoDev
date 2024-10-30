@@ -1,0 +1,49 @@
+<ion-view title='{{HEADER_LOGO}}' can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <md-button
+        class="md-fab md-mini md-accent md-fab-top-right"
+        ui-sref="adminCreateEditRole"
+        aria-label="Create group"
+        ng-if="canCreateAppRole()">
+        <md-icon
+          md-svg-src="img/icons/add_circle_outline_24px.svg"></md-icon>
+      </md-button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <ion-content class="has-footer">
+    <md-subheader class="md-no-sticky">
+      <h3 md-colors="{color:'primary'}"><span translate>ADMIN_TOOLS.ADMIN_ROLES.ROLES</span> ({{rolesList.length}})</h3>
+    </md-subheader>
+
+    <md-list-item class="noright" ng-repeat="role in rolesList">
+      <p ui-sref="adminViewRole({role:role})" md-colors="{color:'primary'}">{{role.description}}</p>
+      <md-icon
+        class="md-secondary"
+        md-svg-icon="img/icons/edit_24px.svg"
+        style="margin-right: 12px"
+        aria-label="edit"
+        ng-if="canEditAppRole()"
+        ui-sref="adminCreateEditRole({role:role})"></md-icon>
+
+      <md-icon
+        class="md-secondary"
+        md-svg-icon="img/icons/delete_24px.svg"
+        aria-label="delete"
+        ng-if="canDeleteAppRole()"
+        ng-click="confirmDeleteRole($index)"></md-icon>
+      <md-divider></md-divider>
+    </md-list-item>
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+</ion-view>

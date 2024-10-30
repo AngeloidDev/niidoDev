@@ -1,0 +1,30 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false">
+
+  <ion-content class="has-header padding">
+    <form action="">
+      <div style="margin-top:10px; margin-bottom:16px; text-align:center; alignment-adjust:central;">
+        <h3>You must accept the terms and conditions</h3>
+        <div>
+          <label>
+            <input type="checkbox" ng-model="checked" height="15px" width="15px"> I accept terms and conditions
+          </label>
+        </div>
+        <div>
+          <a ui-sref="terms">Terms and conditions</a>
+        </div>
+      </div>
+      <div>
+
+        <input type="button" class="button button-stable button-block  button-full"
+               style="color: #fff; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); background-color: rgba(59,89,152,.88); border:none;"
+               ng-disabled="!checked" ui-sref="menu.timeline" value="Next"/>
+      </div>
+    </form>
+  </ion-content>
+
+
+  <footer>
+
+  </footer>
+
+</ion-view>

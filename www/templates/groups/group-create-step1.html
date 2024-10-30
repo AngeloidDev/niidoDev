@@ -1,0 +1,152 @@
+<ion-view title="{{form.name}}">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button
+        class="button button-clear newGroup-nextBtn"
+        ng-if="form.name"
+        ng-click="showNextForm()">
+        <i translate>GROUPS.NEXT_BTN</i> <i class="ion-chevron-right"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-footer base-bg">
+    <div style="font-size: 24px;
+          padding-left: 15px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          color: #0AA39D;
+          background-color: rgba(239, 239, 239, 1);
+          border-bottom: solid 6px white;
+          border-top: solid 1px white;
+          margin-bottom: -19px;
+          margin-top: -3px;" translate>
+      MENU.GROUPS.TITLE
+    </div>
+
+    <form name="groupForm">
+      <md-content layout="column" layout-padding>
+        <!-- group's name-->
+        <md-input-container>
+          <span for="name" style="color:#0AA39D;  " translate>GROUPS.CREATE_S1.G_NAME_LABEL</span>
+          <input
+            type="text" id="name" name="name"
+            required aria-label="group name"
+            translate-attr="{'placeholder':'GROUPS.CREATE_S1.G_NAME_PHOLDER'}"
+            ng-model="form.name" class="rowMyConfig" style="margin-top: 5px; margin-bottom: 1px;">
+          <!--maxlength="16"
+          md-maxlength="16"-->
+          <div ng-messages="groupForm.name.$error">
+            <div ng-message="required" translate>GROUPS.FORM_ERROR.REQUIRED</div>
+            <!--<div ng-message="md-maxlength" translate>GROUPS.CREATE_S1.ERR_NAME_LEN17</div>-->
+          </div>
+        </md-input-container>
+
+        <!-- group's visibility -->
+        <md-input-container style="margin-top: -15px;">
+          <span translate style="color:#0AA39D;  ">GROUPS.CREATE_S1.G_VISIB_LABEL</span>
+          <md-select ng-model="form.privacy" class="rowMyConfig" aria-label="group privacy"
+                     style="border: none !important; margin-top: 5px; margin-bottom: 1px;">
+            <md-option value="Public"><i translate>GROUPS.CREATE_S1.G_VISIB_PUBLIC</i></md-option>
+            <md-option value="Private"><i translate>GROUPS.CREATE_S1.G_VISIB_PRIVATE</i></md-option>
+            <md-option value="Hidden"><i translate>GROUPS.CREATE_S1.G_VISIB_HIDDEN</i></md-option>
+          </md-select>
+        </md-input-container>
+      </md-content>
+
+      <!-- Add members-->
+      <md-content class="chipsdemoContactChips padding-left autocomplete" layout="column" style=" margin-top: -9px;">
+        <label style="color:#0AA39D; margin-left: 6px; margin-bottom: 10px;" translate>GROUPS.CREATE_S1.G_ADD_MEMBS_LABEL</label>
+        <div ng-if="true" class="item" ng-click="openSearchModal()">
+          <md-button class="md-fab md-mini md-accent"
+                     style="background-color: rgb(10, 163, 157); color:white; margin: 0 10px 0 0 !important; box-shadow: none !important;">
+            {{(form.members.length > 0 && form.members.length < 100)? form.members.length:(form.members.length == 0?
+            '+': '+99') }}
+          </md-button>
+          <i translate ng-if="form.members.length == 0" style="color: #787878 !important;">GROUPS.CREATE_S1.G_ADD_MEMBS_LABEL</i>
+          <i translate ng-if="form.members.length >= 1" style="color: #787878 !important;">GROUPS.CREATE_S1.G_EDIT_MEMBS_LABEL</i>
+        </div>
+
+        <div style="background-color: transparent ;">
+          <md-subheader style="background-color: transparent ;" md-colors="{color:'default-primary'}">
+            <span style=" margin-bottom: -7px; margin-left: -7px; " translate>GROUPS.CREATE_S1.G_SUGGESTED_LABEL</span>
+          </md-subheader>
+          <div class="text-center" ng-if="isLoadingRandomUsers">
+            <ion-spinner icon="lines"></ion-spinner>
+          </div>
+          <ion-list class="padding-left">
+            <ion-item class="item-avatar with-border-bottom"
+                      ng-repeat="user in randomUsersList"
+                      ng-class="{'selected-item':user.isSelected}"
+                      ng-click="toggleSelectContact(user)">
+              <img ng-src="{{user.photo || user.avatar}}">
+              <h2>{{user.name}}</h2>
+            </ion-item>
+          </ion-list>
+
+          <!--<md-list style="margin-top: -10px;">
+            <md-list-item
+              class="md-2-line contact-item"
+              ng-repeat="(index, user) in randomUsersList"
+              style="background-color: white;
+              width: 93%;
+              margin-left: 7px;">
+              <img class="md-avatar" style="box-shadow: inset 0 12px 12px -10px rgba(0,0,0,0.45);"  ng-src="{{ user.avatar }}">
+              <div class="md-list-item-text compact" ng-click="toggleSelectContact(index, user)">
+                <div class="assertive">{{user.name}}</div>
+                <p>{{user.bio}}</p>
+              </div>
+              <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>-->
+        </div>
+      </md-content>
+    </form>
+
+    <!--<div class="bottom-spacer"></div>-->
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+  <style>
+    .newGroup-nextBtn {
+      color: #0AA39D !important;
+      text-decoration: blink;
+      -webkit-animation-name: blinker;
+      -webkit-animation-duration: 0.9s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: ease-in-out;
+      -webkit-animation-direction: alternate;
+    }
+
+    @-webkit-keyframes blinker {
+      from {
+        opacity: 1.0;
+      }
+      to {
+        opacity: 0.0;
+      }
+    }
+
+    /*@-moz-keyframes glowing {
+       from {opacity: 1.0;}
+       to {opacity: 0.0;}
+    }
+
+    @-o-keyframes glowing {
+      from {opacity: 1.0;}
+      to {opacity: 0.0;}
+    }
+
+    @keyframes glowing {
+      from {opacity: 1.0;}
+      to {opacity: 0.0;}
+    }*/
+  </style>
+</ion-view>

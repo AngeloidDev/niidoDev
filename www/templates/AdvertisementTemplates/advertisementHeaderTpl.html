@@ -1,0 +1,71 @@
+<div class="headerCard"
+     ng-class="{'bigger-header':sequence.metadata.belongsMe}"
+     ng-style="{'background-color': sequence.advertisement.header.bgColor, color: sequence.advertisement.header.color}">
+  <!-- user avatar -->
+  <div
+    id="userimage{{ $index }}"
+    style="width:50px; height:50px; float:left; margin-top: 0 !important"
+    ng-hide="hideAvatar">
+    <a class="headerCardText item-avatar" style="margin-left:10px;">
+      <img class="avatar-image" ng-click="sendFriendProfile(sequence.ownerMetadata.id)"
+           ng-src="{{ ::sequence.ownerMetadata.avatar}}"
+           style="margin-left:4px;margin-top: 3px"/>
+    </a>
+  </div>
+
+  <div style="float:left; margin-top:4px; margin-left:1px; width: 75%">
+    <!-- username -->
+    <div
+      class="userNameBold"
+      ng-hide="hideUsername"
+      ng-click="sendFriendProfile(sequence.ownerMetadata.id)">
+      {{sequence.ownerMetadata.name}}
+    </div>
+
+    <!-- creation date and ad counters-->
+    <div style="font-size: 11px;line-height: initial;" ng-class="{'no-avatar-counter':isUserProfile}">
+      {{::sequence.metadata.dateTime | creationTime}}
+
+      <div ng-if="iAmAdvertiser && sequence.metadata.belongsMe">
+        {{'GLOBAL.UNTIL' |translate}} {{sequence.metadata.finalDate| date: "MMM d, y"}}
+      </div>
+
+      <span class="ads-counters" ng-if="iAmAdvertiser">
+        <md-icon md-svg-icon="img/icons/eye_24px.svg" class="cqnz-adCounter-icon"></md-icon>
+        <span class="cqnz-adHeader-counter"
+              id="viewsCount{{ ::sequence.metadata.id }}">
+          {{sequence.advertisement.counters.views.result.value | briefCounter}}
+        </span>
+
+        <md-icon md-svg-icon="img/icons/tap.svg" class="cqnz-adCounter-icon"></md-icon>
+        <span class="cqnz-adHeader-counter"
+              id="clicksCount{{ ::sequence.metadata.id }}">
+          {{sequence.advertisement.counters.clicks.result.value | briefCounter}}
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- cqnz 3-dots menu -->
+  <div class="itemOption ion-android-more-vertical"
+       style="float: right; font-size: 24px; padding-top: 11px;"
+       ng-if="!sequence.description.isEditing && canShow3DotsSequenceMenu(sequence.metadata.belongsMe)"
+       ng-click="open3DotsSequenceMenu(sequence, $index)"
+       id="buttonMenuCQNZ{{$index}}">
+  </div>
+
+</div>
+
+<!-- Description (except for statements) -->
+<div class="item-divider" style=" text-align:left; position: static; border-radius:7px;"
+     ng-if="sequence.content.type != 2 && sequence.description.title != ' ' && !sequence.description.isEditing">
+  <div style=" font-weight:normal !important; color:rgba(51,51,51,1);"
+       ng-bind-html="trustAsHtml(sequence.description.title)"
+       ng-click="whatCliked($event, sequence)"></div>
+</div>
+
+<style>
+  .bigger-header{
+    height: 60px
+  }
+</style>

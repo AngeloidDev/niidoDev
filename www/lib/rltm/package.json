@@ -1,0 +1,72 @@
+{
+  "name": "rltm",
+  "version": "1.3.1",
+  "description": "abstraction for realtime frameworks",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pubnub/rltm.js.git"
+  },
+  "keywords": [
+    "realtime",
+    "abstraction",
+    "socket.io",
+    "pubnub",
+    "faye"
+  ],
+  "author": {
+    "name": "PubNub"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pubnub/rltm/issues"
+  },
+  "homepage": "https://github.com/pubnub/rltm#readme",
+  "devDependencies": {
+    "async": "^2.1.4",
+    "browserify": "^13.1.0",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "browserify": "^13.1.0",
+    "pubnub": "^4.0.13",
+    "socket.io": "^1.5.1",
+    "socket.io-client": "^1.5.1"
+  },
+  "gitHead": "a973dfb2b7b311d107b3999ad58d2244a04bb4bc",
+  "_id": "rltm@1.3.1",
+  "_shasum": "2c57b3ecab3e1161565855784f1f105a01861927",
+  "_from": "rltm@latest",
+  "_npmVersion": "3.10.3",
+  "_nodeVersion": "6.7.0",
+  "_npmUser": {
+    "name": "ianjennings",
+    "email": "ian@meetjennings.com"
+  },
+  "dist": {
+    "shasum": "2c57b3ecab3e1161565855784f1f105a01861927",
+    "tarball": "https://registry.npmjs.org/rltm/-/rltm-1.3.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "ianjennings",
+      "email": "ian@meetjennings.com"
+    },
+    {
+      "name": "pubnub",
+      "email": "stephen@pubnub.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/rltm-1.3.1.tgz_1492630808010_0.619111419422552"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/rltm/-/rltm-1.3.1.tgz",
+  "readme": "ERROR: No README data found!"
+}

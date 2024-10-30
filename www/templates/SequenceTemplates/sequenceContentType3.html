@@ -1,0 +1,23 @@
+<!--**** Show galery ****-->
+<div
+  id="{{ sequence.content.templateIdBackup }}" class="item item-body"
+  style="position:relative; text-align:center; margin: 0 -17px"
+  in-view="play($inview, sequence)">
+
+  <div
+    style="width:99%; border:rgba(204,204,204,.8) 5px  dashed; margin:auto; height:200px; background:url(img/photoFrame.svg) no-repeat center; background-size: 30% ; padding:20px; font-size:9px; opacity: .3;"
+    ng-if="!sequence.content.items.length">
+  </div>
+
+  <div ng-repeat="video in sequence.content.items | orderBy:'itemId'" ng-if="video.sequenceItem">
+    <video id="{{_controllerName}}VideoArea{{sequence.metadata.id}}" width="100%" height="310px"
+           poster="{{video.urlVideoImage}}" preload="none">
+      <source ng-src="{{video.url | trusted }}" type="video/mp4">
+    </video>
+    <button class="playButtonTimelines" id="{{_controllerName}}ButtonPlay{{sequence.metadata.id}}" ng-click="playVideoOwn(sequence.metadata.id, sequence, _controllerName)"></button>
+    <div class="textCountVideoViews">
+        {{sequence.content.videoPlayedCounter}} {{'TIMELINE.VIDEOVIEWS'|translate}}
+    </div>
+    <div style="width:100%; height:10px;"></div>
+  </div>
+</div>

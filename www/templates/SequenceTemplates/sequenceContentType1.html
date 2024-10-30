@@ -1,0 +1,29 @@
+<!--**** Show galery ****-->
+<div
+  id="{{sequence.content.templateIdBackup}}" class="item item-body"
+  style="position:relative; text-align:center; margin: 0 -17px">
+  <ion-content style="text-align:center; position:relative; width: 100% !important" scroll="false">
+    <div
+      style="width:99%; border:rgba(204,204,204,.8) 5px  dashed; margin:auto; height:200px; background:url(img/photoFrame.svg) no-repeat center; background-size: 30% ; padding:20px; font-size:9px; opacity: .3;"
+      ng-if="!sequence.content.items.length">
+    </div>
+
+    <ul
+      style="width:100%; height:100%; overflow: auto;"
+      id="imageBox{{sequence.content.templateIdBackup + $index}}"
+      ng-if="sequence.content.items.length">
+      <li ng-repeat="image in sequence.content.items | orderBy:'itemId'"
+          ng-if="image.sequenceItem"
+          class="imagesUpload photo-slide">
+        <!--<div ng-if="image.value.members.picture.value" class="imgItemUpload"
+             style="background-image:url(data:image/jpeg;base64,{{ ::image.value.members.picture.value.split(':')[2] }}) !important"
+             ng-click="showImages(sequence.metadata.id, sequence.content.items.result.value, $index, sequence.ownerMetadata.instanceId)"></div>-->
+        <div ng-if="image.url" class="imgItemUpload"
+             style="background-image:url({{ ::image.url }}) !important"
+             ng-click="showImages(sequence.metadata.id, sequence.content.items, $index, sequence.ownerMetadata.instanceId)"></div>
+      </li>
+    </ul>
+  </ion-content>
+</div>
+
+

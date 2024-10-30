@@ -1,0 +1,54 @@
+<div class="headerCard">
+
+  <!-- user avatar -->
+  <div
+    id="userimage{{ $index }}"
+    style="width:50px; height:50px; float:left; margin-top: 0 !important"
+    ng-hide="hideAvatar">
+    <a class="headerCardText item-avatar" style="margin-left:10px;">
+      <img class="avatar-image" ng-click="sendFriendProfile(sequence.ownerMetadata.id)"
+           ng-src="{{ sequence.ownerMetadata.avatar}}"
+           style="margin-left:4px;"/>
+    </a>
+  </div>
+
+  <div style="float:left; margin-top:4px; margin-left:1px;">
+    <!-- username -->
+    <div
+      class="userNameBold"
+      ng-hide="hideUsername"
+      ng-click="sendFriendProfile(sequence.ownerMetadata.id)">
+      {{sequence.ownerMetadata.name}}
+    </div>
+
+    <!-- creation date -->
+    <div class="cqnz-date"
+         ng-class="{'user-profile':isUserProfile}"
+         style="color: rgba(0,0,0,.6); font-size: 11px;">
+      {{sequence.metadata.dateTime | creationTime}}
+    </div>
+  </div>
+
+  <!-- cqnz 3-dots menu -->
+  <div class="itemOption ion-android-more-vertical"
+       style="position:relative; float: right; font-size: 24px; padding-top: 11px; color: rgba(102,102,102,.6); padding-left: 30px;"
+       ng-if="!sequence.description.isEditing && canShow3DotsSequenceMenu(sequence.metadata.belongsMe)"
+       ng-click="open3DotsSequenceMenu(sequence, $index)"
+       id="buttonMenuCQNZ{{$index}}">
+  </div>
+
+</div>
+
+<!-- Description (except for statements) -->
+<div class="item-divider" style=" text-align:left; position: static; border-radius:7px;"
+     ng-if="sequence.content.type != 2 && sequence.description.title != ' '">
+  <div
+    style="color:#505050; width: 100%; text-align: center"
+    ng-if="sequence.description.isUpdating">
+    <ion-spinner icon="lines"></ion-spinner>
+  </div>
+  <div style=" font-weight:normal !important; color:rgba(51,51,51,1);"
+       ng-bind-html="trustAsHtml(sequence.description.title)"
+       ng-click="whatCliked($event, sequence)"
+       ng-if="!sequence.description.isUpdating"></div>
+</div>

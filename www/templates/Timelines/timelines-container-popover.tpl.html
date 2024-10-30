@@ -1,0 +1,133 @@
+<ion-popover-view id="timeline-popover-menu" style="height: 50%;
+    background-image: url(img/LogoHeader.png);
+    background-repeat: no-repeat ;
+    background-position: 50% 90% ;
+    background-size: 40%;">
+  <ion-content>
+
+    <!-- num of groups tag -->
+    <div class="text-center"
+         style="height: 23px; background-color:rgb(210,210,210); color:#303030; margin-bottom: -1px;"
+         ng-if="!isGroupTimeline">
+      {{"GROUPS.TIMELINE_WRAPPER.ORDER_SHOW_TIMELINE"|translate}}
+    </div>
+
+    <ion-list>
+      <!-- Sorting button -->
+      <div class="item item-mini" ng-if="!isGroupTimeline">
+        <button class="button button-positive button-clear button-small" ng-click="showSortingMenu(); closePopover()" style="font-size: 17px;">
+          <i class="icon {{menuIcons[order]}}"></i>
+          {{actionSheetItemText[order]}}
+        </button>
+      </div>
+
+      <!-- Default timeline button -->
+      <div
+        class="item item-avatar item-mini"
+        ng-if="isGroupTimeline" ng-click="gotoSlide(0)">
+        <img ng-src="{{pictureProfile}}" style="margin-left: 6px"/>
+        <h2 md-colors="{color:'primary'}"> {{ nameProfile }} </h2>
+      </div>
+    </ion-list>
+
+
+    <!-- num of groups tag -->
+    <div class="text-center"
+         style="height: 23px; background-color:rgb(210,210,210); color:#303030; margin-bottom: -1px;">
+      {{"GROUPS.TIMELINE_WRAPPER.YOUR_GROUPS_TITLE"|translate}} ({{totalGroups}})
+    </div>
+
+
+    <ion-list>
+      <!-- SELECTED GROUP -->
+      <div class="tag-{{groups[groupIndex].privacy}} "
+          ng-if="groupIndex != null && isGroupTimeline" style="padding: 6px; background: white; border-bottom: 1px solid #ddd !important;">
+           <div class="item item-thumbnail-left item-mini" >
+               <img ng-src="{{groups[groupIndex].image}}" >
+
+          <div class="md-list-item-text">
+            <h3 md-colors="{color:'primary'}" style="margin-bottom: 0"> {{ groups[groupIndex].name }} </h3>
+            <button
+              class="button button-small button-clear"
+              ng-click="closePopover()"
+              ui-sref="groupMembersManagement({group:groups[groupIndex]})">
+              <md-icon md-colors="{color:'primary'}" md-svg-icon="img/icons/members_24px.svg"></md-icon>
+            </button>
+
+            <button
+              class="button button-small button-clear"
+              ng-click="closePopover()"
+              ui-sref="groupSettings({group:groups[groupIndex], groupIndex:groupIndex})">
+              <md-icon
+                md-colors="{color:'primary'}"
+                md-svg-icon="img/icons/{{groups[groupIndex].imAdministrator?'settings':'info_outline'}}_24px.svg"></md-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non selected groups -->
+      <div class="tag-{{group.privacy}} non-selected-groups " ng-repeat="group in groups" style="padding: 6px; background: white; border-bottom: 1px solid #ddd !important;" ng-if="$index != groupIndex" >
+        <div
+          class="item item-thumbnail-left item-mini"
+          ng-click="gotoSlide($index+1)">
+          <img ng-src="{{group.image}}" >
+          <h2 style="color: #878787">{{ group.name }}</h2>
+          <p ng-if="group.imAdministrator" md-colors="{color: 'accent'}">
+            <md-icon md-svg-icon="img/icons/assignment_ind_24px.svg"></md-icon>
+            {{'GROUPS.MEMBERS_MGMT.ADMINISTRATOR'|translate}}
+          </p>
+          <p ng-if="group.imModerator" md-colors="{color: 'accent'}">
+            <md-icon md-svg-icon="img/icons/gavel_24px.svg"></md-icon>
+            {{'GROUPS.MEMBERS_MGMT.MODERATOR'|translate}}
+          </p>
+          <p ng-if="group.imLocked" md-colors="{color: 'warn-600'}">
+            <md-icon md-svg-icon="img/icons/lock_outline_24px.svg"></md-icon>
+            {{'GROUPS.MEMBERS_MGMT.LOCKED'|translate}}
+          </p>
+          <p ng-if="group.imBanned" md-colors="{color: 'warn-600'}" translate>
+            GROUPS.MEMBERS_MGMT.BANNED
+          </p>
+        </div>
+      </div>
+    </ion-list>
+
+  </ion-content>
+
+  <style>
+    .item-mini {
+      height: 56px;
+      min-height: 50px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .item-mini.item-thumbnail-left {
+      padding-top: 3px;
+      padding-left: 60px;
+
+    }
+
+    .item-mini > img:first-child {
+      max-width: 50px;
+      max-height: 50px;
+      top: 3px;
+      left: 2px;
+     border-radius: 50px;
+     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    }
+
+    .privacy-strip-indicator {
+      padding-left: 5px;
+    }
+
+    .non-selected-groups md-icon {
+      min-width: 14px;
+      min-height: 14px;
+      width: 14px;
+      height: 14px;
+    }
+
+
+  </style>
+</ion-popover-view>

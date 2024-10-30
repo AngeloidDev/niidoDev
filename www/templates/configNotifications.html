@@ -1,0 +1,58 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="true" ng-controller="configNotificationsCtrl" can-swipe-back="false">
+    <ion-content class="has-header has-footer" style="margin-top:0px; margin-left:0px;" scroll="true">
+		<div class="row">
+			<div class="col"></div>
+		</div>
+		<div class="content">
+			<ul class="list">
+		        <li class="item item-toggle">
+		           {{"MENU.SETTINGS.PUSH_NOTIFICATIONS.NEW_FOLLOWERS" | translate}}
+		           <label class="toggle toggle-assertive">
+		             <input type="checkbox" ng-model="configuration[0].sendNotification" ng-change="updatePushNotificationConfig(0)">
+		             <div class="track">
+		               <div class="handle"></div>
+		             </div>
+		           </label>
+		        </li>
+		        <li class="item item-toggle">
+		           {{"MENU.SETTINGS.PUSH_NOTIFICATIONS.REACTS" | translate}}
+		           <label class="toggle toggle-assertive">
+		             <input type="checkbox" ng-model="configuration[1].sendNotification" ng-change="updatePushNotificationConfig(1)">
+		             <div class="track">
+		               <div class="handle"></div>
+		             </div>
+		           </label>
+		        </li>
+		        <li class="item item-toggle">
+		           {{"MENU.SETTINGS.PUSH_NOTIFICATIONS.LIKES" | translate}}
+		           <label class="toggle toggle-assertive">
+		             <input type="checkbox" ng-model="configuration[2].sendNotification" ng-change="updatePushNotificationConfig(2)">
+		             <div class="track">
+		               <div class="handle"></div>
+		             </div>
+		           </label>
+		        </li>
+		        <li class="item item-toggle">
+		           {{"MENU.SETTINGS.PUSH_NOTIFICATIONS.COMMENTS" | translate}}
+		           <label class="toggle toggle-assertive">
+		             <input type="checkbox" ng-model="configuration[3].sendNotification" ng-change="updatePushNotificationConfig(3)">
+		             <div class="track">
+		               <div class="handle"></div>
+		             </div>
+		           </label>
+		        </li>
+		        <li class="item item-toggle">
+		           {{"MENU.SETTINGS.PUSH_NOTIFICATIONS.TAGGING" | translate}}
+		           <label class="toggle toggle-assertive">
+		             <input type="checkbox" ng-model="configuration[4].sendNotification" ng-change="updatePushNotificationConfig(4)">
+		             <div class="track">
+		               <div class="handle"></div>
+		             </div>
+		           </label>
+		        </li>
+	      	</ul>
+	    </div>
+	</ion-content>
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

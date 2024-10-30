@@ -1,0 +1,73 @@
+<ion-view title='{{HEADER_LOGO}}'>
+  <ion-nav-buttons side="right">
+  </ion-nav-buttons>
+  <ion-content class="has-header has-footer" ng-controller="friendsCtrl" ng-init="updatedata();">
+    <div class="item-divider"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">
+      <span translate>MENU.FIND_FACEBOOK_FRIENDS.TITLE</span>
+    </div>
+    <div ng-repeat="user in users" class="item item-avatar"
+         style="margin-bottom:5px; margin-top:10px; margin-right: 2px; padding-left: 4px; min-height: 24px;">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="40" align="left" valign="top" style="width:35px; vertical-align:top;   ">
+            <img class="comments-avatar avatar-image" ng-src="data:image/jpeg;base64,{{ user.photoId.split(':')[2] }}"
+                 ng-click="sendUserProfile(user.id)"/>
+          </td>
+          <td align="left" valign="top" style="vertical-align:top; padding-top:7px; ">
+            <div
+              style="vertical-align:top; padding-top:7px; margin-left:2px; height:16px !important; width:18px !important; background-image:url(img/verifedSearch.svg) !important; background-repeat:no-repeat; background-position: left; position:absolute;   "
+              ng-if="user.verify== true">
+            </div>
+            <div style=" vertical-align: middle; margin-left:23px; color:rgba(51,51,51,1);    overflow: hidden; font-weight: bold;
+                          white-space: nowrap;
+                          width: 11em !important;
+                          position:absolute;
+                          text-overflow:ellipsis;" ng-click="sendUserProfile(user.id)">
+              {{ user.name }}
+            </div>
+          </td>
+          <td width="130" align="left" valign="top"
+              style="width:20px; margin-right:7px; vertical-align:top; padding-top:5px; ">
+            <div>
+              <ion-spinner icon="spiral" class="loadingAction" ng-if="user.togglingFollow"
+                           style="z-index: 2;margin-top: 1px; margin-left: 1%"></ion-spinner>
+              <button ng-if="user.friend.result.value == false"
+                      ng-click="sendContactRequest(user.id,user.friend.result.value); user.friend.result.value = true"
+                      class="button button-small follow">
+                {{'GLOBAL.FOLLOW' | translate}}
+              </button>
+              <button ng-if="user.friend.result.value == true"
+                      ng-click="sendContactRequest(user.id,user.friend.result.value); user.friend.result.value = false"
+                      class="button button-small unfollow">
+                {{'GLOBAL.UNFOLLOW' | translate}}
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="item-divider" ng-if="results.length == 0"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">
+      <strong translate>MENU.FIND_FACEBOOK_FRIENDS.NO_RESULTS</strong>
+    </div>
+    <div class="text-center">
+      <ion-spinner ng-if="searching==true"></ion-spinner>
+    </div>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+

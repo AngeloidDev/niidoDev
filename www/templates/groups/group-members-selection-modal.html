@@ -1,0 +1,110 @@
+<ion-modal-view cache-view="false">
+  <ion-nav-bar class="bar-assertive bar bar-header item-input-inset">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="cancelClicked()">
+        <!--<i class="icon ion-ios-close-empty"></i>-->
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="okClicked()" ng-show="!data.showSelectedContactsList">
+        <i translate>GLOBAL.DONE</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-header" scroll="false">
+    <form name="searchForm">
+      <div class="row no-padding">
+        <div class="col col-80">
+          <label class="item item-input" style="border: solid 1px #CCCCCC; margin-top: 8px">
+            <input type="text" translate-attr="{ 'placeholder' : 'DISCOVER.SEARCH_FOR' }"
+                   ng-minlength="3" ng-model="data.userName"
+                   id="search-input"
+                   name="userName" ng-change="searchUsers()" required>
+          </label>
+        </div>
+        <div class="col text-right no-padding">
+          <md-button class="md-fab md-primary" ng-click="showSelectedUsersList()">
+            {{data.selectedUsers.length | briefCounter}}
+            <ion-spinner icon="spiral" class="loadingAction over-button" ng-show="isSearching"></ion-spinner>
+          </md-button>
+        </div>
+      </div>
+
+      <div class="row" ng-if="searchForm.userName.$invalid">
+        <div class="col">
+          <label class="assertive" translate>
+            DISCOVER.AT_LEAST
+          </label>
+        </div>
+      </div>
+    </form>
+
+    <div>
+      <!-- USERS RESULTS LIST-->
+      <ion-content class="padding results-users-list" style="margin-top: 60px;" ng-show="usersFound.length">
+        <ion-scroll direction="y" style="padding-top: 4px">
+          <ion-list>
+            <div class="item-divider text-left" md-colors="{color:'default-primary'}" translate>
+              GROUPS.CREATE_S1.G_RESULTS_LABEL
+            </div>
+            <ion-item class="item-avatar with-border-bottom"
+                      ng-repeat="user in usersFound"
+                      ng-class="{'selected-item':isInListOrGroup(user.href), 'blocked-item':isUserBlocked(user.href)}"
+                      ng-click="selectUser(user, $index)">
+              <img ng-src="{{user.photo}}">
+              <h2>{{user.name}}</h2>
+              <i class="blocked-item" ng-if="isUserBlocked(user.href)" translate>GROUPS.MAIN_PAGE.BANNED</i>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-content>
+    </div>
+
+    <!-- SELECTED USERS-->
+    <ion-content class="padding selected-users-list" ng-show="data.showSelectedContactsList">
+      <ion-list>
+        <div class="item-divider text-left" md-colors="{color:'default-primary'}">
+          <span translate>GROUPS.CREATE_S1.G_SELECTED_MEMBERS_LABEL</span> ({{data.selectedUsers.length}})
+        </div>
+        <ion-item class="item-avatar with-border-bottom"
+                  ng-repeat="user in data.selectedUsers"
+                  ng-click="unselectUser(user, $index)">
+          <img ng-src="{{user.photo || user.avatar}}">
+          <h2>{{user.name}}</h2>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+  </ion-content>
+</ion-modal-view>
+
+<style>
+
+  .results-users-list .item-avatar,
+  .selected-users-list .item-avatar {
+    min-height: 58px;
+    padding-bottom: 5px;
+  }
+
+  .selected-item h2 {
+    color: green;
+  }
+
+  .blocked-item {
+    border-color: red;
+    color: red;
+    background-color: rgb(255, 230, 220);
+  }
+
+  .loadingAction.over-button {
+    margin-left: -34%;
+    margin-top: 9px;
+  }
+
+  .selected-users-list {
+    background: white;
+    z-index: 30;
+  }
+</style>

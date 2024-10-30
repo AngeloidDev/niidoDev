@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "50615501247",
+    "firebase_url": "https://niido-65fa7.firebaseio.com",
+    "project_id": "niido-65fa7",
+    "storage_bucket": "niido-65fa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50615501247:android:5cd334791a658f47",
+        "android_client_info": {
+          "package_name": "com.ionicframework.niido232869"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50615501247-u9mph5bmbfpb1u83b5omnoqbgeljbit3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCveTVrauHnU027EO5riT16m-QS8tMxHKU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

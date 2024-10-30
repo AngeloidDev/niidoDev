@@ -1,0 +1,850 @@
+{
+  "LOGIN": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "FORGOT_PASSWORD": "Need help logging in?",
+    "LOG_IN": "Log in",
+    "LOGGING_IN": "Logging in...",
+    "LOG_IN_WITH_FACEBOOK": "Log in with Facebook",
+    "SIGN_UP": "Sign up",
+    "FACEBOOK_ACK": "When you log in with Facebook you acknowledge that you have read our ",
+    "FACEBOOK_ACK2": "and accept the ",
+    "ASKAGE_TITLE": "Age check",
+    "ASKAGE_TEMPLATE": "Enter your age",
+    "ASKAGE_PLACEHOLDER": "Your age",
+    "ASKFIRSTNAME_TITLE": "Name check",
+    "ASKFIRSTNAME_TEMPLATE": "Enter your First Name",
+    "ASKFIRSTNAME_PLACEHOLDER": "Your First Name",
+    "ASKLASTNAME_TITLE": "Last Name check",
+    "ASKLASTNAME_TEMPLATE": "Enter your Last Name",
+    "ASKLASTNAME_PLACEHOLDER": "Your Last Name",
+    "ASKEMAIL_TITLE": "Email check",
+    "ASKEMAIL_TEMPLATE": "Enter your email",
+    "ASKEMAIL_PLACEHOLDER": "Your email",
+    "USERCANCELED_TITLE": "@:LOGIN.LOG_IN",
+    "USERCANCELED_TEMPLATE": "Your account has been cancelled, contact our support team at support@mycqnz.zohosupport.com for help or create a new account.",
+    "USER_BANNED_MSG": "Your account has been banned, contact our support team at support@mycqnz.zohosupport.com to get more details",
+    "USER_BLOCKED_MSG": "Your account has been blocked, contact our support team at support@mycqnz.zohosupport.com to get more details",
+    "USER_DELETED": "This account has been deleted",
+    "UNKNOWN_ACCOUNT_STATUS": "Your account has an unknown status, contact our support team at support@mycqnz.zohosupport.com to get more details",
+    "NO_FRIENDS": "Why not get some friends to join you?",
+    "SHARE": "Post about this App!",
+    "EMAIL_USED": "This email is asigned to another account"
+  },
+  "RECOVER": {
+    "TEXT": "Please provide the following:",
+    "EMAIL": "Your account email",
+    "HELP": "How can we help?",
+    "USERNAME": "@:LOGIN.USERNAME",
+    "TOO_SHORT": "The Email is too short",
+    "SPACES": "Email can't have any spaces.",
+    "SPECIAL_CHARACTERS": "Username can't have special characters.",
+    "NOT_FOUND": "Can't find email",
+    "SECURITY_ANSWER": "Security answer",
+    "SECURITY": "Security answer is required.",
+    "FB_USER": "Facebook's users can't modify the password.",
+    "SUCCESS": "We have send you a new password. Please check your email.",
+    "ERROR": "Oops! Something went wrong. Please try later or contact us at support@mycqnz.zohosupport.com"
+  },
+  "SIGNUP": {
+    "TITLE": "Sign up",
+    "NAME": "Name",
+    "LAST_NAME": "Last name",
+    "EMAIL": "Email",
+    "USERNAME": "@:LOGIN.USERNAME",
+    "TOO_SHORT": "The username is too short",
+    "CANT_HAVE_SPECIAL_CHARACTERS": "The username can't have any spaces or special characters",
+    "ALREADY_EXISTS": "The username already exists, enter a different user name",
+    "AVAILABLE": "Username available",
+    "PASSWORD": "@:LOGIN.PASSWORD",
+    "EMAIL_CORRECT": "is this email correct?",
+    "ADDPHOTO": "Add photo",
+    "BIO": "Ex. Traveler, animal lover and beer aficionado!",
+    "WARNING": "This information will appear on your profile. You can use it to tell people about yourself.",
+    "CREATE_ACCOUNT": "Create account",
+    "ACK": "By creating an account you acknowledge that you have read the ",
+    "ACK2": "@:LOGIN.FACEBOOK_ACK2"
+  },
+  "MENU": {
+    "SETTINGS": {
+      "TITLE": "Settings",
+      "PUSH_NOTIFICATIONS": {
+        "TITLE": "Notifications",
+        "NEW_FOLLOWERS": "New followers",
+        "REACTS": "Reacts",
+        "LIKES": "Likes",
+        "COMMENTS": "Comments",
+        "TAGGING": "Tagging"
+      },
+      "UPDATE_PASSWORD": {
+        "TITLE": "Update password",
+        "CURRENT": "Current password",
+        "NEW": "New password",
+        "CONFIRM": "Confirm new password",
+        "CHANGE": "Change password",
+        "NOT_MATCH": "Password does not match",
+        "REQUIRED": "Is required",
+        "SUCCESS": "Password changed successfully",
+        "RECOMMEND": "We recommend changing your password immediately",
+        "CONFIRM_PASS_UPDATE": "A confirmation message will be sent to your email",
+        "SEND_PASSWORD_EMAIL": "An email with a new password has been sent to your email address",
+        "SECRET_ANSWER_INCORRECT": "The secret answer is incorrect"
+      },
+      "DISABLE_ACCOUNT": {
+        "TITLE": "Disable account",
+        "DISABLE": "@:GLOBAL.DIABLE",
+        "TEXT": "This will permanently cancel your subscription to the NIIDO web app. This will prevent you from accessing your account and all information within it, including posts and pictures."
+      },
+      "DELETE_ACCOUNT": {
+        "TITLE": "Delete account.",
+        "INFO_DELETE": "This will delete all your info linked to this account for life.",
+        "CONFIRM_DELETE": "Are you sure?."
+      },
+      "SHARE_APP": {
+        "MESSAGE": "Are you in niido?",
+        "MESSAGE2": "Download in:"
+      },
+      "SHARE_VIDEO": {
+        "MESSAGE": "Share by niido"
+      }
+    },
+    "GROUPS": {
+      "TITLE": "NIIDO Groups"
+    },
+    "ADMIN_TOOLS": {
+      "TITLE": "Administrative tools",
+      "BAN_USER": "Ban user",
+      "BLOCK_USER": "Block user from app",
+      "DELETE_USER": "Delete user from app"
+    },
+    "FIND_FACEBOOK_FRIENDS": {
+      "TITLE": "Find Facebook friends using NIIDO",
+      "NO_FB_TITLE": "Attention",
+      "NO_FB": "This option is only available when you logged in using Facebook.",
+      "NO_RESULTS": "We could not find any friends using NIIDO.",
+      "FB_FRIEND_REQUEST": "You have sent the request",
+      "ALREADY": "You are already following this user"
+    },
+    "SHARE": "Share NIIDO App",
+    "SUPPORT": {
+      "TITLE": "Support",
+      "TEXT": "Write your concerns to our Support Team.",
+      "NO_MORE": "No more than 500 characters.",
+      "EMAIL": "Write your email",
+      "SELECT": "Select the kind of support you need",
+      "COMMENTS": "Write your comments here",
+      "TYPE": {
+        "QUESTION": "Question",
+        "ERROR": "Error",
+        "FEATURE": "Feature request",
+        "REQUEST": "Request",
+        "BETA_REPORT": "Beta report",
+        "INAPPROPRIATE": "Inappropriate",
+        "HELP_WITH_YOUR_ACCOUNT": "Help with your account",
+        "OTHER": "Other"
+      },
+      "SENT_MAIL": "Your email has been delivered."
+    },
+    "ABOUT": "About",
+    "LOG_OUT": "Log out",
+    "VERSION": "Version",
+    "FACEBOOK_USER_NO_PASSWORD": {
+      "TITLE": "Attention",
+      "MESSAGE": "This option isn't available for Facebook users."
+    }
+  },
+  "TUTORIAL": {
+    "DISCOVER": {
+      "FIRST": {
+        "STEP1": {
+          "TITLE": "Finding your friends.",
+          "TEXT": "When searching for someone, look them up by their name."
+        },
+        "STEP2": {
+          "TITLE": "Discover people from all over the world.",
+          "TEXT": "The featured page will show you what everyone is posting about."
+        },
+        "STEP3": {
+          "TITLE": "Welcome, new users!",
+          "TEXT": "Here you will find people who are new to NIIDO."
+        }
+      }
+    },
+    "UPLOAD": {
+      "FIRST": {
+        "STEP1": {
+          "TITLE": "Multiple pics with one tap.",
+          "TEXT": "This is the coolest way to create a post. The icon to the right will make the switch from MultiSelfie to MultiShot."
+        },
+        "STEP2": {
+          "TITLE": "Select photos or take a single pic.",
+          "TEXT": "This is where you will access your photo library to select photos or the camera to take a picture."
+        }
+      },
+      "SECOND": {
+        "STEP1": {
+          "TITLE": "Select a frame, title and upload.",
+          "TEXT": "Once you have photos to upload, choose a frame, arrange your photos, and title your post before you upload!"
+        }
+      }
+    },
+    "TIMELINE_ORGANIZE": {
+      "FIRST": {
+        "STEP1": {
+          "TEXT": "Tap here to organize your timeline."
+        }
+      }
+    },
+    "FAVORITES": {
+      "FIRST": {
+        "STEP1": {
+          "TEXT": "Visit a friend's profile to select them as a favorite."
+        }
+      },
+      "SECOND": {
+        "STEP1": {
+          "TEXT": "Tap the star to select a friend as a favorite."
+        }
+      }
+    }
+  },
+  "TIMELINE": {
+    "SHARE_UI": {
+      "SHARE_CQNZ": "Share Post",
+      "SHARE": "Share",
+      "SHARE_MAIN_MSG": "Select the groups in which you want to share the post",
+      "GROUP": "Group",
+      "UR_ADMIN": "You are administrator",
+      "UR_MODERATOR": "You are moderator",
+      "SELECT_ALL": "Select all",
+      "UNSELECT_ALL": "Unselect all"
+    },
+    "SHARE_IN_GROUPS": "Share in groups",
+    "BETTER_WITH_FRIENDS": "NIIDO is better with friends!",
+    "FIND_FRIENDS": "Find friends",
+    "ORGANIZE": "Organize your board",
+    "DEFAULT": "By default",
+    "FAVORITE": "By favorites",
+    "LIKES": "By likes",
+    "DATE": "By date",
+    "VIDEOVIEWS": " Views",
+    "SET_INAPPROPRIATE_01": "This post has been marked as inappropriate",
+    "SET_INAPPROPRIATE_02": "The support group will check it",
+    "DIALOG": {}
+  },
+  "GROUPS": {
+    "BACK_BTN": "@:GLOBAL.BACK",
+    "NEXT_BTN": "@:GLOBAL.NEXT",
+    "OK_TXT": "@:GLOBAL.OK",
+    "CANCEL_TXT": "@:GLOBAL.CANCEL",
+    "MAIN_PAGE": {
+      "POPUP_MENU": {
+        "TITLE": "Other actions",
+        "SENT_REQS": "Sent requests",
+        "RECEIVED_REQS": "Received requests",
+        "REQUEST": "Request",
+        "REQUESTS": "Requests",
+        "CREATE_GROUP": "Create group"
+      },
+      "NEW_GROUP_MSG": "You can share posts with a group of people. Only those in the group will be able to see the posts group members share.",
+      "SEARCH_GROUP": "Search group",
+      "MY_GROUPS": "My groups",
+      "OTHER_GROUPS": "Other groups",
+      "BANNED": "Banned",
+      "LOCKED": "Locked",
+      "JOIN": "Join",
+      "SEND_JOIN_REQ": "Send join request",
+      "WAITING_4_APPROVAL": "Waiting for approval",
+      "PRIVATE": "Private",
+      "PUBLIC": "Public",
+      "HIDDEN": "Hidden",
+      "DIALOG": {
+        "GET_BANNED_GROUPS_ERR": "We couldn't get the banned groups",
+        "GET_LOCKED_GROUPS_ERR": "We couldn't get the locked groups",
+        "GET_USER_GROUPS_ERR": "We couldn't get your groups",
+        "GET_OTHER_GROUPS_ERR": "We couldn't get the other groups",
+        "GET_USER_JOIN_REQS_ERR": "We couldn't get the requests sent for joining",
+        "JOIN_TO_THIS_ERR": "We couldn't join you to this group",
+        "REQUEST_SENT_OK": "Request sent successfuly",
+        "REQUEST_SENT_ERR": "The request for joining couldn't be sent",
+        "GROUP_IS_PRIVATE": "The group is private"
+      }
+    },
+    "SENT_REQS": {
+      "CANCEL_REQUEST": "Cancel request",
+      "NO_ITEMS": "You don't have pending requests for joining to any of your groups",
+      "DIALOG": {
+        "REJECT_REQ_CONF": "Do you really want to cancel the request for joining the group:",
+        "REJECT_REQ_OK": "The request has been removed",
+        "REJECT_REQ_ERR": "We couldn't cancel the request"
+      }
+    },
+    "RECEIVED_REQS": {
+      "NO_ITEMS": "You don't have pending requests to approve",
+      "USER_JOIN_TO_GROUP": "Wants to join the group",
+      "DIALOG": {
+        "GET_RECEIVED_REQS_ERR": "We couldn't get your requests to approve",
+        "RECEIVED_ACCEPT_ALL": "Accept all",
+        "ACCEPT_ALL_REQ_CONF": "Do you really want to accept ALL the requests?",
+        "APPROVE_REQ_OK": "The request has been accepted!",
+        "APPROVE_ALL_REQ_OK": "The requests have been accepted!",
+        "APPROVE_REQ_ERR": "The request couldn't be accepted",
+        "APPROVE_ALL_REQ_ERR": "The requests couldn't be accepted",
+        "RECEIVED_REJECT_ALL": "Reject all",
+        "REJECT_REQ_CONF": "Do you really want to reject the request from",
+        "REJECT_ALL_REQ_CONF": "Do you really want to reject ALL the requests?",
+        "REJECT_REQ_OK": "Request succesfully rejected!",
+        "REJECT_ALL_REQ_OK": "Requests succesfully rejected!",
+        "REJECT_REQ_ERR": "The request couldn't be rejected",
+        "REJECT_ALL_REQ_ERR": "The requests couldn't be rejected"
+      }
+    },
+    "CREATE_S1": {
+      "G_NAME_LABEL": "Name your group",
+      "G_NAME_PHOLDER": "My amazing group",
+      "G_VISIB_LABEL": "Set group's visibility",
+      "G_VISIB_PUBLIC": "@:GROUPS.MAIN_PAGE.PUBLIC",
+      "G_VISIB_PRIVATE": "@:GROUPS.MAIN_PAGE.PRIVATE",
+      "G_VISIB_HIDDEN": "@:GROUPS.MAIN_PAGE.HIDDEN",
+      "G_ADD_MEMBS_LABEL": "Add members",
+      "G_EDIT_MEMBS_LABEL": "Edit users",
+      "G_ADD_MEMBS_PHOLDER": "User name",
+      "G_ADD_MEMBS_PHOLDER2": "Add other",
+      "G_SUGGESTED_LABEL": "Suggested members",
+      "G_RESULTS_LABEL": "Users found",
+      "G_SELECTED_MEMBERS_LABEL": "Selected users",
+      "ERR_NAME_LEN17": "The name must be less than 17 characters long"
+    },
+    "CREATE_S2": {
+      "VIEW_TITLE": "Personalize group",
+      "ADD_IMG_LABEL": "Add a representative image for your group",
+      "G_DESCR_LABEL": "Describe your group",
+      "G_DESCR_PHOLDER": "This group is intended for..",
+      "G_CREATE_BTN": "Create group",
+      "ERR_DESC_LEN256": "Description must be less than 256 characters long",
+      "DIALOG": {
+        "ADD_MEMBERS_ERR": "The user(s) couldn't be added",
+        "APPROVE_MEMBERS_ERR": "Some users couldn't be added, you can see them in the 'Received request' page ",
+        "ADD_G_IMAGE_ERR": "The group's image couldn't be uploaded",
+        "SET_G_IMAGE_ERR": "The group's image couldn't be set",
+        "CREATE_GROUP_ERR": "The group couldn't be created"
+      }
+    },
+    "MEMBERS_MGMT": {
+      "ADD_MORE_LABEL": "Add more users",
+      "ADD_USER": "Add user",
+      "MEMBER": "Member",
+      "YOU": "You",
+      "ADMINISTRATOR": "Administrator",
+      "MODERATOR": "Moderator",
+      "BANNED": "@:GROUPS.MAIN_PAGE.BANNED",
+      "LOCKED": "@:GROUPS.MAIN_PAGE.LOCKED",
+      "REMOVE_AS": "Remove as",
+      "PROMOTE_AS": "Promote as",
+      "BANN_FROM_GROUP": "Ban from group",
+      "ALLOW_TO_GROUP": "Allow in group",
+      "LOCK_FROM_GROUP": "Lock from group",
+      "UNLOCK_FROM_GROUP": "Unlock from group",
+      "DELETE_FROM_GROUP": "Delete from group",
+      "DIALOG": {
+        "GET_BANNED_USERS_ERR": "We couldn't get the banned users",
+        "GET_LOCKED_USERS_ERR": "We couldn't get the locked users",
+        "GET_MEMBERS_LIST_ERR": "We couldn't get the members list",
+        "APPROVE_JOIN_OK": "User(s) added successfully!",
+        "APPROVE_JOIN_ERR": "Some users couldn't be added",
+        "YOULL_BE_THE_ADMIN": "Do not worry!, you will be the admin of this group",
+        "USER_ALREADY_IN_LIST": "The user is already in the list",
+        "USER_ALREADY_IN_GROUP": "The user is already in the group",
+        "USER_BANNED_FROM_GROUP": "This user can't be added because he/she was previously banned from this group",
+        "ADD_MEMBERS_ERR": "Some users coudn't be added, make sure they are not yet in the <b>Received requests</b> list",
+        "TURN_INTO_ADMIN_CONF": "Do you really want to turn this user into an administrator of the group? (You will still be an admin)",
+        "REVOKE_ADMIN_CONF": "Do you really want to revoke the admin role to this user?",
+        "TURN_INTO_MODERATOR_CONF": "Do you really want to turn this user into a moderator of the group?",
+        "TURN_INTO_REGULAR_USER_CONF": "Do you really want to turn this user into a regular user?",
+        "CHANGE_USER_ROL_ERR": "We couldn't change the user's role, try it again",
+        "BAN_USER_CONF": "Do you really want to deny access to this user DEFINITELY <b>(this action can not be undone)</b>?",
+        "BAN_USER_ERR": "We couldn't ban the user, try it again",
+        "LOCK_USER_CONF": "Do you want to deny access to this user TEMPORARILY <b>(you can change this later)</b>?",
+        "LOCK_USER_ERR": "We couldn't lock this user, try it again",
+        "UNLOCK_USER_CONF": "Do you want to grant access to this user again?",
+        "UNLOCK_USER_ERR": "We couldn't unlock this user, try it again",
+        "DELETE_USER_CONF": "Do you really want to remove this user from the group?",
+        "DELETE_USER_OK": "The user was removed successfully!",
+        "DELETE_USER_ERR": "We couldn't remove the user"
+      }
+    },
+    "SETTINGS": {
+      "VIEW_TITLE": "Group settings",
+      "CREATED": "Created",
+      "NAME": "Name",
+      "DESCRIPTION": "Description",
+      "CHANGE_VISIBILITY": "Change visibility",
+      "APPLY_CHANGES": "Apply changes",
+      "LEAVE_GROUP": "Leave group",
+      "REMOVE_GROUP": "Remove group",
+      "DELEGATE_ADMIN": {
+        "MAIN_MSG": "Before you leave this group you must give the administration to one of the members"
+      },
+      "DIALOG": {
+        "UPLOAD_IMAGE_ERR": "The image couldn't be uploaded",
+        "UPDATE_IMAGE_OK": "The image has been updated",
+        "UPDATE_IMAGE_ERR": "We couldn't update the group's image",
+        "UPDATE_DATA_OK": "The group's data has been updated",
+        "UPDATE_DATA_ERR": "We couldn't update the group's data",
+        "LEAVE_GROUP_CONF": "Do you really want to leave the group? (this action is irreversible)",
+        "LEAVE_GROUP_OK": "You have left the group successfully",
+        "LEAVE_GROUP_ERR": "We couldn't remove you from the group, try it again",
+        "CHANGE_ADMIN_ERR": "We couldn't change the group's administrator",
+        "REMOVE_GROUP_CONF": "The group's timeline, its members as well as the requests for joining to it will be deleted. Do you really want to continue?",
+        "REMOVE_GROUP_OK": "The group has been removed",
+        "REMOVE_GROUP_ERR": "We couldn't remove the group"
+      }
+    },
+    "TIMELINE_WRAPPER": {
+      "ORDER_SHOW_TIMELINE": "Order",
+      "YOUR_GROUPS_TITLE": "Your groups",
+      "DIALOG": {
+        "GET_GROUPS_ERR": "Couldn't get your groups",
+        "SHARE_CQNZ_OK": "The post has been shared",
+        "SHARE_CQNZ_IN_GROUPS_ERR": "The post couldn't be shared in the next group(s)",
+        "DUPLICATE_CQNZ_ERR": "because already exists in this group",
+        "UPLOAD_LOCKED_ERR": "You can't upload content in this group because you are temporarily locked from it"
+      }
+    },
+    "G_TIMELINE": {
+      "EMPTY_TL_MSG": "Be the first to post in this group",
+      "EMPTY_PREVIEW_TL_MSG": "Nobody has posted in this group, join now and be the very first one",
+      "DIALOG": {}
+    },
+    "FORM_ERROR": {
+      "REQUIRED": "This field is required"
+    }
+  },
+  "SEQUENCE": {
+    "OPTIONS": "Options",
+    "MORE_COMMENTS": "+ comments",
+    "SAVE_IN_LOCKER": "Save in my locker",
+    "PIN_CQNZ_TXT": "Pin this post",
+    "UNPIN_CQNZ_TXT": "Unpin this post",
+    "SHARE_IN_TIMELINE": "Share in my timeline",
+    "SHARE_IN_GROUPS_TIMELINE": "Share in groups",
+    "SHARE_EXTERNALLY": "Share in other media",
+    "REPORT": "Report this Post",
+    "DELETE": "Delete this Post",
+    "LOADING_COMMENTS": "Loading comments",
+    "DIALOG": {
+      "PIN_CQNZ_OK": "The post is pinned now",
+      "PIN_CQNZ_ERR": "The post couldn't be pinned",
+      "UNPIN_CQNZ_OK": "The post is unpinned now",
+      "UNPIN_CQNZ_ERR": "The post couldn't be unpinned",
+      "SHARE_IN_TIMELINE_CONF": "Would you like to share this post in your timeline",
+      "SHARE_CQNZ_IN_TIMELINE_ERR": "The post couldn't be shared",
+      "LIKE_CQNZ_ERROR": "An error occurred, try it again later",
+      "LIKE_COMMENT_ERROR": "An error occurred, try it again later",
+      "DELETE_CQNZ_CONF": "Do you really want to delete this post?",
+      "DELETE_CQNZ_OK": "The post has been deleted",
+      "DELETE_CQNZ_ERROR": "The post couldn't be deleted",
+      "AD_SETTINGS_UPDATE_OK":"Settings updated successfuly",
+      "AD_SETTINGS_UPDATE_ERROR":"Couldn't update the settings",
+      "EDIT_POST_TITLE_ERROR":"An error ocurred while updating the description",
+      "EDIT_POST_COMMENT_ERROR":"An error ocurred while updating the comment",
+      "CREATE_POST_COMMENT_ERROR":"An error ocurred while creating the comment"
+    }
+  },
+  "ADMIN_TOOLS": {
+    "MAIN_PAGE": {
+      "MANAGEMENT": "Management"
+    },
+    "ADMIN_MEMBERS": {
+      "MEMBERS_MANAGEMENT": "Members management",
+      "MEMBERS": "Members",
+      "SEARCH_TITLE": "Search user",
+      "SELECTED_MEMBER": "Selected member",
+      "USER": "User",
+      "ACTIONS": "Actions",
+      "CHANGE_ROLE": "Change role",
+      "SELECT_NEW_ROLE": "Select the new role",
+      "BAN": "Ban",
+      "LOCK": "Lock",
+      "DELETE_ACCOUNT": "Delete account",
+      "VERIFY_ACCOUNT": "Verify account",
+      "UNVERIFY_ACCOUNT": "Unverify account",
+      "ACTIVATE_ACCOUNT": "Activate account",
+      "DEACTIVATE_ACCOUNT": "Deactivate account",
+      "CHG_PASSWD": "Change password",
+      "CHG_NAME": "Change name",
+      "CHG_EMAIL": "Change email",
+      "DIALOG": {
+        "INVALID_ACTION": "This action can't be performed on yourself",
+        "ADD_UPDATE_ROLE_OK": "The user role has been updated",
+        "ADD_UPDATE_ROLE_ERROR": "The role couldn't be added/updated",
+        "ASSINGN_FOLLOWERS_ERROR": "Couldn't assign followers to the advertiser",
+        "VERIFY_ACCOUNT_CONF": "Do you really want to verify the user account?",
+        "UNVERIFY_ACCOUNT_CONF": "Do you really want to unverify the user account?",
+        "VERIFY_ACCOUNT_OK": "The account has been verified",
+        "VERIFY_ACCOUNT_ERROR": "The account couldn't be verified",
+        "UNVERIFY_ACCOUNT_OK": "The account has been unverified",
+        "UNVERIFY_ACCOUNT_ERROR": "The account couldn't be unverified",
+        "BAN_ACCOUNT_CONF": "Do you really want to ban the user account?",
+        "BAN_ACCOUNT_OK": "The account has been banned",
+        "BAN_ACCOUNT_ERROR": "The account couldn't be banned",
+        "LOCK_ACCOUNT_CONF": "Do you really want to lock this user account?",
+        "LOCK_ACCOUNT_OK": "The account has been locked",
+        "LOCK_ACCOUNT_ERROR": "The account couldn't be locked",
+        "DELETE_ACCOUNT_CONF": "Do you really want to delete this user account?",
+        "DELETE_ACCOUNT_DISCOURAGE": "This action can't be undone",
+        "DELETE_ACCOUNT_OK": "The account has been deleted",
+        "DELETE_ACCOUNT_ERROR": "The account couldn't be deleted",
+        "ACTIVATE_ACCOUNT_CONF": "Do you really want to activate this user account?",
+        "ACTIVATE_ACCOUNT_OK": "The account has been activated",
+        "DEACTIVATE_ACCOUNT_OK": "The account has been deactivated",
+        "ACCOUNT_ALREADY_ACTIVATED_ERROR": "The account was already active",
+        "ACTIVATE_ACCOUNT_ERROR": "The account couldn't be activated",
+        "DEACTIVATE_ACCOUNT_ERROR": "The account couldn't be deactivated",
+        "NEW_PASSWORD": "New password",
+        "REPEAT_PASSWORD": "Repeat password",
+        "ENTER_NEW_PASSWORD": "Enter new password",
+        "PASSWORD_FIELD_REQUIRED": "Password is required",
+        "PASSWORD_MISMATCH": "Paswords don't match",
+        "PASSWORD_UPDATED_OK": "The password has been updated",
+        "PASSWORD_UPDATED_ERROR": "The password could not be updated",
+        "NAME": "Name",
+        "MIDDLENAME": "Middlename",
+        "LASTNAME": "Lastname",
+        "LASTNAME2": "Other",
+        "ENTER_NEW_USERNAME": "Enter new username",
+        "NAME_FIELDS_REQUIRED": "Name and lastname fields are required",
+        "NAMES_ARE_EQUAL": "The new username must be different",
+        "USERNAME_UPDATED_OK": "The username has been updated",
+        "USERNAME_UPDATED_ERROR": "The username couldn't be updated",
+        "EMAIL_PLACEHOLDER": "example@domian.com",
+        "ENTER_EMAIL_LABEL": "Enter new email address",
+        "EMAIL_FIELD_REQUIRED": "Email field is required",
+        "EMAIL_UPDATED_OK": "The email has been updated",
+        "EMAIL_UPDATED_ERROR": "The email could not be updated"
+      }
+    },
+    "ADMIN_ROLES": {
+      "ROLES": "Roles",
+      "ROLE_NAME": "Role name",
+      "CREATE_ROLE": "Create role",
+      "EDIT_ROLE": "Edit role",
+      "CREATE": "Create",
+      "UPDATE": "Update",
+      "DIALOG": {
+        "LOAD_ROLES_ERROR": "Couldn't load the roles",
+        "LOAD_ROLE_PERMISSIONS_ERROR": "Couldn't load the role permissions",
+        "DELETE_ROLE_CONF": "Do you really want to delete the role",
+        "ROLE_DELETED_OK": "The role has been removed successfully",
+        "ROLE_DELETED_ERROR": "The selected role couldn't be removed",
+        "ROLE_CREATEDTED_OK": "The role has been created",
+        "ROLE_NAME_REQUIRED": "Role name is required",
+        "ROLE_CREATEDTED_ERROR": "The role couldn't be created",
+        "ADD_PERMISSIONS_ERROR": "Some permissions couldn't be added",
+        "ROLE_UPDATED_OK": "Role updated successfuly",
+        "ROLE_UPDATED_ERROR": "Role name or permissions couldn't be updated"
+      }
+    },
+    "ADMIN_PERMISSIONS": {
+      "PERMISSIONS": "Permissions",
+      "PERMISSION_NAME": "Permission Description",
+      "PERMISSION_CODENAME": "Permission code",
+      "CREATE_PERMISSION": "Create permission",
+      "EDIT_PERMISSION_NAME": "Change permission name",
+      "DIALOG": {
+        "LOAD_PERMS_IN_LOGIN_ERROR": "Sorry, we couldn't verify your permissions, you must do login again",
+        "LOAD_PERMS_ERROR": "Couldn't load the permissions",
+        "INPUT_FIELDS_REQUIRED": "Description and codename fields are required",
+        "DIFFERENT_NAME_REQUIRED": "New name must be different",
+        "PERM_CREATED_OK": "Permission has been created",
+        "PERM_CREATED_ERROR": "The permission couldn't be created",
+        "PERM_UPDATED_OK": "Permission updated successfuly",
+        "PERM_UPDATED_ERROR": "Couldn't update the permission",
+        "CONFIRM_DELETE_PERM": "Do you really want to delete the permission",
+        "PERM_DELETED_OK": "The permission has been removed successfully",
+        "PERM_DELETED_ERROR": "The selected permission couldn't be removed"
+      }
+    },
+    "FORM_ERROR": {
+      "FIELD_REQUIRED": "This field is required",
+      "NAME_LENGTH": "The name must be less than 30 characters long",
+      "DESCRIPTION_LENGTH": "The description must be less than 30 characters long"
+    },
+    "TAGS": {
+      "GRAL_TIMELINE": "General timeline",
+      "GROUP_TIMELINE": "Groups timeline",
+      "GROUP": "Groups",
+      "USER": "Users",
+      "ROLE": "Roles",
+      "ADVERTISER": "Advertisers",
+      "PERMISSION": "Permissions",
+      "COMMENT": "Comments"
+    }
+  },
+  "PERMISSIONS": {
+    "CANNOT": {
+      "GRAL_TLINE_CQNZ_CREATE": "You don't have permission to post in this timeline",
+      "GRAL_TLINE_CQNZ_LIKE": "You don't have permission to like on posts",
+      "GRAL_TLINE_CQNZ_REACT": "You don't have permission to react to this post",
+      "GRAL_TLINE_CQNZ_SHARE": "You don't have permission to share this post",
+      "SHARE_ON_ZERO_GROUPS": "There are no groups to share this post with",
+      "GRAL_TLINE_CQNZ_SHARE_IN_GROUP": "You don't have permission to share this post",
+      "GRAL_TLINE_CQNZ_SHARE_IN_EXTERNAL": "You don't have permission to share this post",
+      "GROUP_TLINE_CQNZ_CREATE": "You don't have permission to post in this group",
+      "GROUP_TLINE_CQNZ_LIKE": "You don't have permission to like on posts",
+      "GROUP_TLINE_CQNZ_REACT": "You don't have permission to react to this post",
+      "GROUP_TLINE_CQNZ_SHARE": "You don't have permission to share this post",
+      "COMMENT_CREATE": "You don't have permission to comment in this timeline",
+      "COMMENT_LIKE": "You don't have permission to like this comment",
+      "PERFORM_ACTION_ON_PREVIEW":"This action can't be performed on a preview timeline"
+    }
+  },
+  "NOTIFICATIONS": {
+    "DIALOG": {
+      "NEW_REG_NOTIF_FOUND": "There are new notifications. Do you want to reload to view them?",
+      "NEW_FOLLOWERS_FOUND": "There are new followers. Do you want to reload to view them?",
+      "IS_FOLLOWING_YOU": " is now following you",
+      "SOMEONE": "Someone"
+    }
+  },
+  "REACTION": {
+    "SEND": "Send a reaction",
+    "TAKE": "@:UPLOAD.TAKE",
+    "DIALOG":{
+      "REACTION_SENT_OK":"The reaction has ben sent",
+      "REACTION_SENT_ERROR":"There was an error while reacting"
+    }
+  },
+  "COMMENT": {
+    "ARE_DISABLED": "Comments are disabled",
+    "WRITE": "Write a comment",
+    "EDIT_COMMENT": "Edit"
+  },
+  "PROFILE": {
+    "MY_CQNZS": "My Post",
+    "CQNZS": "Posts",
+    "FOLLOWERS": "Followers",
+    "FOLLOWING": "Following",
+    "START": "Start with Niido",
+    "EDIT": "Edit title",
+    "DELETE": "Delete post",
+    "SHARE": "Share post",
+    "WRITE": "Write about yourself",
+    "INVITE": "Invite this user to start using Niido",
+    "CHANGE_PICTURE": "Change profile picture",
+    "CHANGE": "Change image",
+    "MODIFY": "Edit Post",
+    "MESSAGE": "Message",
+    "CHANGE_CONFIG": "Change config"
+  },
+  "EDIT_PROFILE": {
+    "ACCOUNT": "Account",
+    "FB_ERROR": "Facebook's users can't change some data.",
+    "FAVORITE_FRIENDS": "@:FAVORITES.TITLE",
+    "PRIVATE_PROFILE": "Private profile",
+    "PRIVATE_WARNING": "If your profile is private, only your followers will be able to see your posts. You will have to accept future requests from new followers."
+  },
+  "FAVORITES": {
+    "TITLE": "Favorite friends",
+    "NO_FAVORITES": "You can select your favorites friends by visiting their profile and tapping the icon above"
+  },
+  "UPLOAD": {
+    "PHOTOS_LENGHT": "The limit is 6 photos",
+    "TITLE": "Title",
+    "PERSONALIZE": "Personalize your ",
+    "SECONDS": "Seconds",
+    "PHOTOS": "Photos",
+    "DELAY": "Delay(sec)",
+    "CAMERA": "Camera",
+    "OR": "or",
+    "CAMERA_LIBRARY": "Camera / Library",
+    "UPLOAD": "Upload ",
+    "POST_GROUP": "upload to group ",
+    "ADD": "Add images",
+    "TAKE": "Take photo",
+    "FROM_GALLERY": "Photo from library",
+    "UPDATE": "Update",
+    "NODELETE": "Can't delete old photos",
+    "VIDEO": "Add video",
+    "DELETE_AFTER":"Delete after ",
+    "ENABLE_COMMENTS": "Enable comments",
+    "DISABLE_COMMENTS": "Disable comments",
+    "ENABLE_COMMENTS_OK": "Comments are now enabled",
+    "ENABLE_COMMENTS_ERROR": "Couldn't enable comments",
+    "DISABLE_COMMENTS_OK": "Comments are now disabled",
+    "DISABLE_COMMENTS_ERROR": "Couldn't disable comments",
+    "COMMENTS_ARE_DISABLED": "Comments are disabled for this post",
+    "HEADER_OPTIONS_TAG": "Header options",
+    "HEADER_BG_COLOR":"Background color",
+    "HEADER_FONT_COLOR":"Text color",
+    "DATETIME_PICKER_TAG":"Expiration date",
+    "OTHER_OPTIONS_TAG":"Other options",
+    "DATETIME_PICKER":{
+      "TITLE": "Pick a date",
+      "MONDAY":"Mo",
+      "TUESDAY":"Tu",
+      "WEDNESDAY":"We",
+      "THURSDAY":"Th",
+      "FRIDAY":"Fr",
+      "SATURDAY":"Sa",
+      "SUNDAY":"Su",
+      "JANUARY":"January",
+      "FEBRUARY":"February",
+      "MARCH":"March",
+      "APRIL":"April",
+      "MAY":"May",
+      "JUN":"Jun",
+      "JULY":"July",
+      "AUGUST":"August",
+      "SEPTEMBER":"September",
+      "OCTOBER":"October",
+      "NOVEMBER":"November",
+      "DECEMBER":"December"
+    },
+    "DIALOG": {
+      "POST_ERROR": "Unable to upload the post"
+    },
+    "ENABLE_SHARE": "Enable share",
+    "SECOND_CODING": "Processing video"
+  },
+  "DISCOVER": {
+    "SEARCH_FOR": "Search for users",
+    "SEARCH": "Search",
+    "AT_LEAST": "Your search needs at least 3 characters.",
+    "FEATURED": "Featured",
+    "NEW_USERS": "New users",
+    "NO_TRENDING": "No hashtags found",
+    "NO_DISCOVER_USERS": "Nobody has posted something be the first",
+    "USERS_TAB_TITLE":"Users",
+    "CONTENT_TAB_TITLE":"Content"
+  },
+  "ALERTS": {
+    "NOTIFICATIONS": "Notifications",
+    "FOLLOWERS": "@:PROFILE.FOLLOWERS",
+    "LIKE_SEQUENCE": "liked your post",
+    "LIKE_PHOTO": "liked your photo",
+    "LIKE_COMMENT": "liked your comment",
+    "COMMENT_SEQUENCE": "commented on your post",
+    "COMMENT_PHOTO": "commented on your photo",
+    "TAG_SEQUENCE": "tagged you in a post",
+    "TAG_COMMENT": "tagged you in a comment",
+    "FOLLOWING": "is now following you",
+    "REACTED_TO_SEQUENCE":"sent you a reaction",
+    "VIRAL": "viral",
+    "WANT_FOLLOW": "wants to follow you",
+    "GROUP_DELETE": "the group was deleted",
+    "USER_WANTS_JOIN_GROUP": "wants to join the group",
+    "UPDATE_COMMENT_TAGGED": "updated a comment where you were tagged"
+  },
+  "GLOBAL": {
+    "PRIVACY_POLICY": "Privacy policy",
+    "TERMS_USE": "Terms of use",
+    "TODAY": "Today at ",
+    "YESTERDAY": "Yesterday at ",
+    "BIOGRAPHY": "Hi, welcome to my profile.",
+    "ALERT": "Alert",
+    "INFORMATION": "Information",
+    "SUCCESS": "Success",
+    "WARNING": "Warning",
+    "ERROR": "Error",
+    "CONFIRM_ACTION": "Confirm action",
+    "CANCEL": "Cancel",
+    "OK": "Ok",
+    "CONTINUE": "Continue",
+    "YES": "Yes",
+    "NO": "No",
+    "NEXT": "Next",
+    "BACK": "Back",
+    "DONE": "Done",
+    "SKIP": "Skip",
+    "SEND": "Send",
+    "POST": "Post",
+    "DISABLE": "Disable",
+    "FOLLOW": "Follow",
+    "UNFOLLOW": "Unfollow",
+    "BLOCK": "Block",
+    "UNBLOCK": "Unblock",
+    "REFRESH": "Pull to refresh",
+    "GOT_IT": "Got it",
+    "UPDATE": "Edit",
+    "SAVE": "Save",
+    "BIO": "Hey there! Welcome to my profile.",
+    "DELETE": "Delete",
+    "LOADING": "Loading",
+    "RELOAD": "Reload",
+    "MINUTES":"Minutes",
+    "HOURS":"Hours",
+    "GENERAL_OPTIONS": "General options",
+    "BLOCK_USER": "Block user",
+    "UNBLOCK_USER": "Unblock user",
+    "ASK_USERBLOCK": "Do you really want to block this user?",
+    "ASK_USERUNBLOCK": "Do you really want to unblock this user?",
+    "UNTIL":"Until"
+  },
+  "ERROR": {
+    "UNKNOWN":"An unknown error occurred",
+    "LOGIN": "Unable to log in please verify your username and password",
+    "NO_INTERNET": "No internet connection.",
+    "NO_INTERNET2": "You need internet connection to load content.",
+    "FACEBOOK_ERR01": "Cannot get the info from your profile. Check your Internet connection and try again.",
+    "FACEBOOK_ERR02": "Cannot connect with Facebook.",
+    "FACEBOOK_ERR03": "Cannot access the server, check your Internet connetion and try again later.",
+    "FACEBOOK_ERR04": "Can't check the connection between Facebook and NIIDO, check your Internet connection and try later.",
+    "FACEBOOK_ERR05": "Can't access your subscription, check your internet connection and try again.",
+    "FACEBOOK_ERR06": "Unable to upload your profile photo at this time, please try again in a moment.",
+    "FACEBOOK_AGE_ERR": "You must be at least 13 years old to use this App."
+  },
+  "HASHTIMELINE": {
+    "NOT_FOUND": "No post found with that HashTag",
+    "REPORT": "Report this NIIDO",
+    "LOADING": "Loading",
+    "RELOAD": "Reload"
+  },
+  "PRIVATEMESSAGE": {
+    "ADDED": "You've already added: ",
+    "SENDINGMSG": "Sending mesage",
+    "JOINED_USER": " enter the chat",
+    "SEEN_FRIEND": "Read",
+    "SEEN_MINE": "Sent and read",
+    "UNSEEN_FRIEND": "Unread",
+    "UNSEEN_MINE": "Sent",
+    "SELECT_USER": "Select user(s)",
+    "MEMBER": " Member",
+    "USERNAME": "User name",
+    "APPALERT_NEWMSG": " Send new message",
+    "EMPTY_INBOX": "Empty inbox, send message to friends",
+    "MSG_TYPE_GRUPAL": "Group",
+    "MSG_TYPE_INDIVIDUAL": "Individual",
+    "ADD_MEMBERS_CHAT": "Add members",
+    "EDIT_MEMBERS_CHAT": "Edit members",
+    "WRITE_MESSAGE": "Write message",
+    "SEND_MSG_CHAT": "Send",
+    "WANNA_NAME_CHATROOM": "Want to name the chatroom?",
+    "WRITE_NAME_CHATROOM": "Write the name",
+    "TITLE_CHATROOM": "Title",
+    "TEMPLATE_CHAT_NAME": "My chat group",
+    "LIST_USERS_INSIDE": "Users in chatroom",
+    "SEARCH_ADD_NEW_USERS": "Add users",
+    "USERS_FOUND_TO_ADD": "Found users",
+    "MULTIPLE_DIRECT_MSGS": "Send to all"
+  },
+  "PUSHNOTIFICATION": {
+    "PRIVATEMSG": " send you a private message"
+  },
+  "PLUGINS": {
+    "MULTISHOT": {
+      "PLUGIN_NOT_INSTALLED": "'Multishot' plugin is not installed",
+      "FUNCTION_NOT_AVAILABLE": "This function is not available because 'Multishot' plugin is not installed"
+    },
+    "FCM": {
+      "PLUGIN_NOT_INSTALLED": "'FCM' plugin is not installed",
+      "FUNCTION_NOT_AVAILABLE": "This function is not available because 'FCM' plugin is not installed"
+    },
+    "BRANCH": {
+      "PLUGIN_NOT_INSTALLED": "This function is not available because 'Banch' plugin is not installed"
+    }
+  },
+  "ONBOARDING": {
+    "LANGUAJE": "en"
+  }
+}

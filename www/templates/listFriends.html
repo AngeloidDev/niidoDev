@@ -1,0 +1,63 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="comments-box" style="margin-top:-10px; margin-left:5px;">
+
+    <div class="row" ng-repeat="friend in friends">
+      <div class="col col-20">
+        <div style="width:50px; height:55px; float:left; padding-top:7px; ">
+          <a class="item item-avatar" style="padding-left: 55px">
+            <img class="avatar-image" ng-src="{{ 'data:image/jpeg;base64,' + friend.profilePicture.split(':')[2] }}"
+                 class="comments-avatar" ng-click="sendUserProfile(friend.userSubscription)"
+                 ng-if="friend.profilePicture != null"/>
+            <img class="avatar-image" ng-src="{{ friend.profilePictureUrl }}" class="comments-avatar"
+                 ng-click="sendUserProfile(friend.userSubscription)" ng-if="friend.profilePictureUrl != null"/>
+            <img class="avatar-image" ng-src="img/ProfilePhoto.svg" class="comments-avatar"
+                 ng-click="sendUserProfile(friend.userSubscription)"
+                 ng-if="friend.profilePictureUrl == null && friend.profilePicture == null"/>
+          </a>
+        </div>
+      </div>
+      <div class="col" style="width:60%;">
+        <div class="userNameBold"
+             style="width:130px; float:left; vertical-align: middle; margin-left:2px; color:rgba(51,51,51,1); line-height:51px; height:55px; overflow: hidden;"
+             ng-click="sendUserProfile(friend.userSubscription)">
+          {{ friend.name }}
+        </div>
+      </div>
+
+      <div class="col col-20">
+        <div style="width:130px; float:right; margin-top: 10px; margin-right:-14px; "
+             ng-init="checkFriendship(friend)">
+          <div ng-click="addFriends(friend)">
+            <button class="button button-small" ng-class="friend.followingIsActive ? 'unfollow' : 'follow'"
+                    ng-disabled="friend.togglingFollow">
+              {{friend.followingIsActive ? unfollowText : followText}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center" ng-show="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="init()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

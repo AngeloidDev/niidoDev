@@ -1,0 +1,75 @@
+<div style="margin-top:2px;">
+  <div class="row" style="height: 50px">
+    <!-- LIKES BUTTON -->
+    <div class="col">
+      <div style="display: inline-flex">
+        <!-- STILL ICON -->
+        <md-icon
+          class="like-icon-{{sequence.like.active.result.value?'active':'inactive'}}"
+          md-svg-icon="{{'img/icons/'+(sequence.like.active.result.value?'sun2':'sun')+'.svg'}}"
+          ng-click="setLikeToSequence(sequence, $index);"></md-icon>
+
+        <!-- ANIMATED ICON -->
+        <div class="anilike" id="animation{{$index}}"
+             ng-if="!sequence.like.active.result.value"
+             style="display:none; position:absolute; z-index:1000; overflow:visible; background:url(img/happyOn.svg) no-repeat; background-size: contain; "></div>
+
+        <!-- COUNTER -->
+        <div style="margin-left: 5px" ng-click="showUsersWhoLiked(sequence)">
+          <div ng-class="sequence.like.active.result.value ? 'on1_disable' : 'on1'"
+               id="happyNumberoff{{ sequence.metadata.id }}" ng-bind="sequence.like.counter > 99 ? '+99' : sequence.like.counter"></div>
+          <div ng-class="sequence.like.active.result.value ? 'off1' : 'off1_disable'"
+               id="happyNumberon{{ sequence.metadata.id }}" ng-bind="sequence.like.counter > 99 ? '+99' : sequence.like.counter"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REACT BUTTON -->
+    <div class="col text-center" ng-if="sequence.react.enabled.result.value">
+      <div style="display: inline-flex">
+        <!-- ICON -->
+        <md-icon md-svg-icon="img/icons/reactIcon.svg"
+                 class="cqnz-strip-icon {{canReactToSequence() ? '':'disabled'}}"
+                 ng-click="redirectSendReaction(sequence)"></md-icon>
+
+        <!-- COUNTER -->
+        <a class="cqnz-strip-counter"
+           style="margin-left: 5px"
+           ng-bind="sequence.react.counter > 99 ? '+99' : sequence.react.counter"
+           id="reactNumber{{ sequence.metadata.id }}"></a>
+      </div>
+    </div>
+
+    <!-- SHARE BUTTON -->
+    <div class="col text-center" ng-if="!sequence.metadata.isAdvertisement">
+      <div style="display: inline-flex">
+        <!-- ICON -->
+        <md-icon md-svg-icon="img/icons/shareIcon.svg"
+                 class="cqnz-strip-icon"
+                 ng-class="{disabled:!canOpenSharingOptions(sequence)}"
+                 ng-click="openSharingOptions(sequence, $index)"></md-icon>
+
+        <!-- COUNTER -->
+        <a class="cqnz-strip-counter"
+           style="margin-left: 5px"
+           ng-bind="sequence.share.counter > 99 ? '+99' : sequence.share.counter"
+           id="sharesCount{{ sequence.metadata.id }}"></a>
+      </div>
+    </div>
+
+    <!-- COMMENTS BUTTON -->
+    <div class="col text-right" ng-style="{opacity: !sequence.comments.enabled ? .4 : 1}">
+      <div style="display: inline-flex">
+        <!-- COUNTER -->
+        <a class="cqnz-strip-counter"
+           ng-bind="sequence.comments.counter> 99 ? '+99' : sequence.comments.counter"
+           id="commentNumber{{ sequence.metadata.id }}"></a>
+
+        <!-- ICON -->
+        <img style="margin-left: 5px"
+             src="img/comment.svg"
+             ng-click="reDirectCommentsPage(sequence, $index);"/>
+      </div>
+    </div>
+  </div>
+</div>

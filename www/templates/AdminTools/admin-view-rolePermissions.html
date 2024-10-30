@@ -1,0 +1,57 @@
+<ion-view title='{{HEADER_LOGO}}' can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-footer">
+    <md-subheader class="md-no-sticky">
+      <h4>
+        <span translate>ADMIN_TOOLS.ADMIN_ROLES.ROLE_NAME</span>:
+        <span md-colors="{color:'primary'}">{{role.description}}</span>
+      </h4>
+    </md-subheader>
+
+    <form id="permissionsForm" name="permissionsForm">
+      <md-subheader>
+        <span translate>ADMIN_TOOLS.ADMIN_PERMISSIONS.PERMISSIONS</span>
+      </md-subheader>
+
+      <div ng-repeat="pGroup in currentRolePermissions">
+        <md-subheader
+          md-colors="{'background-color':'primary'}" ng-click="toggleListVisibility(pGroup.tag, pGroup.tag+'_list_view')">
+          {{'ADMIN_TOOLS.TAGS.'+pGroup.tag|translate}} ({{pGroup.permissions.length}})
+          <span class="icon ion-chevron-up" id="{{pGroup.tag}}" style="font-size: 12px; float: right;"></span>
+        </md-subheader>
+        <div id="{{pGroup.tag}}_list_view" style="display: block" class="padding-horizontal">
+          <md-list-item
+            ng-repeat="permission in pGroup.permissions">
+            <div layout="column" style="margin-top: auto; margin-bottom: auto">
+              <div>{{permission.permitDescription}}</div>
+            </div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+          <!--<ion-list>
+            <md-switch
+              class="md-primary"
+              md-no-ink aria-label="Switch"
+              ng-model="selected"
+              ng-disabled="true"
+              ng-if="tag==permission.codeName.substring(0,permission.codeName.indexOf('.'))"
+              ng-repeat="permission in currentRolePermissions">
+              {{permission.permitDescription}}
+            </md-switch>
+          </ion-list>-->
+        </div>
+        <md-divider></md-divider>
+      </div>
+    </form>
+
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'"></div>
+
+</ion-view>

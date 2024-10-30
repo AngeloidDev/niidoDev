@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <preference name="orientation" value="portrait">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <script type="text/javascript" src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic.cloud.min.js"></script>
+    <script type="text/javascript" src="lib/ionic/js/angular/angular-resource.js"></script>
+
+    <!-- LIBRERIAS JS TERCEROS -->
+    <link href="lib/angular-material/angular-material.css" rel="stylesheet">
+    <link href="css/ngMaterialCustom-Styles.css" rel="stylesheet">
+
+    <link href="http://code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+    <!--<script src="http://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>-->
+
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-messages/angular-messages.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
+
+    <script src="lib/socket.io-client/dist/socket.io.js"></script>
+    <script src="lib/angular-socket-io/socket.js"></script>
+    <script src="lib/rltm/web/rltm.js"></script>
+    <script src="js/librerias/gifshot.js"></script>
+
+    <script src="lib/toastr/angular-toastr.tpls.min.js"></script>
+    <link rel="stylesheet" href="lib/toastr/angular-toastr.min.css"/>
+
+    <script type="text/javascript" src="lib/colorPicker/ngjs-color-picker.js"></script>
+
+    <script src="lib/ion-datetime-picker/release/ion-datetime-picker.min.js"></script>
+    <link href="lib/ion-datetime-picker/release/ion-datetime-picker.min.css" rel="stylesheet">
+
+    <!--<script src="/socket.io/socket.io.js"></script>-->
+
+    <!--END  LIBRERIAS JS TERCEROS -->
+
+    <!-- <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/ng-sortable.min.css"><!-- css para script mover pics-->
+
+    <link href="css/upload_Templates.css" rel="stylesheet">
+    <link href="css/introjs.css" rel="stylesheet"><!--Style needed for tooltips-->
+    <link href="css/introjs-modern.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/Styles-personalized.css" rel="stylesheet">
+    <link href="fonts/my-fonts.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/librerias/angular-utf8-base64.js"></script>
+    <script type="text/javascript" src="js/librerias/controllers.js"></script>
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/filters.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/librerias/http-auth-interceptor.js"></script>
+    <script type="text/javascript" src="js/librerias/authentication.js"></script>
+    <script type="text/javascript" src="js/librerias/ng-sortable.min.js"></script> <!--script para mover pics-->
+    <script type="text/javascript" src="js/librerias/ng-cordova.min.js"></script>
+    <script type="text/javascript" src="js/librerias/html2canvas.js"></script>
+    <script type="text/javascript" src="js/librerias/mentio.js"></script>
+    <!--Temporal fix for tags in IOS change to mentio2 when using in ios-->
+    <script type="text/javascript" src="js/librerias/mentio2.js"></script>
+    <script type="text/javascript" src="js/librerias/mentio3.js"></script><!-- new fix for myprofile with mentio-->
+    <script type="text/javascript" src="js/librerias/mentio4.js"></script>
+    <script type="text/javascript" src="js/librerias/mentio5.js"></script><!-- new fix for myprofile with mentio-->
+    <script type="text/javascript" src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <script type="text/javascript" src="js/librerias/openfb.js"></script>  <!--code for facebook login-->
+    <script type="text/javascript" src="js/librerias/ngopenfb.js"></script>  <!--Code for facebook login-->
+    <script type="text/javascript" src="js/librerias/fabric.js"></script>
+    <script type="text/javascript" src="js/librerias/intro.js"></script><!--Js needed for tooltips-->
+    <script type="text/javascript" src="js/clickoutside.directive.js"></script><!--Click outside event -->
+    <script type="text/javascript" src="js/librerias/angular-translate.js"></script>
+    <script type="text/javascript" src="js/librerias/angular-translate-loader-static-files.js"></script>
+    <script type="text/javascript" src="js/librerias/gif.js"></script>
+    <script type="text/javascript" src="js/librerias/gif.worker.js"></script>
+    <script type="text/javascript" src="js/librerias/angular-sqlite.js"></script>
+    <script type="text/javascript" src="js/librerias/angular-inview.js"></script>
+    <!--<script type="text/javascript" src="js/librerias/aws-sdk-2.80.0.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/librerias/aws-sdk-2.176.0.js"></script>-->
+    <script type="text/javascript" src="js/librerias/aws-sdk-2.186.0.min.js"></script>
+    <script type="text/javascript" src="js/librerias/angular-md5.js"></script>
+    <!--add pages for each new controller group-->
+    <script type="text/javascript" src="js/Controllers/cleanControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/configControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/discoveryControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/facebookControllers.js"></script>
+    <script type="text/javascript" src="templates/groups/groupsControllers.js"></script>
+    <script type="text/javascript" src="templates/AdminTools/adminControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/listControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/loginControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/mainControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/messagesControllers.js"></script>
+    <script type="text/javascript" src="templates/Notifications/notificationsControllers.js"></script>
+    <script type="text/javascript" src="templates/Profiles/profileControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/supportControllers.js"></script>
+    <script type="text/javascript" src="js/Controllers/sequenceController.js"></script>
+    <script type="text/javascript" src="templates/Timelines/timelinesControllers.js"></script>
+    <script type="text/javascript" src="templates/Chats/ChatController.js"></script>
+    <!--Scripts for chat-->
+
+    <script type="text/javascript" src="templates/partials/partialsControllers.js"></script>
+
+    <script type="text/javascript" src="templates/Uploads/uploadControllers.js"></script>
+    <script type="text/javascript" src="js/Services/myServices.js"></script>
+    <script type="text/javascript" src="js/Services/Utils.js"></script>
+    <script type="text/javascript" src="js/Services/timelinesService.js"></script>
+    <script type="text/javascript" src="js/Services/groupsServices.js"></script>
+    <script type="text/javascript" src="js/Services/notificationsService.js"></script>
+    <script type="text/javascript" src="js/Services/adminAppRolesServices.js"></script>
+    <script type="text/javascript" src="js/Services/adminAppMembersServices.js"></script>
+    <script type="text/javascript" src="js/Services/permissionValidationService.js"></script>
+    <script type="text/javascript" src="js/Services/cqnzServices.js"></script>
+    <script type="text/javascript" src="js/Services/AWSServices.js"></script>
+    <script type="text/javascript" src="js/Services/adsService.js"></script>
+    <script type="text/javascript" src="js/Services/tagsService.js"></script>
+    <script type="text/javascript" src="js/Services/chatServices.js"></script>
+    <script type="text/javascript" src="js/Services/DBServices.js"></script>
+
+    <!-- FACTORIES -->
+    <script type="text/javascript" src="js/factories/sequenceFactory.js"></script>
+    <script type="text/javascript" src="js/factories/commentFactory.js"></script>
+    <script type="text/javascript" src="js/factories/chatFactory.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+    <script src="cordova.js"></script>
+
+    <script type="text/javascript" src="js/librerias/roundProgress.min.js"></script>
+
+
+  </preference>
+</head>
+<body ng-app="app" animation="slide-left-right-ios7">
+<div>
+  <div>
+    <div ng-controller="networkCtrl" ng-show="internet.status == 'none'" class="connection-message" translate>
+      ERROR.NO_INTERNET
+    </div>
+    <ion-nav-view></ion-nav-view>
+  </div>
+</div>
+<!--<ng-include src="'templates/partials/mentioTemplates.html'"></ng-include>-->
+</body>
+</html>

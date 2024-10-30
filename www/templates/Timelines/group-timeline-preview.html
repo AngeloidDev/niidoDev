@@ -1,0 +1,18 @@
+<ion-view
+  title="{{groupData.name? '<div class=\'header-avatar-container\'><img src=\''+groupData.image+'\' class=\'header-avatar\'></div>'+groupData.name : HEADER_LOGO}}">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons side="left">
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="scroll-content-shrinking" scroll="false">
+    <ng-include
+      src="'templates/Timelines/group-timeline.html'"
+      ng-controller="groupTimelineCtrl"></ng-include>
+    <ng-include src="'templates/partials/mentioTemplates.html'"></ng-include>
+
+  </ion-content>
+</ion-view>
+

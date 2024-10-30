@@ -1,0 +1,300 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" id="friendProfile" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right" ng-init="findBlockUserById()">
+      <md-button
+        aria-label="groups options"
+        class="md-icon-button"
+        ng-click="showOptionsMenu()">
+        <md-icon md-menu-origin md-svg-icon="img/icons/more_vert_24px.svg"></md-icon>
+      </md-button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <div ng-controller="GalleryCtrl">
+
+    <ion-content header-shrink="true" scroll-event-interval="5" locking="true"
+                 class="has-footer scroll-content-shrinking background-line">
+      <div class="avers">
+        <div class="separateHeader"></div>
+
+        <span class="icon-stack" ng-click="addFavorite()" ng-if="isFriend" style="position: absolute !important;">
+          <i class="ion-android-bookmark" ng-class="friend.favorite > 0 ? 'energized':'dark'"
+             style="font-size: 50px !important; top: -21px;"></i>
+          <i class="ion-star light" style="font-size: 20px !important; padding-top: 13px; top: -20px;"></i>
+        </span>
+        <div
+          style="height:26px; width:{{isFriend ? 36:80}}px; background-color:transparent !important; right:0; text-align:right;position: absolute;">
+          <button ng-click="addFriends();" ng-class="isFriend ? 'unfollow':'follow'"
+                  style="height: 26px; background-color: transparent !important; text-align:left; padding-left: 37px !important;"
+                  ng-disabled="togglingFollow">
+            {{isFriend ? '': followText}}
+          </button>
+        </div>
+        <div class="photo-container">
+          <div class="photo-profile" style="position:relative">
+            <a style="color: #000;">
+              <div
+                style=" background-image:url({{ ::pictureFriendProfile }}); background-repeat:no-repeat; background-position:center; background-size:cover;"
+                ng-click="showProfileImage()" ng-class="isFriend ? 'profile-avatar_fAnimation' : 'profile-avatar'">
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <div class="name-profile" style="margin-top:19px;">
+          {{ ::nameFriendProfile }}
+          <span
+            style="height:18px !important; width:18px !important; background-image:url(img/verifedSearch.svg) !important; background-repeat:no-repeat; background-position:center; position:absolute; margin-left:5px;"
+            ng-if="verifyFriendUser== true">
+          </span>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="description-profile">{{friendBio}}
+        </div>
+
+        <div></div>
+        <div class="divider-profile" style="margin-bottom:0px; margin-top:18px;"></div>
+        <div class="description-profile"
+             style="background-color:rgba(228,228,228,.1); margin:0px; height:65px; padding-top:10px;">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="3%">&nbsp;</td>
+              <td width="30%" class="infoTitles-profile userNameBold" translate>
+                PROFILE.CQNZS
+              </td>
+              <td width="3%">&nbsp;</td>
+              <td width="30%" class="infoTitles-profile userNameBold" ng-click="reDirectFriendFollowersPage()"
+                  translate>
+                PROFILE.FOLLOWERS
+              </td>
+              <td width="3%">&nbsp;</td>
+              <!--<td width="30%" class="infoTitles-profile" ng-init="findFriendsFriend()" ng-click="showPopup(friendFriend)">-->
+              <td width="30%" class="infoTitles-profile userNameBold" ng-click="reDirectListFriends()" translate>
+                PROFILE.FOLLOWING
+              </td>
+              <td width="3%">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td style="color:rgba(102,102,102,1)" ng-bind="listCQNZ" class="userNameBold">
+                <!--{{ listFriendCqnz[0].topSequences }}-->
+              </td>
+              <td>&nbsp;</td>
+              <td ng-click="reDirectFriendFollowersPage()" ng-bind="numberFollowers" style="color:rgba(102,102,102,1)"
+                  class="userNameBold"></td>
+              <td>&nbsp;</td>
+              <td ng-click="reDirectListFriends()" ng-bind="numberFollowing" style="color:rgba(102,102,102,1)"
+                  class="userNameBold"></td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div style="clear:both;"></div>
+      <div class="divider-profile" style="margin-top:0px; margin-bottom:18px;"></div>
+
+      <div ng-controller="friendProfileTimelineCtrl">
+        <ion-list ng-controller="SequenceCtrl">
+          <div ng-controller="CommentsCtrl">
+            <div class="list card cards-round"
+                 style="padding-top: 0; min-height: 85px"
+                 ng-repeat="sequence in _sequenceList | orderBy: '-key'">
+              <div ng-if="sequence.metadata.isAdvertisement" id="{{_controllerName}}_Ad_{{$index}}"
+                   ng-click="increaseAdClicks(sequence, $index)">
+                <!-- cqnz header (avatar, menu, username, date) -->
+                <ng-include src="'templates/AdvertisementTemplates/advertisementHeaderTpl.html'"></ng-include>
+              </div>
+
+              <div ng-if="!sequence.metadata.isAdvertisement">
+                <!-- cqnz header (avatar, menu, username, date) -->
+                <ng-include src="'templates/SequenceTemplates/sequenceHeaderTpl.html'"></ng-include>
+              </div>
+
+              <!--**** Show sequence Content ****-->
+              <ng-include
+                src="'templates/SequenceTemplates/sequenceContentType'+sequence.content.type+'.html'"></ng-include>
+
+              <!--**** Show bottom strip buttons ****-->
+              <ng-include src="'templates/SequenceTemplates/sequenceStripButtonsTpl.html'"></ng-include>
+
+              <!--**** Show Comments ****-->
+              <ng-include src="'templates/SequenceTemplates/sequenceCommentsListTpl.html'"></ng-include>
+            </div>
+          </div><!-- CommentsCtrl -->
+        </ion-list>
+
+        <div class="text-center" ng-if="isLoadingContent && !isRefreshing">
+          <ion-spinner icon="lines"></ion-spinner>
+        </div>
+
+        <ion-infinite-scroll
+          style="visibility: hidden"
+          ng-if="canGetMoreItems"
+          on-infinite="findFriendSequences()"
+          distance="18%"></ion-infinite-scroll>
+
+        <div class="text-center" ng-show="!canGetMoreItems && errorLoading && network.status != 'none'">
+          <a class="button button-icon icon ion-refresh" ng-click="refreshFriendProfileTimeline()"></a>
+        </div>
+
+        <div class="row" ng-if="network.status == 'none'">
+          <div class="col col-20">
+            <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+          </div>
+          <div class="col" translate>
+            ERROR.NO_INTERNET2
+          </div>
+        </div>
+
+        <div ng-if="!_sequenceList.length && !isLoadingContent" style="text-align: center; padding-top:15px;">
+          <span style="color:#aaaaaa;" translate>PROFILE.INVITE</span>
+        </div>
+      </div>
+
+      <!--<div class="list card cards-round" ng-repeat="sequenceUser in listFriendCqnz | orderBy: '-key'">
+        <div style="margin-left:0px; margin-right:0px;">
+          <div style="color: rgba(0,0,0,.6); font-size: 11px; padding-left: 6px">
+            {{::sequenceUser.creationTime | creationTime}}
+          </div>
+          <div class="itemOption ion-android-more-vertical"
+               style="position:relative; float: right; font-size: 24px; padding-top: 2px; color: rgba(102,102,102,.6); padding-left: 30px;"
+               ng-click="collapsiveMenuItemOptionProfile(null, $index)" id="buttonMenuCQNZFp{{$index}}">
+            <ul class="navItemOptionProfile"
+                style="background-color: rgba(251,251,251,1); text-align: center;  border-radius:5px; padding-left:-10px "
+                id="menuOptionsCQNZFp{{$index}}" click-outside="closeMenu($index)"
+                outside-if-not="buttonMenuCQNZFp{{$index}}" click-outside="closeMenu($index)"
+                outside-if-not="buttonMenuCQNZFp{{$index}}">
+              <li ng-click="setInapropiateSequence(sequenceUser.sequenceInstanceId)"
+                  style=" color:rgba(51,51,51,1); font-size: 15px; width:150px; margin-left:-10px; margin-right:-5px;"
+                  translate>
+                SEQUENCE.REPORT
+              </li>
+            </ul>
+          </div>
+
+          <!--StatementTemplate--
+          <div class="item-divider" style=" text-align:left; position: static; border-radius:7px; "
+               ng-if="sequenceUser.sequenceType != 2">
+            <span style=" font-weight:normal !important; color:rgba(51,51,51,1);"
+                  ng-bind-html="deliberatelyTrustDangerousSnippet(sequenceUser.descriptionSequence)"
+                  ng-click="whatCliked($event, sequenceUser)">
+            </span>
+          </div>
+          <div style="clear:both;"></div>
+          <div id="{{ ::sequenceUser.template }}" class="item item-body"
+               style="position:relative; text-align:center; margin:0px; margin-left: -17px; margin-right: -17px;"
+               ng-if="sequenceUser.sequenceType == 1">
+            <ion-content style="text-align:center; position:relative; width: 100% !important" scroll="false">
+              <ul style="width:100%">
+                <div
+                  style="width:99%; border:rgba(204,204,204,.8) 5px; border-style: dashed; margin:auto; height:200px; background:url(img/photoFrame.svg) no-repeat; background-position:center; background-size: 30% ; padding:20px; font-size:9px; opacity: .3;"
+                  ng-if="!sequenceUser.sequence.result.value">
+                </div>
+                <li ng-repeat="image in sequenceUser.sequence.result.value | orderBy:'itemId'"
+                    class="imagesUpload photo-slide">
+                  <div class="imgItemUpload" ng-if="image.value.members.picture.value"
+                       style="background-image:url(data:image/jpeg;base64,{{ ::image.value.members.picture.value.split(':')[2]}}) !important"
+                       ng-click="showImages(sequenceUser.key,sequenceUser.sequence.result.value, $index, sequenceUser.user )"></div>
+                  <div class="imgItemUpload" ng-if="image.value.members.url.value"
+                       style="background-image:url({{ ::image.value.members.url.value}}) !important"
+                       ng-click="showImages(sequenceUser.key,sequenceUser.sequence.result.value, $index, sequenceUser.user )"></div>
+                </li>
+              </ul>
+            </ion-content>
+          </div>
+          <div id="{{ ::sequenceUser.template }}" class="item item-body"
+               style="position:relative; text-align:center; margin:0px; margin-left: -17px; margin-right: -17px;"
+               ng-if="sequenceUser.sequenceType == 2">
+            <ion-content style="text-align:center; position:relative; width: 100% !important" scroll="false">
+              <div style="text-align: left ;
+margin: -8px 18px 5px 18px;
+font-size: 14px;">
+                <span style=" font-weight:normal !important; color:rgba(51,51,51,1);"
+                      ng-bind-html="deliberatelyTrustDangerousSnippet(sequenceUser.descriptionSequence)"
+                      ng-click="whatCliked($event, sequenceUser)"></span>
+              </div>
+            </ion-content>
+          </div>
+          <div id="{{ ::sequenceUser.template }}" class="item item-body"
+               style="position:relative; text-align:center; margin:0; margin-left: -17px; margin-right: -17px;"
+               ng-if="sequenceUser.sequenceType == 3">
+            <div ng-repeat="video in sequenceUser.sequence.result.value | orderBy:'itemId'">
+              <video id="{{_controllerName}}VideoArea{{sequenceUser.sequenceInstanceId}}" width="100%" height="310px"
+                     poster="{{video.value.members.urlVideoImage.value}}" preload="none">
+                <source ng-src="{{video.value.members.url.value | trusted }}" type="video/mp4">
+              </video>
+              <button class="playButtonTimelines"
+                      id="{{_controllerName}}ButtonPlay{{sequenceUser.sequenceInstanceId}}"
+                      ng-click="playVideoOwn(sequenceUser.sequenceInstanceId,sequenceUser,_controllerName)"></button>
+              <div class="textCountVideoViews">
+                {{sequenceUser.videoCount}}{{'TIMELINE.VIDEOVIEWS'|translate}}
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:2px; margin-bottom:2px; padding-left:5px;">
+            <table border="0" cellspacing="0" cellpadding="0" style="width:100%">
+              <tr>
+                <td width="10%" align="right" valign="middle">
+                  <div ng-click="setLikeToSequence(sequenceUser, $index);">
+                    <img ng-src="{{'img/happy'+(sequenceUser.activeLike.result.value?'On':'Off')+'.svg'}}"/>
+                  </div>
+                  <div class="anilike" id="fp_like_animation{{$index}}"
+                       style="display:none; position:absolute; z-index:99999; overflow:visible; bottom:0; background:url(img/happyOn.svg) no-repeat; background-size: contain; "></div>
+                </td>
+                <td width="10%" align="left" valign="middle"
+                    style="vertical-align:top; padding-top:6px; padding-left:7px;"
+                    ng-click="chkUserLiked(likeCount, sequenceUser.sequenceInstanceId)">
+                  <!--<td width="10%" align="left" valign="middle" style="vertical-align:top; padding-top:6px; padding-left:7px;">--**
+                  <div ng-class="sequenceUser.activeLike.result.value ? 'on1_disable' : 'on1'"
+                       id="happyNumberoff2{{ ::sequenceUser.key }}" ng-bind="sequenceUser.likeCount"></div>
+                  <div ng-class="sequenceUser.activeLike.result.value ? 'off1' : 'off1_disable'"
+                       id="happyNumberon2{{ ::sequenceUser.key }}" ng-bind="sequenceUser.likeCount"></div>
+                </td>
+                <td width="20%"></td>
+                <td width="10%" align="right">
+                  <!-- <div ng-show = "sequenceUser.followEachOthers.result.value == true">
+                  <a ng-click = "redirectSendReaction(sequenceUser.sequence[0].sequence.href.split('/')[6])"> <img src="img/reactIcon.svg"></a>
+                  </div> --**
+                </td>
+                <td width="10%" align="left" valign="middle"
+                    style="vertical-align:top; padding-top:6px; padding-left:7px;">
+                  <!-- <div ng-show = "sequenceUser.followEachOthers.result.value == true">
+                  <a  ng-init="reactCount = sequenceReactCount(sequenceUser.reactCount, sequenceUser.key)" ng-bind="reactCount" id="reactNumber{{ sequenceUser.key }}"></a>
+                  </div> --**
+                </td>
+                <td width="20%"></td>
+                <td width="10%" align="right" valign="middle"
+                    style="vertical-align:top; padding-top:6px; padding-left:7px; text-align:right;">
+                  <div>
+                    <span ng-bind="sequenceUser.sequenceCommentCount"
+                          id="commentNumber{{ ::sequenceUser.key }}"></span>
+                  </div>
+                </td>
+                <td width="10%" align="center" style="text-align:center;">
+                  <img src="img/comment.svg"
+                       ng-if="sequenceUser.commentsEnabled"
+                       ng-click="reDirectCommentsPage(sequenceUser.key,sequenceUser.sequenceInstanceId); "/>
+                  <img src="img/comment.svg"
+                       ng-click="commentsDisabledMsg()"
+                       ng-if="!sequenceUser.commentsEnabled"/>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>-->
+
+    </ion-content>
+  </div>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

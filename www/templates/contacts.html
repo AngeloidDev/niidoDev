@@ -1,0 +1,26 @@
+<ion-view title='{{HEADER_LOGO}}'>
+  <ion-content class="has-header has-footer">
+    <div class="item-divider"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">
+      <span>Check if any of your phone contacts are already using CQNZ. </span><span> Note: CQNZ will access your contact information in order to search your friends in the app. <a
+      ui-sref="menu.signUpPolicy" style="color: blue;">Learn more.(Privacy policy)</a></span>
+    </div>
+    <div class="list">
+      <a ng-repeat="user in users" class="item item-avatar">
+        <h2>{{user.name}}</h2>
+        <button ng-show="user.friend == false" ng-click="sendContactRequest(user.id,user.friend); user.friend = true"
+                class="button button-small button-positive follow">Add friend
+        </button>
+        <button ng-show="user.friend == true" class="button button-small button-positive unfollow">Friend</button>
+      </a>
+    </div>
+    <div class="item-divider" ng-if="results.length == 0"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">
+      <strong>No results found...</strong>
+    </div>
+
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

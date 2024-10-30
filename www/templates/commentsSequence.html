@@ -1,0 +1,122 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false" drag-content="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <md-button
+        class="md-fab md-mini md-accent md-fab-top-right"
+        aria-label="Create comment"
+        ng-click="showCommentComposer()"
+        style="background-color: rgb(10, 163, 157); ">
+        <md-icon
+          md-svg-src="img/icons/add_circle_outline_24px.svg" style=" margin-top: -6px; color: white;"></md-icon>
+      </md-button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content>
+    <ion-refresher
+      pulling-text="{{refreshText}}"
+      spinner="lines"
+      on-refresh="reloadComments()">
+    </ion-refresher>
+
+    <div ng-controller="CommentsCtrl"  style="padding-top: 20px">
+      <div ng-repeat="comment in commentsUserToSequence">
+        <div class="row notification">
+          <!-- AVATAR -->
+          <div class="col col-20" style="max-width: 13%; margin-top: 0;">
+            <a class="item item-avatar" style="min-height: 42px; background-color: transparent;">
+              <img
+                class="avatar-image"
+                style="max-width: 35px; max-height: 35px;"
+                ng-src="{{ ::comment.ownerMetadata.avatar }}"
+                ng-click="sendFriendProfile(comment.ownerMetadata.id)"
+              />
+            </a>
+          </div>
+
+          <!-- USER NAME & COMMENT-->
+          <div class="col" style="width:60%;">
+            <!-- USER NAME -->
+            <label
+              class="userNameBold"
+              style="color:rgba(51,51,51,1); background-color: transparent; font-size:15px; "
+              ng-click="sendFriendProfile(comment.ownerMetadata.id)"
+              ng-bind-html="comment.ownerMetadata.name">
+            </label>
+
+            <!-- COMMENT -->
+            <div>
+              <div
+                style="color:#505050; width: 100%; text-align: center"
+                ng-if="comment.isUpdating || !comment.tagsList">
+                <ion-spinner icon="lines"></ion-spinner>
+              </div>
+              <span
+                style="color:rgba(51,51,51,.8); padding-bottom: 24px; padding-right: 10px; white-space: initial;"
+                ng-bind-html="trustAsHtml(comment.description)"
+                ng-click="whatCliked($event,comment)"
+                ng-if="!comment.isUpdating  && comment.tagsList">
+                </span>
+            </div>
+          </div>
+
+          <!-- LIKE BUTTON, LIKES COUNTER & EDIT BUTTON-->
+          <div class="col col-10" style="text-align: right; padding-bottom: 0">
+            <!-- Edit button -->
+            <div class="ion-android-more-vertical"
+                 style="font-size: 24px;  color: rgba(102,102,102,.6); padding-top:0;position: relative; top:-10px; right: 8px"
+                 ng-if="comment.canModify"
+                 ng-click="showEditActionsMenu(comment, $index)">
+            </div>
+
+            <!-- LIKE COUNTER -->
+            <div style="position: relative; margin:7px auto -7px auto; padding-bottom: 5px">
+              <div ng-class="{'like-counter-disabled':!comment.likeActive}"
+                   ng-bind="comment.likeCounter"
+                   style="min-height: 27px;position: absolute; bottom: 0; right: 32px"></div>
+
+              <!-- Like icon -->
+              <div style="min-height: 34px; background-color: transparent;"
+                   ng-click="setLikeToComment(comment, $index);">
+                <img ng-src="{{'img/happy'+(comment.likeActive ?'On':'Off')+'.svg'}}"/>
+              </div>
+              <!--<div class="anilike" id="animation{{$index}}"
+                   style="display:none; position:absolute; z-index:1000; overflow:visible;  background:url(img/happyOn.svg) no-repeat; background-size: contain; "></div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="color:#505050; width: 100%; text-align: center"
+        ng-if="isCreatingComment || (isLoadingComments && !isRefreshing)">
+        <ion-spinner icon="lines"></ion-spinner>
+      </div>
+    </div>
+
+    <div class="text-center" ng-if="errorLoading && network.status != 'none'">
+      <a class="button button-icon icon ion-refresh" ng-click="reloadComments()"></a>
+    </div>
+    <div class="row" ng-if="network.status == 'none'">
+      <div class="col col-20">
+        <a class="button button-icon button-block button-small icon ion-android-sad"></a>
+      </div>
+      <div class="col" translate>
+        ERROR.NO_INTERNET2
+      </div>
+    </div>
+
+    <ion-infinite-scroll
+      style="visibility: hidden"
+      ng-if="!noMoreItemsAvailable && !isRefreshing"
+      on-infinite="findTheCommentsOfASequence()"
+      immediate-check="false"
+      distance="40%"></ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>

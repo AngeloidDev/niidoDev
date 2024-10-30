@@ -1,0 +1,74 @@
+<md-dialog aria-label="Modal" id="changeUserRole-modal">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="cancel" ng-click="cancel()">
+        <i class="ion-chevron-left"></i>
+      </md-button>
+      {{'ADMIN_TOOLS.ADMIN_MEMBERS.CHANGE_ROLE'|translate}}
+      <span flex></span>
+      <md-button
+        class="md-button md-raised md-accent"
+        ng-disabled="!locals.selectedRole || locals.selectedRole == locals.currentRole"
+        ng-click="ok()">
+        {{"GROUPS.OK_TXT"|translate}}
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="md-dialog-content">
+    <!--<md-card class="text-center" style="padding: 12px">
+      <h5 md-colors='{color:"default-accent"}'>{{"GROUPS.SETTINGS.DELEGATE_ADMIN.MAIN_MSG"|translate}}</h5>
+    </md-card>-->
+
+    <md-content>
+      <md-subheader class="md-no-sticky">
+        {{'ADMIN_TOOLS.ADMIN_MEMBERS.SELECT_NEW_ROLE'|translate}}
+      </md-subheader>
+
+      <div>
+        <md-radio-group ng-model="locals.selectedRole">
+          <div
+            class="row"
+            layout-padding layout-align="start center"
+            ng-repeat='role in locals.rolesAndActiveRole'>
+            <md-radio-button
+              aria-label="{{ ::role.description }}"
+              class="md-primary"
+              style="width: 100%; margin-top: 6px;margin-bottom: 12px"
+              ng-value="role">
+              {{::role.description}}
+            </md-radio-button>
+          </div>
+        </md-radio-group>
+        <md-divider></md-divider>
+      </div>
+
+    </md-content>
+
+
+    <md-dialog-actions>
+      <md-button class="md-raised md-primary" ng-click="cancel()">
+        <i translate>GROUPS.CANCEL_TXT</i>
+      </md-button>
+      <md-button
+        class="md-raised md-accent"
+        ng-disabled="!locals.selectedRole || locals.selectedRole == locals.currentRole"
+        ng-click="ok()">
+        <i translate>GROUPS.OK_TXT</i>
+      </md-button>
+    </md-dialog-actions>
+  </md-dialog-content>
+
+  <style>
+    #changeUserRole-modal .row {
+      border-bottom: 1px dashed #ddd;
+    }
+
+    #changeUserRole-modal div.row:last-child {
+      border-bottom: 0px dashed #ddd;
+    }
+  </style>
+
+</md-dialog>
+
+

@@ -1,0 +1,51 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="$ionicGoBack()">
+        <i class="ion-chevron-left"></i> <i translate>GLOBAL.BACK</i>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+    <ion-content class="padding">
+        <md-content class="chipsdemoContactChips autocomplete" layout="column">
+            <div ng-if="true" class="item" ng-click="openStatementForm()">
+                <md-button class="md-fab md-mini md-accent" style="background-color: rgb(10, 163, 157); color:white; margin: 0 10px 0 0 !important; box-shadow: none !important;">
+                    {{(asyncContacts.length > 0 && asyncContacts.length < 100)? asyncContacts.length:(asyncContacts.length == 0? '+': '+99') }}
+                </md-button>
+                <i translate ng-if="asyncContacts.length == 0" style="color: #787878 !important;">PRIVATEMESSAGE.ADD_MEMBERS_CHAT</i>
+                <i translate ng-if="asyncContacts.length >= 1" style="color: #787878 !important;">PRIVATEMESSAGE.EDIT_MEMBERS_CHAT</i>
+            </div>
+            <div ng-if="asyncContacts.length >1">
+                <label style="color:#0AA39D;" translate>Wanna create an Chat grupal or send the message to each one?</label>
+            </div>
+            <div class="button-bar" ng-if="asyncContacts.length >1">
+                <button class="button button-block icon-left ion-android-star" 
+                    ng-class="data.typeMessage == 'Grupal' ? 'button-assertive' : 'button-light'"
+                    ng-click="changeTab('Grupal')" translate>
+                        PRIVATEMESSAGE.MSG_TYPE_GRUPAL
+                </button>
+                <button class="button button-block icon-left ion-ios-people"
+                    ng-class="data.typeMessage == 'Personal' ? 'button-assertive' : 'button-light'"
+                    ng-click="changeTab('Personal')" translate>
+                        PRIVATEMESSAGE.MSG_TYPE_INDIVIDUAL
+                </button>
+            </div>
+        </md-content>
+    </ion-content>
+    <ion-footer-bar  class="comments-fotter"  style="background-color:rgba(255,255,255,1)">
+        <textarea type="text"
+            keydown="autosize()"
+            ng-model="commentValue"
+            name="comment"
+            id="comment"
+            translate-attr="{ 'placeholder': 'COMMENT.WRITE' }"
+            class="text-comment"
+            style="height: 32px !important; margin-top:3px; ">
+        </textarea>
+        <button ng-click="checkBeforeChats(commentValue)" class="send-comment" ng-disabled="commentValue == null || success == false || asyncContacts.length == 0" translate>                GLOBAL.POST
+        </button>
+    </ion-footer-bar>
+</ion-view>

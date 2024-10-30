@@ -1,0 +1,50 @@
+<ion-modal-view>
+  <ion-header-bar style="width: 100%; vertical-align: middle;">
+    <div align="center" style="width: 100%; display: table-cell; vertical-align: middle;"><img class="title-image"
+                                                                                               src="img/LogoHeader.png"
+                                                                                               style="width: auto; height:37px;; padding-top: 5px; vertical-align:middle"/>
+    </div>
+  </ion-header-bar>
+  <ion-content align="center">
+    <div class="container">
+      <div class="progress-wrapper">
+        <div class="progress ng-cloak"></div><!-- /{{clockTop}} -->
+
+
+        <div style="
+      /*nos posicionamos en el centro del navegador*/
+      top:50%;
+      left:50%;
+      /*determinamos una anchura*/
+
+
+      padding:5px; ">
+
+          <div
+            style="width:  90%; font-size:90px; color: #cccccc; position: absolute; margin-left: auto; margin-right: auto; padding-top: 130px; padding-left: 28px; ">
+            {{clockTimer}}
+          </div>
+
+          <div
+            style="width:  90%; height: 90%; margin-left: auto; margin-right: auto; position: absolute; padding-left: 28px;">
+            <round-progress
+
+              max="10"
+              current="clockTimer"
+              color="#C90017"
+              bgcolor="#eaeaea"
+              radius="{{ 100*3 }}"
+              semi="false"
+              rounded="true"
+              clockwise="true"
+              responsive="true"
+              stroke="{{ 30*1 }}"
+              animation="linearEase"
+              animationDelay="0">
+            </round-progress>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

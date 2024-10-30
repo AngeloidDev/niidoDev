@@ -1,0 +1,168 @@
+<ion-modal-view cache-view="false" id="tasg-modal">
+  <ion-nav-bar class="bar-assertive bar bar-header item-input-inset">
+    <ion-nav-buttons>
+      <button class="button button-clear" ng-click="cancelClicked()">
+        <!--<i class="icon ion-ios-close-empty"></i>-->
+        <i class="ion-chevron-left"></i> <i translate>GROUPS.BACK_BTN</i>
+      </button>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+      <div id="search-wrapper" ng-class="{'open':areaIsExpanded, 'closed':!areaIsExpanded}">
+        <label class="item-input-wrapper search-label" ng-class="{'open':areaIsExpanded, 'closed':!areaIsExpanded}">
+          <input type="search" id="search-input" class="mySearchableInput" ng-model="form.searchTerm" ng-change="fullLookUp()">
+        </label>
+      </div>
+    </ion-nav-title>
+
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="okClicked()">
+        <i translate>GLOBAL.DONE</i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="has-header">
+    <label id="text-area-container" class="item item-input-inset">
+      <textarea
+        id="main-textarea"
+        class="main-textarea"
+        ng-class="{'closed':areaIsExpanded,'open':!areaIsExpanded}"
+        ng-model="form.description"
+        ng-change="lookUp()"
+        ng-trim="false"
+        translate-attr="{placeholder:'COMMENT.WRITE'}"></textarea>
+    </label>
+
+    <div id="results-area" class="padding-horizontal">
+      <div class="text-right padding-right" ng-show="(tagList.length || hashList.length) && !areaIsExpanded">
+        <a ng-click="expandSearchArea(true)">See more...</a>
+      </div>
+      <ion-list>
+        <ion-item class="item-avatar"
+           ng-repeat="tag in tagList"
+           ng-class="{'selected-item':tag.isSelected}"
+           ng-click="toggleSelectTag(tag, 'Tag')" ng-if="($index < 7 && !areaIsExpanded) || areaIsExpanded">
+          <img ng-src="{{tag.photo}}">
+          <!--<img src="img/tick_green.png" class="selecet-tag" ng-show="tag.isSelected"/>-->
+          <h2>{{tag.name}}</h2>
+        </ion-item>
+      </ion-list>
+
+      <div class="list padding-vertical">
+        <a class="item"
+           ng-repeat="hash in hashList"
+           ng-class="{'selected-item':hash.isSelected}"
+           ng-click="toggleSelectTag(hash, 'Hash')" ng-if="($index < 7 && !areaIsExpanded) || areaIsExpanded">
+          <h2>#{{hash.hash}}</h2>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
+
+<style>
+
+  .platform-ios.platform-cordova:not(.fullscreen) #tasg-modal .bar-header:not(.bar-subheader) > *{
+    margin-top: 0 !important;
+  }
+
+  #search-wrapper{
+    margin: 48px auto auto auto;
+    padding-left: 65px;
+    padding-right: 50px;
+  }
+
+  .platform-android #tasg-modal .bar .title{
+    margin-left: 0;
+  }
+
+  #search-wrapper.open{
+    margin-top: 8px;
+    transition-property: all;
+    transition-duration: 1.4s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  #search-wrapper.closed{
+    transition-property: all;
+    transition-duration: 1.9s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  .search-label{
+    background: linen;
+    margin-top: 0!important;
+  }
+
+  #search-input{
+    z-index: 10;
+    padding-left: 0;
+  }
+
+  /*#search-wrapper.open,
+  #search-wrapper.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper.search-wrapper-open{
+    margin-top: 8px !important;
+    transition-property: all;
+    transition-duration: 1.4s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }*/
+  .platform-ios.platform-cordova:not(.fullscreen) #tasg-modal .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper{
+    margin-top: 0 !important;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      margin-top: 55px;
+    }
+    100% {
+      margin-top: 0;
+    }
+  }
+
+  /*#search-wrapper.closed,
+  .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper.search-wrapper-closed{
+    transition-property: all;
+    transition-duration: 1.9s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }*/
+
+  @keyframes fadeOutOpacity {
+    0% {
+      margin-top: 0;
+    }
+    100% {
+      margin-top: 65px!important;
+    }
+  }
+
+  .main-textarea{
+    width: 100%;
+    background-color: linen;
+    border-radius: 5px;
+    padding: 5px 5px 5px 8px;
+    height: 90px;
+  }
+
+  .main-textarea.open{
+    transition-property: all;
+    transition-duration: 1.5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+  .main-textarea.closed{
+    margin-top: -130px;
+    width: 94%;
+    transition-property: all;
+    transition-duration: 1.5s;
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+
+
+
+  #results-area .item{
+    border-bottom-width: 1px;
+    margin-top: 1px;
+  }
+
+</style>

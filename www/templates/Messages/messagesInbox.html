@@ -1,0 +1,41 @@
+<ion-view title='{{HEADER_LOGO}}' cache-view="false" can-swipe-back="false">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-buttons>
+      <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+      <button class="button button-clear {{menuIcons[order]}}" ng-click="openNewChat()">
+        <md-icon md-svg-icon="img/icons/ic_contact_mail_black_24px.svg"></md-icon>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+	<ion-content class="has-header has-footer" style="margin-top:0px; margin-left:0px;" scroll="true">
+		<div id="InboxList">
+			<md-list>
+				<md-list-item class="md-3-line" ng-repeat="chat in data.inboxData" ng-click="openSelectedChat(chat)"
+				ng-class="!chat.read ? 'unseen' : 'seen'">
+					<img ng-src="{{chat.friendMessage.members.profilePictureUrl.value}}" class="md-avatar" alt="{{chat.friendMessage.members.name.value}}" ng-if="chat.friendMessage.members.profilePictureUrl.value"/>
+					<img ng-src="img/ProfilePhoto.svg" class="md-avatar" alt="{{chat.friendMessage.members.name.value}}" ng-if="!chat.friendMessage.members.profilePictureUrl.value"/>
+					<div class="md-list-item-text">
+						<h3 class="assertive" ng-if="!chat.groupal">{{chat.friendMessage.members.name.value}}</h3>
+						<h3 class="assertive" ng-if="chat.groupal">{{chat.chat_name}}</h3>
+						<h4>{{chat.message}}</h4>
+					</div>
+					<md-button>
+						<p>{{::chat.date | date}}</p>
+					</md-button>
+				</md-list-item>
+			</md-list>
+			<div class="empty-timeline texte-center"
+    			style="background:transparent;"
+    			ng-if="noMoreItemsAvailable && data.inboxData.length == 0">
+    				<p class="timeline-msg" translate>
+    					PRIVATEMESSAGE.EMPTY_INBOX
+    				</p>
+			</div>
+		</div>
+		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="tempoFillList()" distance="10%"></ion-infinite-scroll>
+	</ion-content>
+	<div ng-include="'templates/partials/footer.html'" onload="botonMessageOn=true"></div>
+</ion-view>

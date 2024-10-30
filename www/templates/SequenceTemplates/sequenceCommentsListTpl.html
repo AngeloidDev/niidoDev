@@ -1,0 +1,73 @@
+<div style="background-color: rgba(120,120,120,.1); box-shadow: inset 0 12px 12px -10px rgba(0,0,0,0.45); padding-bottom: 4px;margin-bottom: -1px;"
+     ng-if="sequence.comments.items.length">
+  <div ng-repeat="comment in sequence.comments.items">
+    <div class="row notification">
+      <div class="col">
+        <div>
+          <!-- AVATAR -->
+          <img
+            class="comment-avatar-image"
+            ng-src="{{ ::comment.ownerMetadata.avatar }}"
+            ng-click="sendFriendProfile(comment.ownerMetadata.id)" ng-if="showCommentAvatar"/>
+
+          <!-- USERNAME -->
+          <h2 ng-class="{'comment-username-no-avatar':!showCommentAvatar, 'comment-username-with-avatar':showCommentAvatar}"
+              ng-bind="comment.ownerMetadata.name"
+              ng-click="sendFriendProfile(comment.ownerMetadata.id)"></h2>
+        </div>
+
+        <div
+          style="color:#505050; width: 100%; text-align: center"
+          ng-if="comment.isUpdating || !comment.tagsList">
+          <ion-spinner icon="lines"></ion-spinner>
+        </div>
+        <span
+          style="color:rgba(51,51,51,.8); white-space: initial;"
+          ng-bind-html="trustAsHtml(comment.description)"
+          ng-click="whatCliked($event,comment)"
+          ng-if="!comment.isUpdating && comment.tagsList"></span>
+      </div>
+
+      <!-- LIKE BUTTON, LIKES COUNTER & EDIT BUTTON-->
+      <div class="col" style="max-width: 45px;padding: 0;margin: 0;">
+        <!-- ACTIONS MENU BUTTON-->
+        <div class="ion-android-more-vertical"
+             style="font-size: 24px; color: rgba(51,51,51,.5);text-align: right; padding-right: 12px;"
+             ng-if="comment.canModify && canShowCommentEditActionsMenu"
+             ng-click="showEditActionsMenu(comment, $index)">
+        </div>
+
+        <!-- EDIT BUTTON -->
+        <div
+          style="color:rgba(51,51,51,.5); font-size:13px;text-align: right; padding-right: 9px;"
+          ng-if="canUpdateComment() && comment.canEdit && !canShowCommentEditActionsMenu"
+          ng-click="openEditableComment(sequence.metadata, comment)"
+          translate>COMMENT.EDIT_COMMENT
+        </div>
+
+        <!-- LIKE COUNTER -->
+        <div style="margin-top: 14px;">
+          <div style="display: inline-grid;margin-bottom: 2px"
+               ng-class="{'like-counter-disabled':!comment.likeActive}"
+               ng-bind="comment.likeCounter"></div>
+
+          <!-- Like icon -->
+          <div style="display: inline"
+               ng-click="setLikeToComment(comment, $index);">
+            <img ng-src="{{'img/happy'+(comment.likeActive ?'On':'Off')+'.svg'}}"/>
+          </div>
+          <!--<div class="anilike" id="animation{{$index}}"
+               style="display:none; position:absolute; z-index:1000; overflow:visible;  background:url(img/happyOn.svg) no-repeat; background-size: contain; "></div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="list"
+     style="color:rgba(204, 0, 0, .4); margin-top: 10px; text-align: right; margin-right: 10px;"
+     ng-if="sequence.comments.counter > 2 && !showAllComments"
+     ng-click="reDirectCommentsPage(sequence, $parent.$index)" translate>
+    SEQUENCE.MORE_COMMENTS
+  </p>
+</div>
+
+

@@ -1,0 +1,115 @@
+.md-button {
+  text-transform: none
+}
+
+md-input-container.md-block{
+  border-bottom: 1px solid lightgray
+}
+
+.menudemoBasicUsage .md-menu-demo {
+  padding: 24px;
+}
+
+md-input-container:not(.md-input-invalid).md-input-has-value label {
+  color: #0AA39D;
+}
+
+.menudemoBasicUsage .menu-demo-container {
+  min-height: 200px;
+}
+
+md-content.md-default-theme, md-content {
+  background: none;
+}
+
+.chipsdemoContactChips md-content.autocomplete {
+  min-height: 250px;
+}
+
+.chipsdemoContactChips md-content.autocomplete input {
+  min-width: 400px;
+}
+
+.chipsdemoContactChips .md-item-text.compact {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.chipsdemoContactChips .contact-item {
+  box-sizing: border-box;
+}
+
+.chipsdemoContactChips .contact-item.selected {
+  opacity: 0.5;
+}
+
+.chipsdemoContactChips .contact-item.selected h3 {
+  opacity: 0.5;
+}
+
+.chipsdemoContactChips .contact-item .md-list-item-text {
+  padding: 14px 0;
+  max-width: 190px;
+}
+
+.chipsdemoContactChips .contact-item .md-list-item-text h3 {
+  margin: 0 !important;
+  padding: 0;
+  line-height: 1.2em !important;
+}
+
+.chipsdemoContactChips .contact-item .md-list-item-text h3,
+.chipsdemoContactChips .contact-item .md-list-item-text p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (min-width: 960px) {
+  .chipsdemoContactChips .contact-item {
+    float: left;
+    width: 33%;
+  }
+}
+
+.chipsdemoContactChips md-contact-chips {
+  margin-bottom: 10px;
+}
+
+.chipsdemoContactChips .md-chips {
+  padding: 5px 0 8px;
+}
+
+.chipsdemoContactChips .fixedRows {
+  height: 250px;
+  overflow: scroll;
+}
+
+md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+  height: 100%
+}
+
+
+.box{
+  height: calc(100% - 80px);
+  overflow-y: scroll;
+}
+ion-slides{
+  /*height: 100vh !important;*/
+}
+
+.swiper-container-horizontal > .swiper-pagination{
+  bottom: 90px !important;
+}
+
+.bgColor_0{
+  background-color: red;
+}
+
+.bgColor_1{
+  background-color: greenyellow;
+}
+
+.bgColor_2{
+  background-color: yellow;
+}

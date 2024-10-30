@@ -1,0 +1,97 @@
+*{
+	font-family: 'Futura' !important;
+}
+.cards-round{
+
+    border-radius: 10px;
+    margin: 10px 10px 5px 10px;
+    box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.65);
+    padding-bottom: 0;
+}
+
+.cards-round-zero{
+
+    margin: 0px 10px 5px 10px;
+    box-shadow: 0px 2px 4px 1px rgba(0,0,0,0.65);
+
+}
+
+.background-line{
+   background: linear-gradient(to bottom, rgba(219,253,253,.5) 0%,rgba(114,232,232,.5) 100%);
+
+}
+
+.avers{
+    background: rgba(255,255,255,.8) !important;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+	margin-top: 5px !important;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+	height: 54px !important;
+}
+
+.espacioChatPropio:first-child {
+    margin-top:50vh;
+}
+
+.fondoonboarding{
+    background-image: url("../img/2es.jpg");
+    background-position: top;
+}
+
+
+/*estilo para búsqueda de usuarios en chat*/
+.results-users-list .item,
+.selected-users-list .item {
+    border-bottom-width: 1px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.results-users-list .item-avatar,
+.selected-users-list .item-avatar {
+    min-height: 58px;
+    padding-bottom: 5px;
+}
+
+.selected-item {
+    border-color: green;
+    background-color: rgb(227, 255, 229)
+}
+
+.selected-item h2 {
+    color: green;
+}
+
+.blocked-item {
+    border-color: red;
+    color: red;
+    background-color: rgb(255, 230, 220);
+}
+
+.loadingAction.over-button {
+    margin-left: -34%;
+    margin-top: 9px;
+}
+
+.selected-users-list {
+    background: white;
+    z-index: 30;
+}
+
+.chatPage-ui .scroll{
+    height: 100%;
+}
+
+.popup-container .popup{
+    background-color: #fff !important;
+    height: auto !important;
+    border-radius: 8px !important;
+}
+
+  /*.popup-head{
+
+    }*/

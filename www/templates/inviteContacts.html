@@ -1,0 +1,37 @@
+<ion-view title='{{HEADER_LOGO}}'>
+  <ion-content class="has-header has-footer">
+    <div class="item-divider"
+         style="  padding-left:10px; padding-right:10px; border-bottom:solid 1px #CCC; text-align:left; ">Would you like
+      to<span> open your contact list?</span><span> Note: CQNZ will access your contact information in order to invite your friends to the app. <a
+        ui-sref="menu.signUpPolicy" style="color: blue;">Learn more. (Privacy policy)</a></span>
+    </div>
+    <div class="list">
+    </div>
+    <div align="center">
+      <button ng-click="openAgenda();" class="button button-small button-positive" style="
+        width:68%;
+
+  border-radius: 7px;
+  text-shadow: 3px 1px 3px #404040;
+
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 16px;
+  background: #d93434;
+
+  background-repeat:no-repeat;
+  background-position:left center;
+  background-position: 10px;
+
+
+  padding: 0px 15px 0px 15px;
+  border:none;
+  border-color:transparent !important;
+  text-decoration: none;">Open
+      </button>
+    </div>
+  </ion-content>
+
+  <ng-include src="'templates/partials/footer.html'"></ng-include>
+
+</ion-view>

@@ -1,0 +1,167 @@
+<ion-view title='{{HEADER_LOGO}}' class="base-bg" cache-view="true" can-swipe-back="false">
+  <div class="fixed-div has-header">
+    <form>
+      <label class="item item-input" ng-click="modalSearch.show()" id="step1">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" translate-attr="{ 'placeholder' : 'DISCOVER.SEARCH_FOR' }" ng-model="data.userName">
+      </label>
+    </form>
+    <!--<div class="tabs-striped tabs-top tabs-background-assertive tabs-color-light tabs-icon-left">
+        <div class="tabs">
+            <a class="tab-item" ng-class="{active : data.activeTab == 'featured'}" ng-click="changeTab('featured')" >
+            <i class="icon ion-star"></i>
+            Featured
+            </a>
+            <a class="tab-item" ng-class="{active : data.activeTab == 'newUsers'}" ng-click="changeTab('newUsers')">
+            <i class="icon ion-happy"></i>
+            New Users
+            </a>
+        </div>
+    </div>-->
+    <div class="button-bar">
+      <button class="button button-block icon-left ion-android-star"
+              ng-class="data.activeTab == 'featured' ? 'button-assertive' : 'button-light'"
+              ng-click="changeTab('featured')" id="step2" translate>DISCOVER.FEATURED
+      </button>
+      <button class="button button-block icon-left ion-ios-people"
+              ng-class="data.activeTab == 'newUsers' ? 'button-assertive' : 'button-light'"
+              ng-click="changeTab('newUsers')" id="step3" translate>DISCOVER.NEW_USERS
+      </button>
+    </div>
+
+    <!-- TRENDING STRIP -->
+    <table border="0" cellspacing="0" cellpadding="0" style="width:100%; background-color: white; margin-bottom: 10px;">
+      <tr>
+        <td width="15%" align="left" valign="middle">
+          <div ng-click="getTrending()"
+               style="color: #1A1A1A!important; font-weight: 800!important; word-spacing: -4px!important; margin-top: 4px; padding-left: 7px; padding-right: 10px;">
+            Trending
+          </div>
+        </td>
+        <td width="85%" align="left" valign="middle">
+          <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+            <tr ng-show="data.trendingList.length > 1">
+              <td width="5%">
+                <div class="ion-arrow-left-b" style="color: red;  position: absolute; z-index: 999; width: 15px;"></div>
+              </td>
+              <td width="90%">
+                <ion-scroll direction="x" scrollbar-x="true" scrollbar-y="true" has-bouncing="true" zooming="false"
+                            delegate-handle="horizontal"
+                            style="width: 200%; overflow: scroll !important; height:25px; position: inherit !important;">
+                  <ul style="width: 200%;">
+                    <li ng-repeat="hashtag in data.trendingList" ng-click="sendHashtagTimeline(hashtag.name)"
+                        style="width:70px; height:20px; display: inline; color: #1A1A1A!important; font-weight: 800!important; margin-left: 10px;">
+                      #{{hashtag.name}}
+                    </li>
+                  </ul>
+                </ion-scroll>
+                <div ng-show="data.noTrending == 1"
+                     style="width: 100%; overflow: scroll !important; height:18px !important;" ng-click="getTrending()">
+                  <p translate style="height:19px !important">DISCOVER.NO_TRENDING</p></br>
+                </div>
+              </td>
+              <td width="5%">
+                <div class="ion-arrow-right-b"
+                     style="color: red; position: absolute;  z-index: 999; right: 0px; background-color: white; padding-right: 5px; padding-left: 5px;"></div>
+              </td>
+            </tr>
+            <tr ng-show="data.noTrending == 1">
+              <div ng-show="data.noTrending == 1"
+                style="width: 100%; overflow: scroll !important; height:18px !important;" ng-click="getTrending()">
+                <p translate style="height:19px !important">DISCOVER.NO_TRENDING</p></br>
+              </div>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <ion-content class="has-header has-footer" style="background:white;">
+    <div style="height:115px; width: 100%; position: relative"></div>
+    <div class="col col-100" ng-show="data.activeTab == 'featured'"
+         style="height: 40px; margin-top: -10px; border-bottom: solid 1px #DFDFDF; border-top:solid 1px #DFDFDF;">
+    </div>
+    <div class="col col-100" ng-show="data.activeTab == 'newUsers'"
+         style="height: 47px; margin-top: -10px; border-bottom: solid 1px #DFDFDF; border-top:solid 1px #DFDFDF;">
+    </div>
+    <div ng-show="data.activeTab == 'featured'">
+      <div class="row" style="background-color: #FFF; margin-top: 0px; border-bottom: solid 1px #DFDFDF;"
+           ng-repeat="featured in featuredUsers"><!--ng-repeat=""-->
+        <div class="col col-25">
+          <div class="item item-avatar" style="margin-left: 8px">
+            <img class="avatar-image-discovery"
+                 ng-src="data:image/jpeg;base64,{{ ::featured.profilePicture.split(':')[2] }}"
+                 ng-click="sendUserProfile(featured.userSubscription.href)" ng-if="featured.profilePicture!= null">
+            <img class="avatar-image-discovery"
+                 ng-src="{{ ::featured.profilePictureUrl}}" ng-click="sendUserProfile(featured.userSubscription.href)"
+                 ng-if="featured.profilePictureUrl != null">
+          </div>
+          <div class="assertive userNameBold" style="white-space: nowrap; overflow: scroll;"
+               ng-click="sendUserProfile(featured.userSubscription.href)">{{::featured.name}}
+          </div>
+          <button class="button button-stable button-small button-outline button-avatar"
+                  ng-class="featured.Follow ? 'button-assertive':'button-balanced'" ng-click="addFriends(featured)">
+            {{featured.Follow ? data.unfollowText:data.followText}}
+          </button>
+        </div>
+        <div class="col col-75">
+          <ion-scroll direction="x" scrollbar-x="true" scrollbar-y="true" has-bouncing="true" zooming="false"
+                      delegate-handle="horizontal"
+                      style="width: 100%; position: relative; overflow: scroll !important; padding: 15px; white-space: nowrap;">
+            <div style="width: {{(90*(featured.pictures.length+1))+(10*featured.pictures.length+1)}}px; height: 80px; ">
+              <div style="margin-right: 10px; width: 80px; padding: 0px; float: left;" ng-repeat="image in featured.pictures | orderBy:'itemId'">
+                                <span style="display: block; width: 80px; height: 80px; margin-left: auto; margin-right: auto; background-repeat: no-repeat; background-size: cover; background-position: center center;
+                                background-image:url(data:image/jpeg;base64,{{ image.thumbPicture.split(':')[2]}}) !important"
+                                      ng-click="showImages1(featured.pictures, $index, featured )"
+                                      ng-if="image.thumbPicture != null"></span>
+                <span style="display: block; width: 80px; height: 80px; margin-left: auto; margin-right: auto; background-repeat: no-repeat; background-size: cover; background-position: center center;
+                                background-image:url({{ image.url}}) !important"
+                      ng-click="showImages1(featured.pictures, $index, featured )" ng-if="image.url != null"></span>
+              </div>
+              <div style="margin-right: 10px; width: 80px; padding: 0px; float: left;">
+                <button class="button button-stable button-outline button-large ion-ios-plus-outline"
+                        ng-click="sendUserProfile(featured.userSubscription.href)"
+                        style="width: 80px; height: 80px;"></button>
+              </div>
+            </div>
+          </ion-scroll>
+        </div>
+      </div>
+      <div
+        style="text-align: center; margin-top: 30px !important;"
+        ng-if="featuredUsers.length == 0 && data.noMoreUsersAvailable && !searching">
+          <p translate>DISCOVER.NO_DISCOVER_USERS</p><br/>
+      </div>
+    </div>
+    <div ng-show="data.activeTab == 'newUsers'">
+      <div class="list">
+        <div style="background-color: #FFF; border-bottom: solid 1px #DFDFDF;" ng-repeat="newUser in newUsers">
+          <div class="item item-avatar"
+               style="margin-left: 8px; min-height: 87px; margin-top: 0px; border-bottom: solid 1px #DFDFDF;">
+            <img class="avatar-image-newusers"
+                 ng-src="data:image/jpeg;base64,{{ ::newUser.profilePicture.split(':')[2] }}"
+                 ng-click="sendUserProfile(newUser.userSubscription.href)" ng-if="newUser.profilePicture != null">
+            <img class="avatar-image-newusers"
+                 ng-src="{{ ::newUser.profilePictureUrl}}" ng-click="sendUserProfile(newUser.userSubscription.href)"
+                 ng-if="newUser.profilePictureUrl != null">
+            <button class="button button-stable button-small button-outline button-avatar"
+                    ng-class="newUser.Follow ? 'button-assertive':'button-balanced'"
+                    style="position: absolute; margin-left: -18%; margin-top: 10%;" ng-click="addFriends(newUser)">
+              {{newUser.Follow ? data.unfollowText:data.followText}}
+            </button>
+            <div class="assertive userNameBold" ng-click="sendUserProfile(newUser.userSubscription.href)">
+              {{::newUser.name}}
+            </div>
+            <p class="bio">{{::newUser.userBio}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-infinite-scroll ng-if="!data.noMoreUsersAvailable" on-infinite="loadMore()"
+                         distance="18%"></ion-infinite-scroll>
+  </ion-content>
+
+  <div ng-include="'templates/partials/footer.html'" onload="botonSearchOn=true"></div>
+
+</ion-view>
